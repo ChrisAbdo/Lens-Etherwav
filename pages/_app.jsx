@@ -4,12 +4,18 @@ import Navbar from '../components/Navbar';
 
 import { Toaster } from 'react-hot-toast';
 
+import { ChainId, ThirdwebProvider } from '@thirdweb-dev/react';
+
+const activeChainId = ChainId.Mumbai;
+
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Navbar />
-      <Component {...pageProps} />
-      <Toaster />
+      <ThirdwebProvider desiredChainId={activeChainId}>
+        <Navbar />
+        <Component {...pageProps} />
+        <Toaster />
+      </ThirdwebProvider>
     </>
   );
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { ConnectWallet } from '@thirdweb-dev/react';
 
 const Navbar = () => {
   return (
@@ -90,7 +91,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Get started</a>
+        <ConnectWallet />
       </div>
     </div>
   );

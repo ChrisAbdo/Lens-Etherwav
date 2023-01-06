@@ -70,6 +70,11 @@ const RadioPage = memo(() => {
 
   function handleNext() {
     setCurrentIndex(currentIndex + 1);
+
+    // reset progress bar
+    const progressBar = document.getElementById('progress-bar');
+    progressBar.value = 0;
+    progressBar.classList.remove('animate-pulse');
   }
 
   function handlePlayPause() {
@@ -78,6 +83,16 @@ const RadioPage = memo(() => {
         audioRef.current.pause();
       } else {
         audioRef.current.play();
+
+        const progressBar = document.getElementById('progress-bar');
+        progressBar.max = audioRef.current.duration;
+
+        // Update progress bar every 100 milliseconds
+        const intervalId = setInterval(() => {
+          progressBar.value = audioRef.current.currentTime;
+        }, 100);
+
+        progressBar.classList.add('animate-pulse');
       }
       setIsPlaying(!isPlaying);
     }
@@ -102,6 +117,16 @@ const RadioPage = memo(() => {
                 {nfts.length > 0 && nfts[currentIndex].seller.slice(0, 6)}...
                 {nfts.length > 0 && nfts[currentIndex].seller.slice(38, 42)}
               </p>
+
+              <div>
+                <progress
+                  id="progress-bar"
+                  className="progress w-full"
+                  value="0"
+                  max="100"
+                ></progress>
+              </div>
+
               <div className="card-actions justify-between mt-4">
                 {/* Previous */}
                 <button
@@ -203,40 +228,3 @@ const RadioPage = memo(() => {
 });
 
 export default RadioPage;
-
-// {/* <div
-// key={currentIndex}
-// className="border-[2px] border-black shadow overflow-hidden hover:scale-[1.03] transform transition duration-500 ease-in-out mb-4"
-// >
-// <figure className="flex items-center justify-center  w-full">
-//   <audio
-//     controls
-//     controlsList="nodownload"
-//     className="w-full border-b-[2px] border-black"
-//   >
-//     <source src={nfts[currentIndex].image} type="audio/mpeg" />
-//   </audio>
-// </figure>
-
-// <div className="p-4 space-y-2">
-//   <p className="text-2xl font-semibold">
-//     {nfts[currentIndex].name}
-//   </p>
-
-//   <p className="">
-//     <span className="font-semibold">Description: </span>
-//     {nfts[currentIndex].description}
-//   </p>
-//   <p>
-//     {/* Uploaded by: {nft.seller.slice(0, 5)}...
-//           {nft.seller.slice(-4)} */}
-//     <span className="font-semibold">Uploaded by: </span>
-//     {nfts[currentIndex].seller.slice(0, 5)}...
-//     {nfts[currentIndex].seller.slice(-4)}
-//   </p>
-//   <p className="space-x-2">
-//     <span className="badge">genre</span>
-//     <span className="badge">instrument</span>
-//   </p>
-// </div>
-// </div> */}

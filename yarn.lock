@@ -1633,7 +1633,7 @@
   resolved "https://registry.yarnpkg.com/@thirdweb-dev/contracts/-/contracts-3.2.8-0.tgz#74a5775deece2f143d1f4d2d96920efc1f8659df"
   integrity sha512-yoFoXx2s/baxZx05WYgTGIb6ze/pUwLQ2CkiK9ms3IoUY51mlmN0T8bbRBAJlQBMqJuHRGk4HzB+BUrpFYAZig==
 
-"@thirdweb-dev/react@^3.6.8":
+"@thirdweb-dev/react@^3.6.9":
   version "3.6.9"
   resolved "https://registry.yarnpkg.com/@thirdweb-dev/react/-/react-3.6.9.tgz#d286f303c2ad08e79d95a7c73ff569740a0b24e5"
   integrity sha512-vhRpqS8ISX/Xch9Im/3FGIRryq/pkpMuGciCcnSaQgkV4FjKW5lrGHEAi9tZjR+u3q9PD9SSvGEvkrghogvXZQ==
@@ -1658,7 +1658,7 @@
     tiny-invariant "^1.2.0"
     wagmi "^0.2.28"
 
-"@thirdweb-dev/sdk@^3.6.8":
+"@thirdweb-dev/sdk@^3.6.9":
   version "3.6.9"
   resolved "https://registry.yarnpkg.com/@thirdweb-dev/sdk/-/sdk-3.6.9.tgz#e846562a32d526af0f35eade940fd203cbf1fc62"
   integrity sha512-SXlVo4EVetGUDSou82oWKz9/zWnIuvRnwGrcbN5yAEnqZXlmYqfzbheuSylFXqUkTkoEVwy4Gs9IWyKayWvTXA==
@@ -4734,7 +4734,7 @@ ethereumjs-vm@^2.3.4:
     rustbn.js "~0.2.0"
     safe-buffer "^5.1.1"
 
-ethers@5.7.2, ethers@^5.5.1:
+ethers@5.7.2, ethers@^5.5.1, ethers@^5.7.2:
   version "5.7.2"
   resolved "https://registry.yarnpkg.com/ethers/-/ethers-5.7.2.tgz#3a7deeabbb8c030d4126b24f84e525466145872e"
   integrity sha512-wswUsmWo1aOK8rR7DIKiWSw9DbLWe6x98Jrn8wcTflTVvaXhAMaB5zGAXy0GYQEQp9iO1iSHWVyARQm11zUtyg==
