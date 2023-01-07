@@ -24,69 +24,33 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-[#292929] rounded-box w-52"
           >
             <li>
-              <a>Item 1</a>
-            </li>
-            <li tabIndex={0}>
-              <a className="justify-between">
-                Parent
-                <svg
-                  className="fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
-                </svg>
-              </a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
+              <a href="/">Home</a>
             </li>
             <li>
-              <a>Item 3</a>
+              <a href="/radio">Radio</a>
+            </li>
+            <li>
+              <a href="/upload">Upload</a>
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+        <a href="/" className="btn btn-ghost normal-case text-xl">
+          Radio3
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a>Item 1</a>
-          </li>
-          <li tabIndex={0}>
-            <a>
-              Parent
-              <svg
-                className="fill-current"
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-              >
-                <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
-              </svg>
-            </a>
-            <ul className="p-2">
-              <li>
-                <a>Submenu 1</a>
-              </li>
-              <li>
-                <a>Submenu 2</a>
-              </li>
-            </ul>
+            <a href="/">Home</a>
           </li>
           <li>
-            <a>Item 3</a>
+            <a href="/radio">Radio</a>
+          </li>
+          <li>
+            <a href="/upload">Upload</a>
           </li>
         </ul>
       </div>

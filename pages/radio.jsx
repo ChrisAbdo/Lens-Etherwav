@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { useEffect, useState, memo, useRef } from 'react';
 import axios from 'axios';
 
@@ -6,13 +5,13 @@ import Web3 from 'web3';
 import Radio from '../smart-contracts/build/contracts/Radio.json';
 import NFT from '../smart-contracts/build/contracts/NFT.json';
 
-import { motion } from 'framer-motion';
-
-const RadioPage = memo(() => {
+const RadioPage = () => {
   const [nfts, setNfts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
+  const [rangeValue, setRangeValue] = useState(0);
+  const rangeInputRef = useRef(null);
 
   useEffect(() => {
     loadSongs();
@@ -70,11 +69,6 @@ const RadioPage = memo(() => {
 
   function handleNext() {
     setCurrentIndex(currentIndex + 1);
-
-    // reset progress bar
-    const progressBar = document.getElementById('progress-bar');
-    progressBar.value = 0;
-    progressBar.classList.remove('animate-pulse');
   }
 
   function handlePlayPause() {
@@ -82,21 +76,39 @@ const RadioPage = memo(() => {
       if (isPlaying) {
         audioRef.current.pause();
       } else {
+        audioRef.current.pause();
         audioRef.current.play();
-
-        const progressBar = document.getElementById('progress-bar');
-        progressBar.max = audioRef.current.duration;
-
-        // Update progress bar every 100 milliseconds
-        const intervalId = setInterval(() => {
-          progressBar.value = audioRef.current.currentTime;
-        }, 100);
-
-        progressBar.classList.add('animate-pulse');
       }
       setIsPlaying(!isPlaying);
     }
   }
+
+  const updateRangeInput = () => {
+    const audioEl = audioRef.current;
+    const rangeInputEl = rangeInputRef.current;
+    rangeInputEl.max = audioEl.duration;
+    rangeInputEl.value = audioEl.currentTime;
+  };
+
+  const handleRangeInputChange = () => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = rangeValue;
+    }
+  };
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.addEventListener('timeupdate', updateRangeInput);
+      if (audioRef.current.currentTime === audioRef.current.duration) {
+        audioRef.current.currentTime = 0;
+      }
+    }
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.removeEventListener('timeupdate', updateRangeInput);
+      }
+    };
+  }, [isPlaying]);
 
   return (
     <div>
@@ -119,12 +131,16 @@ const RadioPage = memo(() => {
               </p>
 
               <div>
-                <progress
-                  id="progress-bar"
-                  className="progress w-full"
-                  value="0"
+                <input
+                  type="range"
+                  min="0"
                   max="100"
-                ></progress>
+                  value={rangeValue}
+                  ref={rangeInputRef}
+                  className="range range-primary range-xs"
+                  onChange={(e) => setRangeValue(e.target.value)}
+                  onMouseUp={handleRangeInputChange}
+                />
               </div>
 
               <div className="card-actions justify-between mt-4">
@@ -225,6 +241,6 @@ const RadioPage = memo(() => {
       </div>
     </div>
   );
-});
+};
 
 export default RadioPage;

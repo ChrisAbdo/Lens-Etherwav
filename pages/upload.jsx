@@ -6,6 +6,30 @@ import Radio from '../smart-contracts/build/contracts/Radio.json';
 import NFT from '../smart-contracts/build/contracts/NFT.json';
 import toast from 'react-hot-toast';
 
+const ipfsClient = require('ipfs-http-client');
+const projectId = '2FdliMGfWHQCzVYTtFlGQsknZvb';
+const projectSecret = '2274a79139ff6fdb2f016d12f713dca1';
+const auth =
+  'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
+const client = ipfsClient.create({
+  host: 'ipfs.infura.io',
+  port: 5001,
+  protocol: 'https',
+  headers: {
+    authorization: auth,
+  },
+});
+
+const loadBlockchainData = async () => {
+  try {
+    const web3 = new Web3(window.ethereum);
+    const accounts = await web3.eth.getAccounts();
+    accounts(accounts[0]);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 const upload = () => {
   const [account, setAccount] = useState('');
   const [loading, setLoading] = useState(true);
@@ -27,30 +51,6 @@ const upload = () => {
       setDisabled(true);
     }
   }, [account, formInput, fileUrl]);
-
-  const ipfsClient = require('ipfs-http-client');
-  const projectId = '2FdliMGfWHQCzVYTtFlGQsknZvb';
-  const projectSecret = '2274a79139ff6fdb2f016d12f713dca1';
-  const auth =
-    'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64');
-  const client = ipfsClient.create({
-    host: 'ipfs.infura.io',
-    port: 5001,
-    protocol: 'https',
-    headers: {
-      authorization: auth,
-    },
-  });
-
-  const loadBlockchainData = async () => {
-    try {
-      const web3 = new Web3(window.ethereum);
-      const accounts = await web3.eth.getAccounts();
-      setAccount(accounts[0]);
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   async function onChange(e) {
     // upload image to IPFS
