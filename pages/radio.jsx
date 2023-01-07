@@ -103,11 +103,11 @@ const RadioPage = () => {
         audioRef.current.currentTime = 0;
       }
     }
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.removeEventListener('timeupdate', updateRangeInput);
-      }
-    };
+    // return () => {
+    //   if (audioRef.current) {
+    //     audioRef.current.removeEventListener('timeupdate', updateRangeInput);
+    //   }
+    // };
   }, [isPlaying]);
 
   return (
@@ -122,6 +122,7 @@ const RadioPage = () => {
               />
             </figure>
             <div className="card-body">
+              <h1 className="">Heat Count: </h1>
               <h2 className="card-title text-center justify-center">
                 {nfts.length > 0 && nfts[currentIndex].name}
               </h2>
@@ -232,6 +233,22 @@ const RadioPage = () => {
                     />
                   </svg>
                 </button>
+              </div>
+
+              <div className="card-actions justify-between mt-4">
+                <button className="btn btn-ghost btn-secondary normal-case">
+                  Report Beat
+                </button>
+
+                <a
+                  href="#_"
+                  className="relative p-0.5 inline-flex items-center justify-center font-bold overflow-hidden group"
+                >
+                  <span className="w-full h-full bg-gradient-to-br from-yellow-600  to-red-600 group-hover:from-yellow-600  group-hover:to-red-600 absolute"></span>
+                  <span className="relative px-6 py-3 transition-all ease-out bg-black  group-hover:bg-opacity-0 duration-400">
+                    <span className="relative text-white">Heat 🔥</span>
+                  </span>
+                </a>
               </div>
             </div>
           </div>
