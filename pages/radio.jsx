@@ -99,7 +99,10 @@ const RadioPage = () => {
 
       radioContract.methods
         .giveHeat(nfts[currentIndex].tokenId, heatCount)
-        .send({ from: window.ethereum.selectedAddress, value: heatCount })
+        .send({
+          from: window.ethereum.selectedAddress,
+          value: heatCount,
+        })
         .on('receipt', function () {
           console.log('listed');
           document.getElementById(
@@ -154,6 +157,7 @@ const RadioPage = () => {
                 height={500}
                 alt="cover"
                 className="border-b border-[#2a2a2a]"
+                priority
               />
             </figure>
             <div className="card-body">
@@ -309,6 +313,8 @@ const RadioPage = () => {
             1 Heat = 1 MATIC.
             <br />
             You can give as much heat as you want.
+            <br />
+            Please refresh the page after giving heat to see the updated heat.
           </p>
           {/* <input
             type="number"
@@ -316,12 +322,12 @@ const RadioPage = () => {
             onChange={(event) => setHeatCount(event.target.value)}
           /> */}
           <div className="flex justify-center text-center p-4">
-            <div className="form-control mt-4 ">
+            <div className="form-control mt-4 border border-[#2a2a2a] p-4 rounded-3xl">
               <label className="input-group ">
                 <span>🔥</span>
                 <input
                   type="number"
-                  placeholder="10"
+                  placeholder="Enter Heat Count"
                   className="input input-bordered "
                   id="heatcountinput"
                   onChange={(event) => setHeatCount(event.target.value)}
@@ -332,11 +338,10 @@ const RadioPage = () => {
               {nfts[currentIndex] && (
                 <div
                   id="heatcountdiv"
-                  className="bg-[#1f1f1f] border border-[#2a2a2a] mt-4 p-4 max-w-xl"
+                  className="bg-[#1f1f1f] border border-[#2a2a2a] mt-4 p-4 max-w-xl rounded-3xl"
                 >
                   <h1 id="heatcounttext" className="text-center text-xl ">
-                    You are giving {heatCount} Heat 🔥 to{' '}
-                    {nfts[currentIndex].name}
+                    You are giving {heatCount} Heat 🔥
                   </h1>
                   <div
                     id="heatanimation"
