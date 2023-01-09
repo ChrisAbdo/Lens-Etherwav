@@ -11,6 +11,8 @@ const RadioPage = () => {
   const [nfts, setNfts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [heatCount, setHeatCount] = useState(0);
+
   const audioRef = useRef(null);
   const progressRef = useRef(null);
 
@@ -53,6 +55,7 @@ const RadioPage = () => {
             image: meta.data.image,
             name: meta.data.name,
             coverImage: meta.data.coverImage,
+            heatCount: i.heatCount,
           };
           return nft;
         } catch (err) {
@@ -62,6 +65,21 @@ const RadioPage = () => {
       })
     );
     setNfts(nfts.filter((nft) => nft !== null));
+  }
+
+  async function handleGiveHeat() {
+    // Get an instance of the Radio contract
+    const web3 = new Web3(window.ethereum);
+    const networkId = await web3.eth.net.getId();
+    const radioContract = new web3.eth.Contract(
+      Radio.abi,
+      Radio.networks[networkId].address
+    );
+
+    // Call the giveHeat function of the Radio contract
+    radioContract.methods
+      .giveHeat(nfts[currentIndex].tokenId, heatCount)
+      .send({ from: window.ethereum.selectedAddress, value: heatCount });
   }
 
   function handlePrevious() {
@@ -94,10 +112,14 @@ const RadioPage = () => {
                 src={nfts[currentIndex].coverImage}
                 width={500}
                 height={500}
+                alt="cover"
+                className="border-b border-[#2a2a2a]"
               />
             </figure>
             <div className="card-body">
-              <h1 className="">Heat Count: </h1>
+              <h1 className="">
+                Heat Count: {nfts[currentIndex].heatCount} 🔥
+              </h1>
               <h2 className="card-title text-center justify-center">
                 {nfts.length > 0 && nfts[currentIndex].name}
               </h2>
@@ -127,7 +149,7 @@ const RadioPage = () => {
                     />
                   </svg>
                 </button>
-                <audio
+                <ReactAudioPlayer
                   src={nfts[currentIndex].image}
                   ref={audioRef}
                   onEnded={() => {
@@ -138,7 +160,7 @@ const RadioPage = () => {
                   className="h-12 w-full"
                   controls
                   autoPlay
-                ></audio>
+                />
                 <button
                   onClick={handleNext}
                   disabled={currentIndex === nfts.length - 1}
@@ -164,14 +186,14 @@ const RadioPage = () => {
               <div className="card-actions justify-between mt-4">
                 <label
                   htmlFor="my-modal-6"
-                  className="btn btn-ghost btn-secondary normal-case rounded-3xl"
+                  className="btn btn-ghost btn-secondary normal-case rounded-3xl cursor-pointer"
                 >
                   Report Beat
                 </label>
 
-                <a
-                  href="#_"
-                  className="rounded-3xl relative p-0.5 inline-flex items-center justify-center font-bold overflow-hidden group"
+                <label
+                  htmlFor="my-modal-5"
+                  className="rounded-3xl relative p-0.5 inline-flex items-center justify-center font-bold overflow-hidden group cursor-pointer"
                 >
                   <span className="rounded-3xl w-full h-full bg-gradient-to-br from-yellow-600  to-red-600 group-hover:from-yellow-600  group-hover:to-red-600 absolute"></span>
                   <span className="rounded-3xl relative px-6 py-3 transition-all ease-out bg-black  group-hover:bg-opacity-0 duration-400">
@@ -179,7 +201,7 @@ const RadioPage = () => {
                       Heat 🔥
                     </span>
                   </span>
-                </a>
+                </label>
               </div>
             </div>
           </div>
@@ -193,7 +215,7 @@ const RadioPage = () => {
       </div>
       <input type="checkbox" id="my-modal-6" className="modal-toggle" />
       <div className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box rounded-3xl">
+        <div className="modal-box rounded-t-3xl">
           <h3 className="font-bold text-lg">
             Sorry! This feature is not available yet.
           </h3>
@@ -204,6 +226,73 @@ const RadioPage = () => {
           <div className="modal-action">
             <label htmlFor="my-modal-6" className="btn rounded-3xl">
               close
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <input type="checkbox" id="my-modal-5" className="modal-toggle" />
+      <div className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box rounded-t-3xl">
+          <h2 className="text-3xl mb-4 text-center">Give Heat 🔥</h2>
+          <div className="collapse collapse-arrow rounded-3xl">
+            <input type="checkbox" />
+            <div className="collapse-title text-xl font-medium bg-[#2a2a2a] h-12">
+              What is Heat?
+            </div>
+            <div className="collapse-content bg-[#1a1a1a]">
+              <p className="p-4">
+                {' '}
+                Heat is a way to show your appreciation for a song. The more
+                heat a song has, the more it will be promoted and pushed to the
+                top of the queue. <br />
+                As of now it is a contract interation, but soon all "Heat"
+                values will be sent to the uploader.
+              </p>
+            </div>
+          </div>
+
+          <p className="text-center text-xl mt-4">
+            1 Heat = 1 MATIC.
+            <br />
+            You can give as much heat as you want.
+          </p>
+          {/* <input
+            type="number"
+            value={heatCount}
+            onChange={(event) => setHeatCount(event.target.value)}
+          /> */}
+          <div className="form-control">
+            <label className="label ">
+              <span className="label-text">Enter amount</span>
+            </label>
+            <label className="input-group ">
+              <span>🔥</span>
+              <input
+                type="number"
+                placeholder="10"
+                className="input input-bordered "
+                id="heatcountinput"
+                onChange={(event) => setHeatCount(event.target.value)}
+              />
+              <span>MATIC</span>
+            </label>
+
+            {nfts[currentIndex] && (
+              <h1 id="heatcounttext" className="text-center text-xl mt-4">
+                You are giving {heatCount} Heat to {nfts[currentIndex].name}
+              </h1>
+            )}
+          </div>
+          <button
+            className="btn btn-primary rounded-3xl w-full mt-4"
+            onClick={handleGiveHeat}
+          >
+            Give Heat
+          </button>
+          <div className="modal-action">
+            <label htmlFor="my-modal-5" className="btn">
+              Yay!
             </label>
           </div>
         </div>

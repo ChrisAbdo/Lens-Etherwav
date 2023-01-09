@@ -20,16 +20,6 @@ const client = ipfsClient.create({
   },
 });
 
-const loadBlockchainData = async () => {
-  try {
-    const web3 = new Web3(window.ethereum);
-    const accounts = await web3.eth.getAccounts();
-    accounts(accounts[0]);
-  } catch (err) {
-    console.log(err);
-  }
-};
-
 const upload = () => {
   const [account, setAccount] = useState('');
   const [loading, setLoading] = useState(true);
@@ -43,8 +33,6 @@ const upload = () => {
   const router = useRouter();
 
   useEffect(() => {
-    loadBlockchainData();
-
     if (formInput.name && formInput.coverImage && fileUrl) {
       setDisabled(false);
     } else {
