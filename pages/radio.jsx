@@ -13,8 +13,8 @@ const RadioPage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [shouldPlay, setShouldPlay] = useState(false);
-
   const [heatCount, setHeatCount] = useState(0);
+  const [heatGivers, setHeatGivers] = useState([]);
 
   const audioRef = useRef(null);
 
@@ -166,11 +166,15 @@ const RadioPage = () => {
                 priority
               />
             </figure>
+            <label
+              htmlFor="my-modal-1"
+              className="text-orange-500 hover:animate-pulse btn"
+            >
+              <span className="fire-emoji">🔥</span> Heat Count:{' '}
+              {nfts[currentIndex].heatCount}{' '}
+              <span className="fire-emoji">🔥</span>
+            </label>
             <div className="card-body">
-              <h1 className="text-orange-500 hover:animate-pulse">
-                🔥 Heat Count: {nfts[currentIndex].heatCount} 🔥
-              </h1>
-
               <h2 className="card-title text-center justify-center">
                 {nfts.length > 0 && nfts[currentIndex].name}
               </h2>
@@ -278,6 +282,8 @@ const RadioPage = () => {
           </p>
         )}
       </div>
+
+      {/* Report Modal */}
       <input type="checkbox" id="my-modal-6" className="modal-toggle" />
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box rounded-t-3xl">
@@ -296,6 +302,7 @@ const RadioPage = () => {
         </div>
       </div>
 
+      {/* Give Heat Modal */}
       <input type="checkbox" id="my-modal-5" className="modal-toggle" />
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box rounded-t-3xl">
@@ -324,13 +331,9 @@ const RadioPage = () => {
             <br />
             Please refresh the page after giving heat to see the updated heat.
           </p>
-          {/* <input
-            type="number"
-            value={heatCount}
-            onChange={(event) => setHeatCount(event.target.value)}
-          /> */}
-          <div className="flex justify-center text-center p-4">
-            <div className="form-control mt-4 border border-[#2a2a2a] p-4 rounded-3xl">
+
+          <div className="flex justify-center text-center ">
+            <div className="form-control mt-4  rounded-3xl">
               <label className="input-group ">
                 <span>🔥</span>
                 <input
@@ -373,8 +376,25 @@ const RadioPage = () => {
             Give Heat
           </button>
           <div className="modal-action">
-            <label htmlFor="my-modal-5" className="btn">
+            <label htmlFor="my-modal-5" className="btn rounded-full">
               X
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <input type="checkbox" id="my-modal-1" className="modal-toggle" />
+      <div className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg">
+            Heat Tracker is coming soon! 🕒🎉
+          </h3>
+          <div className="overflow-x-hidden">
+            <progress className="progress w-full"></progress>
+          </div>
+          <div className="modal-action">
+            <label htmlFor="my-modal-1" className="btn">
+              Yay!
             </label>
           </div>
         </div>

@@ -196,7 +196,7 @@ const upload = () => {
             </label>
             <input
               type="file"
-              className="file-input file-input-bordered w-full max-w-xs"
+              className="file-input file-input-bordered w-full max-w-xs rounded-3xl"
               accept=".mp3"
               onChange={onChange}
             />
@@ -208,7 +208,7 @@ const upload = () => {
             <input
               type="text"
               placeholder="Title here"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full max-w-xs rounded-3xl"
               onChange={(e) =>
                 updateFormInput({ ...formInput, name: e.target.value })
               }
@@ -227,11 +227,11 @@ const upload = () => {
                 <input
                   type="text"
                   placeholder="."
-                  className="input input-bordered w-full"
+                  className="input input-bordered w-full rounded-3xl"
                   value={coverImage}
                   disabled
                 />
-                <span onClick={removeCoverImage} className="btn">
+                <span onClick={removeCoverImage} className="btn rounded-3xl">
                   X
                 </span>
               </label>
@@ -247,7 +247,7 @@ const upload = () => {
               <input
                 onChange={createCoverImage}
                 type="file"
-                className="file-input file-input-bordered w-full max-w-xs"
+                className="file-input file-input-bordered w-full max-w-xs rounded-3xl"
               />
             </div>
           )}
