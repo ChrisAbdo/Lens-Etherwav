@@ -35,3 +35,11 @@
   .fire-emoji:nth-of-type(5) {
     animation-delay: -0.8s;
   }
+
+  .card1 {
+    @apply transition-colors duration-500;
+  }
+  
+  .card1:hover {
+    @apply bg-black;
+  }
