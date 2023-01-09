@@ -14,7 +14,6 @@ const RadioPage = () => {
   const [heatCount, setHeatCount] = useState(0);
 
   const audioRef = useRef(null);
-  const progressRef = useRef(null);
 
   useEffect(() => {
     loadSongs();
@@ -90,23 +89,11 @@ const RadioPage = () => {
     setCurrentIndex(currentIndex + 1);
   }
 
-  function handlePlayPause() {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.pause();
-        audioRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  }
-
   return (
     <div>
-      <div className="hero mt-12">
+      <div className="hero mt-6 p-2">
         {nfts.length > 0 ? (
-          <div key={currentIndex} className="card border border-[#2a2a2a]">
+          <div key={currentIndex} className="card border border-[#2a2a2a] ">
             <figure>
               <Image
                 src={nfts[currentIndex].coverImage}
@@ -163,7 +150,6 @@ const RadioPage = () => {
                 />
                 <button
                   onClick={handleNext}
-                  disabled={currentIndex === nfts.length - 1}
                   className="btn btn-outline rounded-3xl normal-case bg-[#353535] border-[#2a2a2a]"
                 >
                   <svg
@@ -186,9 +172,23 @@ const RadioPage = () => {
               <div className="card-actions justify-between mt-4">
                 <label
                   htmlFor="my-modal-6"
-                  className="btn btn-ghost btn-secondary normal-case rounded-3xl cursor-pointer"
+                  className="btn btn-outline btn-secondary normal-case rounded-3xl cursor-pointer"
                 >
-                  Report Beat
+                  Report&nbsp;
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"
+                    />
+                  </svg>
                 </label>
 
                 <label
@@ -246,8 +246,8 @@ const RadioPage = () => {
                 Heat is a way to show your appreciation for a song. The more
                 heat a song has, the more it will be promoted and pushed to the
                 top of the queue. <br />
-                As of now it is a contract interation, but soon all "Heat"
-                values will be sent to the uploader.
+                As of now it is a contract interaction, but very soon all Heat
+                values will be sent to the uploader. EST Feb 2023.
               </p>
             </div>
           </div>
@@ -262,27 +262,26 @@ const RadioPage = () => {
             value={heatCount}
             onChange={(event) => setHeatCount(event.target.value)}
           /> */}
-          <div className="form-control">
-            <label className="label ">
-              <span className="label-text">Enter amount</span>
-            </label>
-            <label className="input-group ">
-              <span>🔥</span>
-              <input
-                type="number"
-                placeholder="10"
-                className="input input-bordered "
-                id="heatcountinput"
-                onChange={(event) => setHeatCount(event.target.value)}
-              />
-              <span>MATIC</span>
-            </label>
+          <div className="flex justify-center text-center p-4">
+            <div className="form-control mt-4 ">
+              <label className="input-group ">
+                <span>🔥</span>
+                <input
+                  type="number"
+                  placeholder="10"
+                  className="input input-bordered "
+                  id="heatcountinput"
+                  onChange={(event) => setHeatCount(event.target.value)}
+                />
+                <span>MATIC</span>
+              </label>
 
-            {nfts[currentIndex] && (
-              <h1 id="heatcounttext" className="text-center text-xl mt-4">
-                You are giving {heatCount} Heat to {nfts[currentIndex].name}
-              </h1>
-            )}
+              {nfts[currentIndex] && (
+                <h1 id="heatcounttext" className="text-center text-xl mt-4">
+                  You are giving {heatCount} Heat to {nfts[currentIndex].name}
+                </h1>
+              )}
+            </div>
           </div>
           <button
             className="btn btn-primary rounded-3xl w-full mt-4"
@@ -292,7 +291,7 @@ const RadioPage = () => {
           </button>
           <div className="modal-action">
             <label htmlFor="my-modal-5" className="btn">
-              Yay!
+              X
             </label>
           </div>
         </div>
