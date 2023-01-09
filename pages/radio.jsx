@@ -207,6 +207,7 @@ const RadioPage = () => {
                 />
                 <button
                   onClick={handleNext}
+                  disabled={currentIndex === nfts.length - 1}
                   className="btn btn-outline rounded-3xl normal-case bg-[#353535] border-[#2a2a2a]"
                 >
                   <svg
