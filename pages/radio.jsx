@@ -71,7 +71,13 @@ const RadioPage = () => {
         }
       })
     );
-    setNfts(nfts.filter((nft) => nft !== null));
+    // setNfts(nfts.filter((nft) => nft !== null));
+
+    // set nfts in order of heatCount
+    const sortedNfts = nfts
+      .filter((nft) => nft !== null)
+      .sort((a, b) => b.heatCount - a.heatCount);
+    setNfts(sortedNfts);
   }
 
   async function handleGiveHeat() {
