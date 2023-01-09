@@ -1,17 +1,18 @@
-import { useEffect, useState, memo, useRef } from 'react';
+import { useEffect, useState, useLayoutEffect, useRef } from 'react';
 import axios from 'axios';
+import ReactAudioPlayer from 'react-audio-player';
 
 import Web3 from 'web3';
 import Radio from '../smart-contracts/build/contracts/Radio.json';
 import NFT from '../smart-contracts/build/contracts/NFT.json';
+import Image from 'next/image';
 
 const RadioPage = () => {
   const [nfts, setNfts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef(null);
-  const [rangeValue, setRangeValue] = useState(0);
-  const rangeInputRef = useRef(null);
+  const progressRef = useRef(null);
 
   useEffect(() => {
     loadSongs();
@@ -83,42 +84,16 @@ const RadioPage = () => {
     }
   }
 
-  const updateRangeInput = () => {
-    const audioEl = audioRef.current;
-    const rangeInputEl = rangeInputRef.current;
-    rangeInputEl.max = audioEl.duration;
-    rangeInputEl.value = audioEl.currentTime;
-  };
-
-  const handleRangeInputChange = () => {
-    if (audioRef.current) {
-      audioRef.current.currentTime = rangeValue;
-    }
-  };
-
-  useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.addEventListener('timeupdate', updateRangeInput);
-      if (audioRef.current.currentTime === audioRef.current.duration) {
-        audioRef.current.currentTime = 0;
-      }
-    }
-    // return () => {
-    //   if (audioRef.current) {
-    //     audioRef.current.removeEventListener('timeupdate', updateRangeInput);
-    //   }
-    // };
-  }, [isPlaying]);
-
   return (
     <div>
       <div className="hero mt-12">
         {nfts.length > 0 ? (
           <div key={currentIndex} className="card border border-[#2a2a2a]">
             <figure>
-              <img
-                src={nfts.length > 0 && nfts[currentIndex].coverImage}
-                className="border-b border-[#2a2a2a]"
+              <Image
+                src={nfts[currentIndex].coverImage}
+                width={500}
+                height={500}
               />
             </figure>
             <div className="card-body">
@@ -131,25 +106,11 @@ const RadioPage = () => {
                 {nfts.length > 0 && nfts[currentIndex].seller.slice(38, 42)}
               </p>
 
-              <div>
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  value={rangeValue}
-                  ref={rangeInputRef}
-                  className="range range-primary range-xs"
-                  onChange={(e) => setRangeValue(e.target.value)}
-                  onMouseUp={handleRangeInputChange}
-                />
-              </div>
-
-              <div className="card-actions justify-between mt-4">
-                {/* Previous */}
+              <div className="flex justify-between space-x-4 mt-4">
                 <button
-                  className="btn btn-secondary"
                   onClick={handlePrevious}
                   disabled={currentIndex === 0}
+                  className="btn btn-outline rounded-3xl  normal-case bg-[#353535] border-[#2a2a2a]"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +127,6 @@ const RadioPage = () => {
                     />
                   </svg>
                 </button>
-
                 <audio
                   src={nfts[currentIndex].image}
                   ref={audioRef}
@@ -175,48 +135,13 @@ const RadioPage = () => {
                       setCurrentIndex(currentIndex + 1);
                     }
                   }}
-                />
-
-                {/* Play / Pause */}
-                <button className="btn btn-primary" onClick={handlePlayPause}>
-                  {isPlaying ? (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-6 h-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M15.75 5.25v13.5m-7.5-13.5v13.5"
-                      />
-                    </svg>
-                  ) : (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth={1.5}
-                      stroke="currentColor"
-                      className="w-6 h-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z"
-                      />
-                    </svg>
-                  )}
-                </button>
-
-                {/* Next */}
+                  className="h-12 w-full"
+                  controls
+                  autoPlay
+                ></audio>
                 <button
-                  className="btn btn-secondary"
                   onClick={handleNext}
-                  disabled={currentIndex === nfts.length - 1}
+                  className="btn btn-outline rounded-3xl normal-case bg-[#353535] border-[#2a2a2a]"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -236,25 +161,51 @@ const RadioPage = () => {
               </div>
 
               <div className="card-actions justify-between mt-4">
-                <button className="btn btn-ghost btn-secondary normal-case">
+                <label
+                  htmlFor="my-modal-6"
+                  className="btn btn-ghost btn-secondary normal-case rounded-3xl"
+                >
                   Report Beat
-                </button>
+                </label>
 
                 <a
                   href="#_"
-                  className="relative p-0.5 inline-flex items-center justify-center font-bold overflow-hidden group"
+                  className="rounded-3xl relative p-0.5 inline-flex items-center justify-center font-bold overflow-hidden group"
                 >
-                  <span className="w-full h-full bg-gradient-to-br from-yellow-600  to-red-600 group-hover:from-yellow-600  group-hover:to-red-600 absolute"></span>
-                  <span className="relative px-6 py-3 transition-all ease-out bg-black  group-hover:bg-opacity-0 duration-400">
-                    <span className="relative text-white">Heat 🔥</span>
+                  <span className="rounded-3xl w-full h-full bg-gradient-to-br from-yellow-600  to-red-600 group-hover:from-yellow-600  group-hover:to-red-600 absolute"></span>
+                  <span className="rounded-3xl relative px-6 py-3 transition-all ease-out bg-black  group-hover:bg-opacity-0 duration-400">
+                    <span className="rounded-3xl relative text-white">
+                      Heat 🔥
+                    </span>
                   </span>
                 </a>
               </div>
             </div>
           </div>
         ) : (
-          <p>No songs found. Please check again in a few seconds.</p>
+          <p>
+            No songs found. This can mean the following: No wallet provider
+            found. No songs have been uploaded yet. Try again in a couple
+            seconds.
+          </p>
         )}
+      </div>
+      <input type="checkbox" id="my-modal-6" className="modal-toggle" />
+      <div className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box rounded-3xl">
+          <h3 className="font-bold text-lg">
+            Sorry! This feature is not available yet.
+          </h3>
+          <p className="py-4">
+            I am working on this feature. Please check back later. For now,
+            Please message me on Twitter @abdo_eth
+          </p>
+          <div className="modal-action">
+            <label htmlFor="my-modal-6" className="btn rounded-3xl">
+              close
+            </label>
+          </div>
+        </div>
       </div>
     </div>
   );
