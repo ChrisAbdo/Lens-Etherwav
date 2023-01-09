@@ -335,6 +335,7 @@ const RadioPage = () => {
                 <span>🔥</span>
                 <input
                   type="number"
+                  min={0}
                   placeholder="Enter Heat Count"
                   className="input input-bordered "
                   id="heatcountinput"
