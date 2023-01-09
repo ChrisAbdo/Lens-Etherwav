@@ -107,7 +107,7 @@ const RadioPage = () => {
         .giveHeat(nfts[currentIndex].tokenId, heatCount)
         .send({
           from: window.ethereum.selectedAddress,
-          value: heatCount,
+          value: web3.utils.toWei(heatCount.toString(), 'ether'),
         })
         .on('receipt', function () {
           console.log('listed');
@@ -167,9 +167,10 @@ const RadioPage = () => {
               />
             </figure>
             <div className="card-body">
-              <h1 className="">
-                Heat Count: {nfts[currentIndex].heatCount} 🔥
+              <h1 className="text-orange-500 hover:animate-pulse">
+                🔥 Heat Count: {nfts[currentIndex].heatCount} 🔥
               </h1>
+
               <h2 className="card-title text-center justify-center">
                 {nfts.length > 0 && nfts[currentIndex].name}
               </h2>
@@ -262,7 +263,7 @@ const RadioPage = () => {
                   <span className="rounded-3xl w-full h-full bg-gradient-to-br from-yellow-600  to-red-600 group-hover:from-yellow-600  group-hover:to-red-600 absolute"></span>
                   <span className="rounded-3xl relative px-6 py-3 transition-all ease-out bg-black  group-hover:bg-opacity-0 duration-400">
                     <span className="rounded-3xl relative text-white">
-                      Heat 🔥
+                      Give Heat 🔥
                     </span>
                   </span>
                 </label>

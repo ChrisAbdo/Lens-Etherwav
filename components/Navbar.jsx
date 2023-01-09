@@ -3,7 +3,7 @@ import { ConnectWallet } from '@thirdweb-dev/react';
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-black border-b border-[#2a2a2a] sticky top-0 z-50">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
