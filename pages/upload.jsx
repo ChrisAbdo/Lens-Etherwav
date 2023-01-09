@@ -42,6 +42,7 @@ const upload = () => {
 
   async function onChange(e) {
     // upload image to IPFS
+    setLoading(true);
     const file = e.target.files[0];
     try {
       const added = await client.add(file, {
@@ -49,15 +50,8 @@ const upload = () => {
       });
       const url = `https://ipfs.io/ipfs/${added.path}`;
       console.log(url);
+      setLoading(false);
       setFileUrl(url);
-      toast.success('The file has been successfully uploaded to IPFS', {
-        style: {
-          border: '1px solid #fff',
-          backgroundColor: '#2a2a2a',
-          fontWeight: 'bold',
-          color: '#fff',
-        },
-      });
     } catch (error) {
       console.log('Error uploading file: ', error);
     }
@@ -190,7 +184,7 @@ const upload = () => {
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-full p-12">
-      <div className="card w-96 shadow-xl border border-[#2a2a2a]">
+      <div className="card w-96 shadow-xl border border-[#2a2a2a] rounded-3xl">
         <figure className="px-10 pt-5">
           <h1 className="text-3xl font-bold text-center">Upload a Beat</h1>
         </figure>
@@ -262,7 +256,7 @@ const upload = () => {
             <button
               disabled={disabled}
               onClick={listNFTForSale}
-              className="btn btn-outline w-full"
+              className="btn btn-outline w-full rounded-3xl"
             >
               Upload
             </button>
