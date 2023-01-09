@@ -1,11 +1,12 @@
 import { useEffect, useState, useLayoutEffect, useRef } from 'react';
 import axios from 'axios';
 import ReactAudioPlayer from 'react-audio-player';
+import toast from 'react-hot-toast';
+import Image from 'next/image';
 
 import Web3 from 'web3';
 import Radio from '../smart-contracts/build/contracts/Radio.json';
 import NFT from '../smart-contracts/build/contracts/NFT.json';
-import Image from 'next/image';
 
 const RadioPage = () => {
   const [nfts, setNfts] = useState([]);
@@ -74,18 +75,63 @@ const RadioPage = () => {
   }
 
   async function handleGiveHeat() {
-    // Get an instance of the Radio contract
-    const web3 = new Web3(window.ethereum);
-    const networkId = await web3.eth.net.getId();
-    const radioContract = new web3.eth.Contract(
-      Radio.abi,
-      Radio.networks[networkId].address
+    const notification = toast.loading(
+      'Confirm the transaction to give heat! 🔥🔥🔥',
+      {
+        style: {
+          border: '1px solid #fff',
+          backgroundColor: '#2a2a2a',
+          fontWeight: 'bold',
+          color: '#fff',
+        },
+      }
     );
+    // Get an instance of the Radio contract
+    try {
+      const web3 = new Web3(window.ethereum);
+      const networkId = await web3.eth.net.getId();
+      const radioContract = new web3.eth.Contract(
+        Radio.abi,
+        Radio.networks[networkId].address
+      );
 
-    // Call the giveHeat function of the Radio contract
-    radioContract.methods
-      .giveHeat(nfts[currentIndex].tokenId, heatCount)
-      .send({ from: window.ethereum.selectedAddress, value: heatCount });
+      // Call the giveHeat function of the Radio contract
+
+      radioContract.methods
+        .giveHeat(nfts[currentIndex].tokenId, heatCount)
+        .send({ from: window.ethereum.selectedAddress, value: heatCount })
+        .on('receipt', function () {
+          console.log('listed');
+          document.getElementById(
+            'heatcounttext'
+          ).innerHTML = `YOU GAVE ${heatCount} HEAT!`;
+          document
+            .getElementById('heatcountdiv')
+            .classList.add('animate-pulse');
+          document.getElementById('heatanimation').classList.remove('hidden');
+
+          toast.success('Heat given successfully! 🔥🔥🔥', {
+            style: {
+              border: '1px solid #fff',
+              backgroundColor: '#2a2a2a',
+              fontWeight: 'bold',
+              color: '#fff',
+            },
+            id: notification,
+          });
+        });
+    } catch (err) {
+      console.log(err);
+      toast.error('Heat could not be given! ❌❌❌', {
+        style: {
+          border: '1px solid #fff',
+          backgroundColor: '#2a2a2a',
+          fontWeight: 'bold',
+          color: '#fff',
+        },
+        id: notification,
+      });
+    }
   }
 
   function handlePrevious() {
@@ -250,7 +296,7 @@ const RadioPage = () => {
             <div className="collapse-content bg-[#1a1a1a]">
               <p className="p-4">
                 {' '}
-                Heat is a way to show your appreciation for a song. The more
+                Heat 🔥 is a way to show your appreciation for a song. The more
                 heat a song has, the more it will be promoted and pushed to the
                 top of the queue. <br />
                 As of now it is a contract interaction, but very soon all Heat
@@ -284,9 +330,25 @@ const RadioPage = () => {
               </label>
 
               {nfts[currentIndex] && (
-                <h1 id="heatcounttext" className="text-center text-xl mt-4">
-                  You are giving {heatCount} Heat to {nfts[currentIndex].name}
-                </h1>
+                <div
+                  id="heatcountdiv"
+                  className="bg-[#1f1f1f] border border-[#2a2a2a] mt-4 p-4 max-w-xl"
+                >
+                  <h1 id="heatcounttext" className="text-center text-xl ">
+                    You are giving {heatCount} Heat 🔥 to{' '}
+                    {nfts[currentIndex].name}
+                  </h1>
+                  <div
+                    id="heatanimation"
+                    className="hidden flex text-center justify-center items-center"
+                  >
+                    <span className="fire-emoji">🔥</span>
+                    <span className="fire-emoji">🔥</span>
+                    <span className="fire-emoji">🔥</span>
+                    <span className="fire-emoji">🔥</span>
+                    <span className="fire-emoji">🔥</span>
+                  </div>
+                </div>
               )}
             </div>
           </div>

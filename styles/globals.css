@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes flame {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  .fire-emoji {
+    animation: flame 1s infinite;
+  }
+  
+  /* 
+    You can use the following style to create the 
+    appearance of multiple flames by adjusting the 
+    delay between each flame's animation 
+  */
+  .fire-emoji:nth-of-type(2) {
+    animation-delay: -0.2s;
+  }
+  .fire-emoji:nth-of-type(3) {
+    animation-delay: -0.4s;
+  }
+  .fire-emoji:nth-of-type(4) {
+    animation-delay: -0.6s;
+  }
+  .fire-emoji:nth-of-type(5) {
+    animation-delay: -0.8s;
+  }
