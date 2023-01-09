@@ -263,6 +263,26 @@ const upload = () => {
           </div>
         </div>
       </div>
+
+      <div className="divider">OR</div>
+
+      <div className="card w-96 shadow-xl border border-[#2a2a2a] rounded-3xl">
+        <figure className="px-10 pt-5">
+          <h1 className="text-3xl font-bold text-center">
+            Not sure what to upload?
+          </h1>
+        </figure>
+        <div className="card-body items-center text-center">
+          <h1 className="text-xl font-bold text-center">
+            Browse the radio for some inspiration!
+          </h1>
+          <div className="card-actions w-full mt-4">
+            <a href="/radio" className="btn btn-outline w-full rounded-3xl">
+              Listen to radio
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import axios from 'axios';
 import ReactAudioPlayer from 'react-audio-player';
 import toast from 'react-hot-toast';
 import Image from 'next/image';
+import Balancer from 'react-wrap-balancer';
 
 import Web3 from 'web3';
 import Radio from '../smart-contracts/build/contracts/Radio.json';
@@ -155,7 +156,10 @@ const RadioPage = () => {
     <div>
       <div className="hero mt-6 p-2">
         {nfts.length > 0 ? (
-          <div key={currentIndex} className="card border border-[#2a2a2a] ">
+          <div
+            key={currentIndex}
+            className="card border border-[#2a2a2a] rounded-3xl"
+          >
             <figure>
               <Image
                 src={nfts[currentIndex].coverImage}
@@ -178,7 +182,7 @@ const RadioPage = () => {
               <h2 className="card-title text-center justify-center">
                 {nfts.length > 0 && nfts[currentIndex].name}
               </h2>
-              <p className="text-center">
+              <p className="text-center ">
                 {nfts.length > 0 && nfts[currentIndex].seller.slice(0, 6)}...
                 {nfts.length > 0 && nfts[currentIndex].seller.slice(38, 42)}
               </p>
@@ -329,7 +333,7 @@ const RadioPage = () => {
             <br />
             You can give as much heat as you want.
             <br />
-            Please refresh the page after giving heat to see the updated heat.
+            Please refresh the page after giving heat to see the updated amount.
           </p>
 
           <div className="flex justify-center text-center ">
@@ -340,7 +344,7 @@ const RadioPage = () => {
                   type="number"
                   min={0}
                   placeholder="Enter Heat Count"
-                  className="input input-bordered "
+                  className="input input-bordered w-full"
                   id="heatcountinput"
                   onChange={(event) => setHeatCount(event.target.value)}
                 />
@@ -353,7 +357,8 @@ const RadioPage = () => {
                   className="bg-[#1f1f1f] border border-[#2a2a2a] mt-4 p-4 max-w-xl rounded-3xl"
                 >
                   <h1 id="heatcounttext" className="text-center text-xl ">
-                    You are giving {heatCount} Heat 🔥
+                    You are giving {heatCount} Heat 🔥 to{' '}
+                    {nfts[currentIndex].name}
                   </h1>
                   <div
                     id="heatanimation"
