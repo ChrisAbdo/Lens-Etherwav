@@ -11,6 +11,8 @@ const RadioPage = () => {
   const [nfts, setNfts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [shouldPlay, setShouldPlay] = useState(false);
+
   const [heatCount, setHeatCount] = useState(0);
 
   const audioRef = useRef(null);
@@ -20,11 +22,16 @@ const RadioPage = () => {
   }, []);
 
   useEffect(() => {
-    if (audioRef.current) {
+    setShouldPlay(true);
+  }, [currentIndex]);
+
+  useLayoutEffect(() => {
+    if (audioRef.current && shouldPlay) {
       audioRef.current.play();
       setIsPlaying(true);
+      setShouldPlay(false);
     }
-  }, [currentIndex]);
+  }, [shouldPlay]);
 
   async function loadSongs() {
     const web3 = new Web3(window.ethereum);
