@@ -12,6 +12,16 @@ import NFT from '../smart-contracts/build/contracts/NFT.json';
 
 const transition = { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] };
 
+const leaderboardVariants = {
+  open: { height: 'auto' },
+  closed: { height: 0 },
+};
+
+const leaderboardTransition = {
+  duration: 0.3,
+  ease: [0.16, 1, 0.3, 1],
+};
+
 const RadioPage = () => {
   const [nfts, setNfts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -164,8 +174,8 @@ const RadioPage = () => {
     <div>
       <div className="collapse collapse-arrow">
         <input type="checkbox" />
-        <div className="collapse-title text-xl font-medium text-center bg-[#555555] hover:bg-[#2a2a2a]">
-          View 🔥 Leaderboard
+        <div className="collapse-title text-xl font-medium text-center bg-[#555555] hover:bg-[#2a2a2a] rounded-b-3xl">
+          View Leaderboard 🔥
         </div>
         <div className="collapse-content">
           <div className=" flex items-center justify-center text-center">
@@ -173,7 +183,7 @@ const RadioPage = () => {
               <thead>
                 <tr>
                   <th>Rank</th>
-                  <th>Ump Name</th>
+                  <th>Beat Name</th>
                   <th>🔥</th>
                 </tr>
               </thead>
@@ -210,7 +220,7 @@ const RadioPage = () => {
                   width={500}
                   height={500}
                   alt="cover"
-                  className="border-b border-[#2a2a2a] rounded-3xl"
+                  className="border-b border-[#2a2a2a] rounded-t-3xl"
                   priority
                 />
               </motion.div>
