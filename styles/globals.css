@@ -45,4 +45,11 @@
   }
 
 
+  .card2 {
+    @apply transition-colors duration-500;
+  }
   
+  .card2:hover {
+    @apply bg-[#2a2a2a];
+  }
+

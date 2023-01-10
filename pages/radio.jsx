@@ -12,16 +12,6 @@ import NFT from '../smart-contracts/build/contracts/NFT.json';
 
 const transition = { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] };
 
-const leaderboardVariants = {
-  open: { height: 'auto' },
-  closed: { height: 0 },
-};
-
-const leaderboardTransition = {
-  duration: 0.3,
-  ease: [0.16, 1, 0.3, 1],
-};
-
 const RadioPage = () => {
   const [nfts, setNfts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -174,29 +164,27 @@ const RadioPage = () => {
     <div>
       <div className="collapse collapse-arrow">
         <input type="checkbox" />
-        <div className="collapse-title text-xl font-medium text-center bg-[#555555] hover:bg-[#2a2a2a] rounded-b-3xl">
-          View Leaderboard 🔥
+        <div className="collapse-title text-xl font-medium text-center bg-[#555555] hover:bg-[#2a2a2a] ">
+          View Heat Leaderboard 🔥
         </div>
         <div className="collapse-content">
           <div className=" flex items-center justify-center text-center">
-            <table className="table w-full items-center justify-center text-center">
-              <thead>
-                <tr>
-                  <th>Rank</th>
-                  <th>Beat Name</th>
-                  <th>🔥</th>
-                </tr>
-              </thead>
-              <tbody>
-                {topThreeNfts.map((song, index) => (
-                  <tr key={song.tokenId}>
-                    <th>{index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉'}</th>
-                    <td>{song.name}</td>
-                    <td>{song.heatCount}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className="stats shadow w-full border border-[#2a2a2a]">
+              {topThreeNfts.map((nft, index) => (
+                <div className="stat w-full card2">
+                  <div className="stat-figure text-primary text-7xl">
+                    {index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉'}
+                  </div>
+                  <div className="stat-title text-2xl">{nft.name}</div>
+                  <div className="stat-value ">{nft.heatCount} Heats🔥</div>
+                  <div className="stat-desc">
+                    <h1 className="text-xl font-medium text-center">
+                      {nft.seller.slice(0, 6)}...{nft.seller.slice(-4)}
+                    </h1>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -225,14 +213,11 @@ const RadioPage = () => {
                 />
               </motion.div>
             </figure>
-            <label
-              htmlFor="my-modal-1"
-              className="text-orange-500 hover:animate-pulse btn"
-            >
+            <div className="text-orange-500 hover:animate-pulse btn cursor-default">
               <span className="fire-emoji">🔥</span> Heat Count:{' '}
               {nfts[currentIndex].heatCount}{' '}
               <span className="fire-emoji">🔥</span>
-            </label>
+            </div>
             <div className="card-body">
               <h2 className="card-title text-center justify-center">
                 {nfts.length > 0 && nfts[currentIndex].name}
@@ -438,23 +423,6 @@ const RadioPage = () => {
           <div className="modal-action">
             <label htmlFor="my-modal-5" className="btn rounded-full">
               X
-            </label>
-          </div>
-        </div>
-      </div>
-
-      <input type="checkbox" id="my-modal-1" className="modal-toggle" />
-      <div className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box">
-          <h3 className="font-bold text-lg">
-            Heat Tracker is coming soon! 🕒🎉
-          </h3>
-          <div className="overflow-x-hidden">
-            <progress className="progress w-full"></progress>
-          </div>
-          <div className="modal-action">
-            <label htmlFor="my-modal-1" className="btn">
-              Yay!
             </label>
           </div>
         </div>
