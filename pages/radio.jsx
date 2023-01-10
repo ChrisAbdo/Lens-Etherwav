@@ -1,4 +1,6 @@
 import { useEffect, useState, useLayoutEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+
 import axios from 'axios';
 import ReactAudioPlayer from 'react-audio-player';
 import toast from 'react-hot-toast';
@@ -8,6 +10,8 @@ import Web3 from 'web3';
 import Radio from '../smart-contracts/build/contracts/Radio.json';
 import NFT from '../smart-contracts/build/contracts/NFT.json';
 
+const transition = { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] };
+
 const RadioPage = () => {
   const [nfts, setNfts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -15,6 +19,7 @@ const RadioPage = () => {
   const [shouldPlay, setShouldPlay] = useState(false);
   const [heatCount, setHeatCount] = useState(0);
   const [topThreeNfts, setTopThreeNfts] = useState([]);
+  const [direction, setDirection] = useState('right');
 
   const audioRef = useRef(null);
 
@@ -104,8 +109,7 @@ const RadioPage = () => {
         Radio.networks[networkId].address
       );
 
-      // Call the giveHeat function of the Radio contract
-
+      // Give heat to the current NFT
       radioContract.methods
         .giveHeat(nfts[currentIndex].tokenId, heatCount)
         .send({
@@ -146,12 +150,14 @@ const RadioPage = () => {
     }
   }
 
-  function handlePrevious() {
-    setCurrentIndex(currentIndex - 1);
+  function handleNext() {
+    setDirection('right');
+    setCurrentIndex((currentIndex + 1) % nfts.length);
   }
 
-  function handleNext() {
-    setCurrentIndex(currentIndex + 1);
+  function handlePrevious() {
+    setDirection('left');
+    setCurrentIndex(currentIndex === 0 ? nfts.length - 1 : currentIndex - 1);
   }
 
   return (
@@ -163,18 +169,18 @@ const RadioPage = () => {
         </div>
         <div className="collapse-content">
           <div className=" flex items-center justify-center text-center">
-            <table className="table w-3/4 items-center justify-center text-center">
+            <table className="table w-full items-center justify-center text-center">
               <thead>
                 <tr>
                   <th>Rank</th>
-                  <th>Name</th>
+                  <th>Ump Name</th>
                   <th>🔥</th>
                 </tr>
               </thead>
               <tbody>
                 {topThreeNfts.map((song, index) => (
                   <tr key={song.tokenId}>
-                    <th>{index + 1}</th>
+                    <th>{index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉'}</th>
                     <td>{song.name}</td>
                     <td>{song.heatCount}</td>
                   </tr>
@@ -192,14 +198,22 @@ const RadioPage = () => {
             className="card border border-[#2a2a2a] rounded-3xl"
           >
             <figure>
-              <Image
-                src={nfts[currentIndex].coverImage}
-                width={500}
-                height={500}
-                alt="cover"
-                className="border-b border-[#2a2a2a]"
-                priority
-              />
+              <motion.div
+                key={nfts[currentIndex].tokenId}
+                initial={direction === 'right' ? { x: -100 } : { x: 100 }}
+                animate={{ x: 0 }}
+                exit={direction === 'right' ? { x: 100 } : { x: -100 }}
+                transition={transition}
+              >
+                <Image
+                  src={nfts[currentIndex].coverImage}
+                  width={500}
+                  height={500}
+                  alt="cover"
+                  className="border-b border-[#2a2a2a] rounded-3xl"
+                  priority
+                />
+              </motion.div>
             </figure>
             <label
               htmlFor="my-modal-1"
