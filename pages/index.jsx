@@ -15,7 +15,9 @@ const Home = () => {
           />
 
           <div>
-            <h1 className="text-5xl font-bold ">Welcome to Radio3</h1>{' '}
+            <h1 className="text-5xl font-bold gradient-shadow">
+              Welcome to Radio3
+            </h1>{' '}
             <p className="py-6 text-2xl text-[#555555]">
               The algorithmically rewarding Web3 radio
             </p>

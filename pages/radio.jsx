@@ -3,7 +3,6 @@ import axios from 'axios';
 import ReactAudioPlayer from 'react-audio-player';
 import toast from 'react-hot-toast';
 import Image from 'next/image';
-import Balancer from 'react-wrap-balancer';
 
 import Web3 from 'web3';
 import Radio from '../smart-contracts/build/contracts/Radio.json';
@@ -15,7 +14,7 @@ const RadioPage = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [shouldPlay, setShouldPlay] = useState(false);
   const [heatCount, setHeatCount] = useState(0);
-  const [heatGivers, setHeatGivers] = useState([]);
+  const [topThreeNfts, setTopThreeNfts] = useState([]);
 
   const audioRef = useRef(null);
 
@@ -78,6 +77,9 @@ const RadioPage = () => {
     const sortedNfts = nfts
       .filter((nft) => nft !== null)
       .sort((a, b) => b.heatCount - a.heatCount);
+    const topThreeNfts = sortedNfts.slice(0, 3);
+
+    setTopThreeNfts(topThreeNfts);
     setNfts(sortedNfts);
   }
 
@@ -154,6 +156,35 @@ const RadioPage = () => {
 
   return (
     <div>
+      <div className="collapse collapse-arrow">
+        <input type="checkbox" />
+        <div className="collapse-title text-xl font-medium text-center bg-[#555555] hover:bg-[#2a2a2a]">
+          View 🔥 Leaderboard
+        </div>
+        <div className="collapse-content">
+          <div className=" flex items-center justify-center text-center">
+            <table className="table w-3/4 items-center justify-center text-center">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Name</th>
+                  <th>🔥</th>
+                </tr>
+              </thead>
+              <tbody>
+                {topThreeNfts.map((song, index) => (
+                  <tr key={song.tokenId}>
+                    <th>{index + 1}</th>
+                    <td>{song.name}</td>
+                    <td>{song.heatCount}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
       <div className="hero mt-6 p-2">
         {nfts.length > 0 ? (
           <div
