@@ -11,6 +11,7 @@
     "@thirdweb-dev/react": "^3.6.9",
     "@thirdweb-dev/sdk": "^3.6.9",
     "@truffle/hdwallet-provider": "^2.1.0",
+    "@vercel/analytics": "^0.1.6",
     "axios": "^1.2.2",
     "daisyui": "^2.46.1",
     "ethers": "^5.7.2",

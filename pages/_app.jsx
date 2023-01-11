@@ -1,13 +1,14 @@
 import '../styles/globals.css';
-import { Poppins } from '@next/font/google';
 
 import Navbar from '../components/Navbar';
 
+import { Analytics } from '@vercel/analytics/react';
 import { Toaster } from 'react-hot-toast';
-
 import { ChainId, ThirdwebProvider } from '@thirdweb-dev/react';
+import { Poppins } from '@next/font/google';
 
 const activeChainId = ChainId.Mumbai;
+
 const poppins = Poppins({
   weight: '400',
 });
@@ -19,6 +20,7 @@ function MyApp({ Component, pageProps }) {
         <Navbar />
         <Component {...pageProps} />
         <Toaster />
+        <Analytics />
       </ThirdwebProvider>
     </main>
   );
