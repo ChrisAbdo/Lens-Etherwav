@@ -20,6 +20,7 @@ const RadioPage = () => {
   const [heatCount, setHeatCount] = useState(0);
   const [topThreeNfts, setTopThreeNfts] = useState([]);
   const [direction, setDirection] = useState('right');
+  const [isOpen, setIsOpen] = useState(false);
 
   const audioRef = useRef(null);
 
@@ -163,11 +164,18 @@ const RadioPage = () => {
   return (
     <div>
       <div className="collapse collapse-arrow">
-        <input type="checkbox" />
+        <input type="checkbox" onClick={() => setIsOpen(!isOpen)} />
         <div className="collapse-title text-xl font-medium text-center bg-[#555555] hover:bg-[#2a2a2a] ">
-          View Heat Leaderboard 🔥
+          Heat Leaderboard 🔥
         </div>
-        <div className="collapse-content">
+        <motion.div
+          className="collapse-content"
+          initial={false}
+          animate={{ height: isOpen ? 'auto' : 0 }}
+          transition={{ duration: 0.3 }}
+          exit={{ opacity: 0, height: 0 }}
+          style={{ overflow: 'hidden' }}
+        >
           <div className=" flex items-center justify-center text-center">
             <div className="stats shadow w-full border border-[#2a2a2a]">
               {topThreeNfts.map((nft, index) => (
@@ -186,7 +194,7 @@ const RadioPage = () => {
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       <div className="hero mt-6 p-2">
@@ -349,9 +357,9 @@ const RadioPage = () => {
       {/* Give Heat Modal */}
       <input type="checkbox" id="my-modal-5" className="modal-toggle" />
       <div className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box rounded-t-3xl">
+        <div className="modal-box">
           <h2 className="text-3xl mb-4 text-center">Give Heat 🔥</h2>
-          <div className="collapse collapse-arrow rounded-3xl">
+          <div className="collapse collapse-arrow ">
             <input type="checkbox" />
             <div className="collapse-title text-xl font-medium bg-[#2a2a2a] h-12">
               What is Heat?
@@ -394,7 +402,7 @@ const RadioPage = () => {
               {nfts[currentIndex] && (
                 <div
                   id="heatcountdiv"
-                  className="bg-[#1f1f1f] border border-[#2a2a2a] mt-4 p-4 max-w-xl rounded-3xl"
+                  className="bg-[#1f1f1f] border border-[#2a2a2a] mt-4 p-4 max-w-xl"
                 >
                   <h1 id="heatcounttext" className="text-center text-xl ">
                     You are giving {heatCount} Heat 🔥 to{' '}
@@ -415,14 +423,14 @@ const RadioPage = () => {
             </div>
           </div>
           <button
-            className="btn btn-primary rounded-3xl w-full mt-4"
+            className="btn btn-primary w-full mt-4 normal-case"
             onClick={handleGiveHeat}
           >
-            Give Heat
+            Give Heat!
           </button>
           <div className="modal-action">
-            <label htmlFor="my-modal-5" className="btn rounded-full">
-              X
+            <label htmlFor="my-modal-5" className="btn">
+              cancel
             </label>
           </div>
         </div>

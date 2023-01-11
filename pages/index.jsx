@@ -1,25 +1,40 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import Lottie from 'react-lottie-player';
-import astroo from '../public/astroo.json';
+import Marquee from 'react-fast-marquee';
 
 const Home = () => {
   return (
     <div>
+      <Marquee gradient={false} speed={100} className="bg-[#2a2a2a] py-4">
+        <h1 className="text-2xl font-bold gradient-shadow">
+          Tune in to the future with radio3 - Algorithmically rewarding, always
+          on the cutting edge.
+        </h1>{' '}
+      </Marquee>
+
       <div className="hero p-6">
         <div className="hero-content flex-col lg:flex-row-reverse ">
-          <Lottie
-            className="w-80 h-80 bg-base-100 rounded-3xl"
-            loop
-            animationData={astroo}
-            play
+          <motion.img
+            className="w-64 h-64 lg:w-96 lg:h-96"
+            id="hero"
+            // initial={{ x: '300%' }}
+            // initial should be hidden
+            initial={{ hidden: true }}
+            animate={{ rotateY: 360, x: 0 }}
+            transition={{ duration: 2, ease: 'circInOut' }}
+            whileHover={{ rotateY: [0, 360], transition: { duration: 10 } }}
+            src="/hero1.png"
+            alt="hero"
           />
 
           <div>
-            <h1 className="text-5xl font-bold gradient-shadow">
-              Welcome to Radio3
+            <h1 className="text-4xl font-bold gradient-shadow sm:text-5xl lg:text-7xl">
+              Welcome to{' '}
+              <span className="mt-1 bg-gradient-to-r from-yellow-600 to-red-600 bg-clip-text text-4xl font-extrabold tracking-tighter text-transparent sm:text-5xl lg:text-7xl">
+                radio3
+              </span>
             </h1>{' '}
-            <p className="py-6 text-2xl text-[#555555]">
-              The algorithmically rewarding Web3 radio
+            <p className="py-6 text-2xl text-[#bebebe]">
+              The algorithmically rewarding Web3 radio 🔥
             </p>
             <motion.a
               className="btn btn-primary"
@@ -36,7 +51,7 @@ const Home = () => {
 
       <div className="hero p-6">
         <div className="flex flex-col items-center justify-between w-full flex-1 text-center md:flex-row">
-          <motion.div
+          <motion.a
             className="card  bg-base-100 shadow-xl border border-[#2a2a2a] hover:bg-[#1a1a1a] card1"
             initial="hidden"
             whileInView="visible"
@@ -46,6 +61,7 @@ const Home = () => {
               visible: { opacity: 1, scale: 1 },
               hidden: { opacity: 0, scale: 0 },
             }}
+            href="/upload"
           >
             <figure className="px-10 pt-10">
               <svg
@@ -67,8 +83,8 @@ const Home = () => {
               <h2 className="card-title">Upload a beat!</h2>
               <p>Are you a producer? This one's for you!</p>
             </div>
-          </motion.div>
-          <motion.div
+          </motion.a>
+          <motion.a
             className="card bg-base-100 shadow-xl border border-[#2a2a2a] hover:bg-[#1a1a1a] card1"
             initial="hidden"
             whileInView="visible"
@@ -78,6 +94,7 @@ const Home = () => {
               visible: { opacity: 1, scale: 1 },
               hidden: { opacity: 0, scale: 0 },
             }}
+            href="/radio"
           >
             <figure className="px-10 pt-10">
               <svg
@@ -99,10 +116,10 @@ const Home = () => {
               <h2 className="card-title">Listen to beats!</h2>
               <p>Who doesn't love some nice smooth beats?</p>
             </div>
-          </motion.div>
+          </motion.a>
 
           <AnimatePresence>
-            <motion.div
+            <motion.a
               className="card  bg-base-100 shadow-xl border border-[#2a2a2a] hover:bg-[#1a1a1a] card1"
               initial="hidden"
               whileInView="visible"
@@ -112,6 +129,7 @@ const Home = () => {
                 visible: { opacity: 1, scale: 1 },
                 hidden: { opacity: 0, scale: 0 },
               }}
+              href="/radio"
             >
               <figure className="px-10 pt-10">
                 <svg
@@ -138,7 +156,7 @@ const Home = () => {
                 <h2 className="card-title">Support your favs</h2>
                 <p>Algorthmically rewarding radio by participating.</p>
               </div>
-            </motion.div>
+            </motion.a>
           </AnimatePresence>
         </div>
       </div>
@@ -146,7 +164,9 @@ const Home = () => {
       <div className="hero  mt-4">
         <div className="hero-content text-center">
           <div className="max-w-md">
-            <h1 className="text-5xl font-bold">Start earning today!</h1>
+            <h1 className="text-5xl font-bold">
+              Start <span className="text-green-500">earning</span> today!
+            </h1>
             <p className="py-6 text-2xl">
               Hop right in and start earning today! It's as easy as uploading a
               beat.
