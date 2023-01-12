@@ -204,7 +204,7 @@ const RadioPage = () => {
           {/* <!-- Page content here --> */}
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-outline drawer-button lg:hidden rounded-3xl mt-6 mb-6"
+            className="btn btn-outline drawer-button lg:hidden rounded-xl mt-6 mb-6"
           >
             sort by genre
           </label>
@@ -212,7 +212,7 @@ const RadioPage = () => {
             {nfts.length > 0 ? (
               <div
                 key={currentIndex}
-                className="card border-b border-[#2a2a2a] rounded-3xl w-full"
+                className="card border-b border-[#2a2a2a] rounded-xl w-full"
               >
                 <figure>
                   <motion.div
@@ -227,7 +227,7 @@ const RadioPage = () => {
                       width={500}
                       height={500}
                       alt="cover"
-                      className="border-b border-[#2a2a2a] rounded-t-3xl"
+                      className="border-b border-[#2a2a2a] rounded-none p-4"
                       priority
                     />
                   </motion.div>
@@ -257,7 +257,7 @@ const RadioPage = () => {
                     <button
                       onClick={handlePrevious}
                       disabled={currentIndex === 0}
-                      className="btn btn-outline rounded-3xl  normal-case bg-[#353535] border-[#2a2a2a]"
+                      className="btn btn-outline rounded-xl normal-case bg-[#353535] border-[#2a2a2a]"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -289,7 +289,7 @@ const RadioPage = () => {
                     <button
                       onClick={handleNext}
                       disabled={currentIndex === nfts.length - 1}
-                      className="btn btn-outline rounded-3xl normal-case bg-[#353535] border-[#2a2a2a]"
+                      className="btn btn-outline rounded-xl normal-case bg-[#353535] border-[#2a2a2a]"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -310,7 +310,7 @@ const RadioPage = () => {
                   <div className="card-actions justify-between mt-4">
                     <label
                       htmlFor="my-modal-6"
-                      className="btn btn-outline btn-secondary normal-case rounded-3xl cursor-pointer"
+                      className="btn btn-outline btn-secondary normal-case rounded-xl cursor-pointer"
                     >
                       Report&nbsp;
                       <svg
@@ -331,11 +331,11 @@ const RadioPage = () => {
 
                     <label
                       htmlFor="my-modal-5"
-                      className="rounded-3xl relative p-0.5 inline-flex items-center justify-center font-bold overflow-hidden group cursor-pointer"
+                      className="rounded-xl relative p-0.5 inline-flex items-center justify-center font-bold overflow-hidden group cursor-pointer"
                     >
-                      <span className="rounded-3xl w-full h-full bg-gradient-to-br from-yellow-600  to-red-600 group-hover:from-yellow-600  group-hover:to-red-600 absolute"></span>
-                      <span className="rounded-3xl relative px-6 py-3 transition-all ease-out bg-black  group-hover:bg-opacity-0 duration-400">
-                        <span className="rounded-3xl relative text-white">
+                      <span className="rounded-xl w-full h-full bg-gradient-to-br from-yellow-600  to-red-600 group-hover:from-yellow-600  group-hover:to-red-600 absolute"></span>
+                      <span className="rounded-xl relative px-6 py-3 transition-all ease-out bg-black  group-hover:bg-opacity-0 duration-400">
+                        <span className="rounded-xl relative text-white">
                           Give Heat 🔥
                         </span>
                       </span>
@@ -373,7 +373,7 @@ const RadioPage = () => {
       {/* Report Modal */}
       <input type="checkbox" id="my-modal-6" className="modal-toggle" />
       <div className="modal modal-bottom sm:modal-middle">
-        <div className="modal-box rounded-t-3xl">
+        <div className="modal-box">
           <h3 className="font-bold text-lg">
             Sorry! This feature is not available yet.
           </h3>
@@ -382,7 +382,7 @@ const RadioPage = () => {
             Please message me on Twitter @abdo_eth
           </p>
           <div className="modal-action">
-            <label htmlFor="my-modal-6" className="btn rounded-3xl">
+            <label htmlFor="my-modal-6" className="btn rounded-xl">
               close
             </label>
           </div>
@@ -393,8 +393,8 @@ const RadioPage = () => {
       <input type="checkbox" id="my-modal-5" className="modal-toggle" />
       <div className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
-          <h2 className="text-3xl mb-4 text-center">Give Heat 🔥</h2>
-          <div className="collapse collapse-arrow ">
+          <h2 className="text-xl mb-4 text-center">Heat 🔥</h2>
+          <div className="collapse collapse-arrow rounded-xl">
             <input type="checkbox" />
             <div className="collapse-title text-xl font-medium bg-[#2a2a2a] h-12">
               What is Heat?
@@ -420,7 +420,7 @@ const RadioPage = () => {
           </p>
 
           <div className="flex justify-center text-center ">
-            <div className="form-control mt-4  rounded-3xl">
+            <div className="form-control mt-4  rounded-xl">
               <label className="input-group ">
                 <span>🔥</span>
                 <input
@@ -437,7 +437,7 @@ const RadioPage = () => {
               {nfts[currentIndex] && (
                 <div
                   id="heatcountdiv"
-                  className="bg-[#1f1f1f] border border-[#2a2a2a] mt-4 p-4 max-w-xl"
+                  className="bg-[#1f1f1f] border border-[#2a2a2a] mt-4 p-4 max-w-xl rounded-xl"
                 >
                   <h1 id="heatcounttext" className="text-center text-xl ">
                     You are giving {heatCount} Heat 🔥 to{' '}
@@ -458,13 +458,13 @@ const RadioPage = () => {
             </div>
           </div>
           <button
-            className="btn btn-primary w-full mt-4 normal-case"
+            className="btn btn-outline w-full mt-12 normal-case rounded-xl"
             onClick={handleGiveHeat}
           >
             Give Heat!
           </button>
           <div className="modal-action">
-            <label htmlFor="my-modal-5" className="btn">
+            <label htmlFor="my-modal-5" className="btn rounded-xl">
               cancel
             </label>
           </div>
