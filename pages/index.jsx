@@ -1,9 +1,5 @@
-import {
-  motion,
-  AnimatePresence,
-  useMotionValue,
-  useTransform,
-} from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import Marquee from 'react-fast-marquee';
 
 const Home = () => {
@@ -40,7 +36,7 @@ const Home = () => {
               The algorithmically rewarding Web3 radio 🔥
             </p>
             <motion.a
-              className="btn btn-primary"
+              className="btn btn-outline rounded-xl"
               initial={{ x: '-300%' }}
               animate={{ x: 0 }}
               transition={{ delay: 0.4 }}
@@ -48,6 +44,15 @@ const Home = () => {
             >
               Get Started
             </motion.a>
+            <p className="flex pt-6 text-2xl text-[#bebebe]">
+              <span className="text-[#bebebe]">Powered by Polygon</span>{' '}
+              <Image
+                src="/polygon.svg"
+                className="ml-2"
+                width={50}
+                height={50}
+              />
+            </p>
           </div>
         </div>
       </div>
@@ -174,7 +179,7 @@ const Home = () => {
               Hop right in and start earning today! It's as easy as uploading a
               beat.
             </p>
-            <a href="/radio" className="btn btn-primary">
+            <a href="/radio" className="btn btn-outline rounded-xl">
               Get Started
             </a>
           </div>
