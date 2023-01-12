@@ -1,4 +1,9 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useTransform,
+} from 'framer-motion';
 import Marquee from 'react-fast-marquee';
 
 const Home = () => {
@@ -16,8 +21,6 @@ const Home = () => {
           <motion.img
             className="w-64 h-64 lg:w-96 lg:h-96"
             id="hero"
-            // initial={{ x: '300%' }}
-            // initial should be hidden
             initial={{ hidden: true }}
             animate={{ rotateY: 360, x: 0 }}
             transition={{ duration: 2, ease: 'circInOut' }}
@@ -176,6 +179,14 @@ const Home = () => {
             </a>
           </div>
         </div>
+      </div>
+
+      <div className=" flex text-center justify-between items-center">
+        <span className="fire-emoji">🔥</span>
+        <span className="fire-emoji">🔥</span>
+        <span className="fire-emoji">🔥</span>
+        <span className="fire-emoji">🔥</span>
+        <span className="fire-emoji">🔥</span>
       </div>
 
       <footer className="footer items-center p-4 bottom-0 border-[#2a2a2a] border-t">
