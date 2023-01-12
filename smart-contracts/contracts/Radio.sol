@@ -20,6 +20,7 @@ contract Radio is ReentrancyGuard {
         address payable owner;
         bool listed;
         uint256 heatCount;
+        string genre;
     }
 
     event NFTListed(
@@ -89,7 +90,8 @@ contract Radio is ReentrancyGuard {
             payable(msg.sender),
             payable(address(this)),
             true,
-            0
+            0,
+            ""
         );
 
         emit NFTListed(_nftContract, _tokenId, msg.sender, address(this));

@@ -29,11 +29,12 @@ const upload = () => {
   const [formInput, updateFormInput] = useState({
     name: '',
     coverImage: '',
+    genre: '',
   });
   const router = useRouter();
 
   useEffect(() => {
-    if (formInput.name && formInput.coverImage && fileUrl) {
+    if (formInput.name && formInput.coverImage && formInput.genre && fileUrl) {
       setDisabled(false);
     } else {
       setDisabled(true);
@@ -85,8 +86,8 @@ const upload = () => {
   };
 
   async function uploadToIPFS() {
-    const { name, coverImage } = formInput;
-    if (!name || !coverImage || !fileUrl) {
+    const { name, coverImage, genre } = formInput;
+    if (!name || !coverImage || !genre || !fileUrl) {
       return;
     } else {
       // first, upload metadata to IPFS
@@ -94,6 +95,7 @@ const upload = () => {
         name,
         coverImage,
         image: fileUrl,
+        genre,
       });
       try {
         const added = await client.add(data);
@@ -196,7 +198,7 @@ const upload = () => {
             </label>
             <input
               type="file"
-              className="file-input file-input-bordered w-full max-w-xs rounded-3xl"
+              className="file-input file-input-bordered w-full max-w-xs rounded-xl"
               accept=".mp3"
               onChange={onChange}
             />
@@ -208,7 +210,7 @@ const upload = () => {
             <input
               type="text"
               placeholder="Title here"
-              className="input input-bordered w-full max-w-xs rounded-3xl"
+              className="input input-bordered w-full max-w-xs rounded-xl"
               onChange={(e) =>
                 updateFormInput({ ...formInput, name: e.target.value })
               }
@@ -218,7 +220,7 @@ const upload = () => {
           {coverImage ? (
             <div className="form-control w-full max-w-xs">
               <label className="label">
-                <span className="label-text">Choose a cover image</span>
+                <span className="label-text">Choose cover image</span>
                 <span className="label-text-alt">
                   Square images recommended
                 </span>
@@ -227,11 +229,11 @@ const upload = () => {
                 <input
                   type="text"
                   placeholder="."
-                  className="input input-bordered w-full rounded-3xl"
+                  className="input input-bordered w-full rounded-xl"
                   value={coverImage}
                   disabled
                 />
-                <span onClick={removeCoverImage} className="btn rounded-3xl">
+                <span onClick={removeCoverImage} className="btn rounded-xl">
                   X
                 </span>
               </label>
@@ -239,7 +241,7 @@ const upload = () => {
           ) : (
             <div className="form-control w-full max-w-xs">
               <label className="label">
-                <span className="label-text">Choose a cover image</span>
+                <span className="label-text">Choose cover image</span>
                 <span className="label-text-alt">
                   Square images recommended
                 </span>
@@ -247,16 +249,30 @@ const upload = () => {
               <input
                 onChange={createCoverImage}
                 type="file"
-                className="file-input file-input-bordered w-full max-w-xs rounded-3xl"
+                className="file-input file-input-bordered w-full max-w-xs rounded-xl"
               />
             </div>
           )}
+
+          <select
+            onChange={(e) =>
+              updateFormInput({ ...formInput, genre: e.target.value })
+            }
+            className="select select-bordered w-full max-w-xs rounded-xl mt-4"
+          >
+            <option disabled selected>
+              Select Genre
+            </option>
+            <option value="lofi">Lofi</option>
+            <option value="hiphop">Hip Hop</option>
+            <option value="vocals">Vocals</option>
+          </select>
 
           <div className="card-actions w-full mt-4">
             <button
               disabled={disabled}
               onClick={listNFTForSale}
-              className="btn btn-outline w-full rounded-3xl"
+              className="btn btn-outline w-full rounded-xl"
             >
               Upload
             </button>
@@ -277,7 +293,7 @@ const upload = () => {
             Browse the radio for some inspiration!
           </h1>
           <div className="card-actions w-full mt-4">
-            <a href="/radio" className="btn btn-outline w-full rounded-3xl">
+            <a href="/radio" className="btn btn-outline w-full rounded-xl">
               Listen to radio
             </a>
           </div>

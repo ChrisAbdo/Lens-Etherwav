@@ -54,3 +54,12 @@
   }
 
  
+  .card3 {
+    @apply transition-colors duration-500;
+  }
+  
+  .card3:hover {
+    @apply bg-[#1f1f1f];
+  }
+
+ 

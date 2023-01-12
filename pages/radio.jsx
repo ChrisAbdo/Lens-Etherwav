@@ -69,6 +69,7 @@ const RadioPage = () => {
             name: meta.data.name,
             coverImage: meta.data.coverImage,
             heatCount: i.heatCount,
+            genre: meta.data.genre,
           };
           return nft;
         } catch (err) {
@@ -197,142 +198,176 @@ const RadioPage = () => {
         </motion.div>
       </div>
 
-      <div className="hero mt-6 p-2">
-        {nfts.length > 0 ? (
-          <div
-            key={currentIndex}
-            className="card border border-[#2a2a2a] rounded-3xl"
+      <div className="drawer drawer-mobile">
+        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content flex flex-col items-center ">
+          {/* <!-- Page content here --> */}
+          <label
+            htmlFor="my-drawer-2"
+            className="btn btn-outline drawer-button lg:hidden rounded-3xl mt-6 mb-6"
           >
-            <figure>
-              <motion.div
-                key={nfts[currentIndex].tokenId}
-                initial={direction === 'right' ? { x: -100 } : { x: 100 }}
-                animate={{ x: 0 }}
-                exit={direction === 'right' ? { x: 100 } : { x: -100 }}
-                transition={transition}
+            sort by genre
+          </label>
+          <div className="hero">
+            {nfts.length > 0 ? (
+              <div
+                key={currentIndex}
+                className="card border-b border-[#2a2a2a] rounded-3xl w-full"
               >
-                <Image
-                  src={nfts[currentIndex].coverImage}
-                  width={500}
-                  height={500}
-                  alt="cover"
-                  className="border-b border-[#2a2a2a] rounded-t-3xl"
-                  priority
-                />
-              </motion.div>
-            </figure>
-            <div className="text-orange-500 hover:animate-pulse btn cursor-default">
-              <span className="fire-emoji">🔥</span> Heat Count:{' '}
-              {nfts[currentIndex].heatCount}{' '}
-              <span className="fire-emoji">🔥</span>
-            </div>
-            <div className="card-body">
-              <h2 className="card-title text-center justify-center">
-                {nfts.length > 0 && nfts[currentIndex].name}
-              </h2>
-              <p className="text-center ">
-                {nfts.length > 0 && nfts[currentIndex].seller.slice(0, 6)}...
-                {nfts.length > 0 && nfts[currentIndex].seller.slice(38, 42)}
+                <figure>
+                  <motion.div
+                    key={nfts[currentIndex].tokenId}
+                    initial={direction === 'right' ? { x: -100 } : { x: 100 }}
+                    animate={{ x: 0 }}
+                    exit={direction === 'right' ? { x: 100 } : { x: -100 }}
+                    transition={transition}
+                  >
+                    <Image
+                      src={nfts[currentIndex].coverImage}
+                      width={500}
+                      height={500}
+                      alt="cover"
+                      className="border-b border-[#2a2a2a] rounded-t-3xl"
+                      priority
+                    />
+                  </motion.div>
+                </figure>
+                <div className="text-orange-500 bg-[#2a2a2a] border-none btn cursor-default">
+                  <span className="fire-emoji">🔥</span> Heat Count:{' '}
+                  {nfts[currentIndex].heatCount}{' '}
+                  <span className="fire-emoji">🔥</span>
+                </div>
+                <div className="card-body">
+                  <motion.span
+                    className="badge card3"
+                    whileHover={{ scale: 1.2 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {nfts[currentIndex].genre}
+                  </motion.span>
+                  <h2 className="card-title text-center justify-center">
+                    {nfts.length > 0 && nfts[currentIndex].name}
+                  </h2>
+                  <p className="text-center ">
+                    {nfts.length > 0 && nfts[currentIndex].seller.slice(0, 6)}
+                    ...
+                    {nfts.length > 0 && nfts[currentIndex].seller.slice(38, 42)}
+                  </p>
+                  <div className="flex justify-between space-x-4 mt-4">
+                    <button
+                      onClick={handlePrevious}
+                      disabled={currentIndex === 0}
+                      className="btn btn-outline rounded-3xl  normal-case bg-[#353535] border-[#2a2a2a]"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z"
+                        />
+                      </svg>
+                    </button>
+                    <ReactAudioPlayer
+                      src={nfts[currentIndex].image}
+                      ref={audioRef}
+                      onEnded={() => {
+                        if (currentIndex < nfts.length - 1) {
+                          setCurrentIndex(currentIndex + 1);
+                        }
+                      }}
+                      className="h-12 w-full"
+                      controls
+                      autoPlay
+                    />
+                    <button
+                      onClick={handleNext}
+                      disabled={currentIndex === nfts.length - 1}
+                      className="btn btn-outline rounded-3xl normal-case bg-[#353535] border-[#2a2a2a]"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M3 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062A1.125 1.125 0 013 16.81V8.688zM12.75 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062a1.125 1.125 0 01-1.683-.977V8.688z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  <div className="card-actions justify-between mt-4">
+                    <label
+                      htmlFor="my-modal-6"
+                      className="btn btn-outline btn-secondary normal-case rounded-3xl cursor-pointer"
+                    >
+                      Report&nbsp;
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"
+                        />
+                      </svg>
+                    </label>
+
+                    <label
+                      htmlFor="my-modal-5"
+                      className="rounded-3xl relative p-0.5 inline-flex items-center justify-center font-bold overflow-hidden group cursor-pointer"
+                    >
+                      <span className="rounded-3xl w-full h-full bg-gradient-to-br from-yellow-600  to-red-600 group-hover:from-yellow-600  group-hover:to-red-600 absolute"></span>
+                      <span className="rounded-3xl relative px-6 py-3 transition-all ease-out bg-black  group-hover:bg-opacity-0 duration-400">
+                        <span className="rounded-3xl relative text-white">
+                          Give Heat 🔥
+                        </span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <p>
+                No songs found. This can mean the following: No wallet provider
+                found. No songs have been uploaded yet. Try again in a couple
+                seconds.
               </p>
-
-              <div className="flex justify-between space-x-4 mt-4">
-                <button
-                  onClick={handlePrevious}
-                  disabled={currentIndex === 0}
-                  className="btn btn-outline rounded-3xl  normal-case bg-[#353535] border-[#2a2a2a]"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M21 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953l7.108-4.062A1.125 1.125 0 0121 8.688v8.123zM11.25 16.811c0 .864-.933 1.405-1.683.977l-7.108-4.062a1.125 1.125 0 010-1.953L9.567 7.71a1.125 1.125 0 011.683.977v8.123z"
-                    />
-                  </svg>
-                </button>
-                <ReactAudioPlayer
-                  src={nfts[currentIndex].image}
-                  ref={audioRef}
-                  onEnded={() => {
-                    if (currentIndex < nfts.length - 1) {
-                      setCurrentIndex(currentIndex + 1);
-                    }
-                  }}
-                  className="h-12 w-full"
-                  controls
-                  autoPlay
-                />
-                <button
-                  onClick={handleNext}
-                  disabled={currentIndex === nfts.length - 1}
-                  className="btn btn-outline rounded-3xl normal-case bg-[#353535] border-[#2a2a2a]"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M3 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062A1.125 1.125 0 013 16.81V8.688zM12.75 8.688c0-.864.933-1.405 1.683-.977l7.108 4.062a1.125 1.125 0 010 1.953l-7.108 4.062a1.125 1.125 0 01-1.683-.977V8.688z"
-                    />
-                  </svg>
-                </button>
-              </div>
-
-              <div className="card-actions justify-between mt-4">
-                <label
-                  htmlFor="my-modal-6"
-                  className="btn btn-outline btn-secondary normal-case rounded-3xl cursor-pointer"
-                >
-                  Report&nbsp;
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"
-                    />
-                  </svg>
-                </label>
-
-                <label
-                  htmlFor="my-modal-5"
-                  className="rounded-3xl relative p-0.5 inline-flex items-center justify-center font-bold overflow-hidden group cursor-pointer"
-                >
-                  <span className="rounded-3xl w-full h-full bg-gradient-to-br from-yellow-600  to-red-600 group-hover:from-yellow-600  group-hover:to-red-600 absolute"></span>
-                  <span className="rounded-3xl relative px-6 py-3 transition-all ease-out bg-black  group-hover:bg-opacity-0 duration-400">
-                    <span className="rounded-3xl relative text-white">
-                      Give Heat 🔥
-                    </span>
-                  </span>
-                </label>
-              </div>
-            </div>
+            )}
           </div>
-        ) : (
-          <p>
-            No songs found. This can mean the following: No wallet provider
-            found. No songs have been uploaded yet. Try again in a couple
-            seconds.
-          </p>
-        )}
+        </div>
+        <div className="drawer-side">
+          <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
+          <ul className="menu p-4 w-80 bg-[#2a2a2a] text-base-content">
+            {/* <!-- Sidebar content here --> */}
+            <label className="text-white font-bold text-xl">Genres</label>
+            <li>
+              <a>Lofi</a>
+            </li>
+            <li>
+              <a>Hiphop</a>
+            </li>
+            <li>
+              <a>Vocals</a>
+            </li>
+          </ul>
+        </div>
       </div>
 
       {/* Report Modal */}
