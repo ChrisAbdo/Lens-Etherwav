@@ -59,7 +59,7 @@
   }
   
   .card3:hover {
-    @apply bg-[#1f1f1f];
+    @apply bg-[#555555];
   }
 
  

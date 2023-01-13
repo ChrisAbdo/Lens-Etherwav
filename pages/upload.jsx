@@ -22,7 +22,8 @@ const client = ipfsClient.create({
 
 const upload = () => {
   const [account, setAccount] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [imageLoading, setImageLoading] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [fileUrl, setFileUrl] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
@@ -53,6 +54,7 @@ const upload = () => {
       console.log(url);
       setLoading(false);
       setFileUrl(url);
+      toast.success('received audio file');
     } catch (error) {
       console.log('Error uploading file: ', error);
     }
@@ -60,6 +62,7 @@ const upload = () => {
 
   async function createCoverImage(e) {
     // upload image to IPFS
+    setImageLoading(true);
     const file = e.target.files[0];
     try {
       const added = await client.add(file, {
@@ -72,6 +75,8 @@ const upload = () => {
         ...formInput,
         coverImage: url,
       }); // update form input with cover image URL
+      setImageLoading(false);
+      toast.success('received cover image');
     } catch (error) {
       console.log('Error uploading file: ', error);
     }
@@ -139,7 +144,6 @@ const upload = () => {
         Radio.networks[networkId].address
       );
 
-      setLoading(true);
       NFTContract.methods
         .mint(url)
         .send({ from: accounts[0] })
@@ -163,7 +167,6 @@ const upload = () => {
                 },
               });
 
-              setLoading(false);
               // wait 2 seconds, then reload the page
               setTimeout(() => {
                 router.push('/radio');
@@ -190,6 +193,10 @@ const upload = () => {
         <figure className="px-10 pt-5">
           <h1 className="text-3xl font-bold text-center">Upload a Beat</h1>
         </figure>
+        <p className="mt-2 text-sm text-center text-gray-400">
+          PLEASE NOTE: THE BUTTON WILL BE DISABLED UNTIL ALL ASSETS ARE UPLOADED
+          TO IPFS, THIS CAN TAKE A FEW MINUTES
+        </p>
         <div className="card-body items-center text-center">
           <div className="form-control w-full max-w-xs">
             <label className="label">
@@ -202,6 +209,11 @@ const upload = () => {
               accept=".mp3"
               onChange={onChange}
             />
+            {loading ? (
+              <progress className="progress w-full"></progress>
+            ) : (
+              <div></div>
+            )}
           </div>
           <div className="form-control w-full max-w-xs">
             <label className="label">
@@ -233,6 +245,7 @@ const upload = () => {
                   value={coverImage}
                   disabled
                 />
+
                 <span onClick={removeCoverImage} className="btn rounded-xl">
                   X
                 </span>
@@ -251,6 +264,11 @@ const upload = () => {
                 type="file"
                 className="file-input file-input-bordered w-full max-w-xs rounded-xl"
               />
+              {imageLoading ? (
+                <progress className="progress w-full"></progress>
+              ) : (
+                <div></div>
+              )}
             </div>
           )}
 

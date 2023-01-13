@@ -1,5 +1,5 @@
 import { useEffect, useState, useLayoutEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import axios from 'axios';
 import ReactAudioPlayer from 'react-audio-player';
@@ -21,7 +21,6 @@ const RadioPage = () => {
   const [topThreeNfts, setTopThreeNfts] = useState([]);
   const [direction, setDirection] = useState('right');
   const [isOpen, setIsOpen] = useState(false);
-
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -174,7 +173,7 @@ const RadioPage = () => {
           initial={false}
           animate={{ height: isOpen ? 'auto' : 0 }}
           transition={{ duration: 0.3 }}
-          exit={{ opacity: 0, height: 0 }}
+          exit={{ opacity: 0, height: 0, transition: { duration: 0.3 } }}
           style={{ overflow: 'hidden' }}
         >
           <div className=" flex items-center justify-center text-center">
@@ -224,22 +223,22 @@ const RadioPage = () => {
                   >
                     <Image
                       src={nfts[currentIndex].coverImage}
-                      width={500}
-                      height={500}
+                      width={400}
+                      height={400}
                       alt="cover"
-                      className="border-b border-[#2a2a2a] rounded-none p-4"
+                      className="border-b border-[#2a2a2a] rounded-none"
                       priority
                     />
                   </motion.div>
                 </figure>
-                <div className="text-orange-500 bg-[#2a2a2a] border-none btn cursor-default">
+                <div className="text-orange-500 bg-[#2a2a2a] border-none text-center cursor-default h-6">
                   <span className="fire-emoji">🔥</span> Heat Count:{' '}
                   {nfts[currentIndex].heatCount}{' '}
                   <span className="fire-emoji">🔥</span>
                 </div>
                 <div className="card-body">
                   <motion.span
-                    className="badge card3"
+                    className="badge card3 rounded"
                     whileHover={{ scale: 1.2 }}
                     transition={{ duration: 0.3 }}
                   >
@@ -310,7 +309,7 @@ const RadioPage = () => {
                   <div className="card-actions justify-between mt-4">
                     <label
                       htmlFor="my-modal-6"
-                      className="btn btn-outline btn-secondary normal-case rounded-xl cursor-pointer"
+                      className="btn btn-outline normal-case rounded-xl cursor-pointer"
                     >
                       Report&nbsp;
                       <svg

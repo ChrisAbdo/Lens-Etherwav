@@ -169,22 +169,28 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="hero  mt-4">
-        <div className="hero-content text-center">
-          <div className="max-w-md">
-            <h1 className="text-5xl font-bold">
-              Start <span className="text-green-500">earning</span> today!
-            </h1>
-            <p className="py-6 text-2xl">
-              Hop right in and start earning today! It's as easy as uploading a
-              beat.
-            </p>
-            <a href="/radio" className="btn btn-outline rounded-xl">
-              Get Started
-            </a>
+      <AnimatePresence>
+        <motion.div
+          className="hero"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <div className="hero-content flex-col lg:flex-row">
+            <Image src="/music.png" width={500} height={500} />
+            <div>
+              <h1 className="text-5xl font-bold">
+                Start <span className="text-green-500">earning</span> today!
+              </h1>
+              <p className="py-6 text-2xl">It's as easy as uploading a beat!</p>
+              <a href="/radio" className="btn rounded-xl btn-outline">
+                Get Started
+              </a>
+            </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </AnimatePresence>
 
       <div className=" flex text-center justify-between items-center">
         <span className="fire-emoji">🔥</span>
