@@ -286,7 +286,7 @@ const upload = () => {
 
           <div className="flex justify-between mt-4">
             <button
-              className="btn"
+              className="btn rounded-xl"
               onClick={() => {
                 setCurrentInputIndex(currentInputIndex - 1);
                 handleClick(false);
@@ -295,11 +295,11 @@ const upload = () => {
             >
               Previous
             </button>
-            <button className="btn" disabled>
+            <button className="btn rounded-xl" disabled>
               {currentInputIndex + 1} of {inputs.length}
             </button>
             <button
-              className="btn"
+              className="btn rounded-xl"
               onClick={() => {
                 setCurrentInputIndex(currentInputIndex + 1);
                 handleClick(true);

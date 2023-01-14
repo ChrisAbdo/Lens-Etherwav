@@ -203,7 +203,7 @@ const RadioPage = () => {
           {/* <!-- Page content here --> */}
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-outline lg:hidden rounded-xl w-1/3 "
+            className="btn btn-outline lg:hidden rounded-xl w-1/3 mt-2 mb-2"
           >
             genre{' '}
             <svg
