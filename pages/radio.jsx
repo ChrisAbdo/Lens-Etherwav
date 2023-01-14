@@ -246,15 +246,14 @@ const RadioPage = () => {
                   </motion.div>
                 </figure>
                 <div className="text-orange-500 bg-[#2a2a2a] border-none text-center cursor-default h-6">
-                  <span className="fire-emoji">🔥</span> Heat Count:{' '}
-                  {nfts[currentIndex].heatCount}{' '}
-                  <span className="fire-emoji">🔥</span>
+                  <span>🔥</span> Heat Count: {nfts[currentIndex].heatCount}{' '}
+                  <span>🔥</span>
                 </div>
                 <div className="card-body">
                   <div className="flex justify-between">
                     <motion.span
                       htmlFor="my-modal-69"
-                      className="badge card3 rounded cursor-pointer"
+                      className="badge card3 rounded cursor-pointer p-4"
                       whileHover={{ scale: 1.2 }}
                       transition={{ duration: 0.3 }}
                     >
@@ -262,17 +261,31 @@ const RadioPage = () => {
                     </motion.span>
                     <motion.label
                       htmlFor="my-modal-69"
-                      className="badge card3 rounded cursor-pointer"
+                      className="badge card3 rounded cursor-pointer p-4"
                       whileHover={{ scale: 1.2 }}
                       transition={{ duration: 0.3 }}
                     >
-                      More Info
+                      More Info &nbsp;
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
+                        />
+                      </svg>
                     </motion.label>
                   </div>
-                  <h2 className="card-title text-center justify-center">
+                  <h2 className="card-title text-center justify-center text-2xl">
                     {nfts.length > 0 && nfts[currentIndex].name}
                   </h2>
-                  <p className="text-center ">
+                  <p className="text-center link link-hover">
                     {nfts.length > 0 && nfts[currentIndex].seller.slice(0, 6)}
                     ...
                     {nfts.length > 0 && nfts[currentIndex].seller.slice(38, 42)}
@@ -420,9 +433,11 @@ const RadioPage = () => {
           <h2 className="text-xl mb-4 text-center">Heat 🔥</h2>
           <div className="collapse collapse-arrow rounded-xl">
             <input type="checkbox" />
+
             <div className="collapse-title text-xl font-medium bg-[#2a2a2a] h-12">
               What is Heat?
             </div>
+
             <div className="collapse-content bg-[#1a1a1a]">
               <p className="p-4">
                 {' '}
@@ -545,7 +560,7 @@ const RadioPage = () => {
             Heat 🔥: {nfts[currentIndex] && nfts[currentIndex].heatCount}
           </a>
           <div className="modal-action">
-            <label htmlFor="my-modal-69" className="btn">
+            <label htmlFor="my-modal-69" className="btn rounded-xl">
               close
             </label>
           </div>
