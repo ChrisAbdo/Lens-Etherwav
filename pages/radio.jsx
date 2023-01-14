@@ -180,7 +180,7 @@ const RadioPage = () => {
             <div className="stats shadow w-full border border-[#2a2a2a]">
               {topThreeNfts.map((nft, index) => (
                 <div className="stat w-full card2">
-                  <div className="stat-figure text-primary text-7xl">
+                  <div className="stat-figure text-primary text-7xl animate-pulse">
                     {index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉'}
                   </div>
                   <div className="stat-title text-2xl">{nft.name}</div>
@@ -203,7 +203,7 @@ const RadioPage = () => {
           {/* <!-- Page content here --> */}
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-outline lg:hidden rounded-xl w-1/3"
+            className="btn btn-outline lg:hidden rounded-xl w-1/3 "
           >
             genre{' '}
             <svg
@@ -254,7 +254,7 @@ const RadioPage = () => {
                   <div className="flex justify-between">
                     <motion.span
                       htmlFor="my-modal-69"
-                      className="badge card3 rounded"
+                      className="badge card3 rounded cursor-pointer"
                       whileHover={{ scale: 1.2 }}
                       transition={{ duration: 0.3 }}
                     >
@@ -334,7 +334,7 @@ const RadioPage = () => {
                   <div className="card-actions justify-between mt-4">
                     <label
                       htmlFor="my-modal-6"
-                      className="btn btn-outline normal-case rounded-xl cursor-pointer"
+                      className="btn btn-outline text-[#555555] normal-case rounded-xl cursor-pointer"
                     >
                       Report&nbsp;
                       <svg
@@ -484,6 +484,7 @@ const RadioPage = () => {
           <button
             className="btn btn-outline w-full mt-12 normal-case rounded-xl"
             onClick={handleGiveHeat}
+            disabled={heatCount === 0}
           >
             Give Heat!
           </button>
@@ -545,7 +546,7 @@ const RadioPage = () => {
           </a>
           <div className="modal-action">
             <label htmlFor="my-modal-69" className="btn">
-              Yay!
+              close
             </label>
           </div>
         </div>

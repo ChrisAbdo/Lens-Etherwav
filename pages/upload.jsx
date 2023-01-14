@@ -94,8 +94,6 @@ const upload = () => {
     </div>,
   ];
 
-  const currentInput = inputs[currentInputIndex];
-
   const router = useRouter();
 
   useEffect(() => {
@@ -260,7 +258,7 @@ const upload = () => {
         </figure>
         <p className="mt-2 text-sm text-center text-gray-400">
           PLEASE NOTE: THE BUTTON WILL BE DISABLED UNTIL ALL ASSETS ARE UPLOADED
-          TO IPFS, THIS CAN TAKE A FEW MINUTES
+          TO IPFS, THIS CAN TAKE A COUPLE SECONDS
         </p>
         <div className="card-body ">
           <AnimatePresence>
@@ -297,6 +295,9 @@ const upload = () => {
             >
               Previous
             </button>
+            <button className="btn" disabled>
+              {currentInputIndex + 1} of {inputs.length}
+            </button>
             <button
               className="btn"
               onClick={() => {
@@ -309,13 +310,44 @@ const upload = () => {
             </button>
           </div>
           <div className="card-actions w-full mt-4">
-            <button
+            {/* <button
               disabled={disabled}
               onClick={listNFTForSale}
               className="btn btn-outline w-full rounded-xl"
             >
               Upload
-            </button>
+            </button> */}
+            {disabled ? (
+              <button
+                disabled={disabled}
+                onClick={listNFTForSale}
+                className="btn btn-outline w-full rounded-xl"
+              >
+                Upload
+              </button>
+            ) : (
+              <button
+                disabled={disabled}
+                onClick={listNFTForSale}
+                className="btn btn-outline w-full rounded-xl"
+              >
+                Upload{' '}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </button>
+            )}
           </div>
         </div>
       </div>
