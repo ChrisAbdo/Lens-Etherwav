@@ -199,13 +199,27 @@ const RadioPage = () => {
 
       <div className="drawer drawer-mobile">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center ">
+        <div className="drawer-content flex flex-col ">
           {/* <!-- Page content here --> */}
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-outline drawer-button lg:hidden rounded-xl mt-6 mb-6"
+            className="btn btn-outline lg:hidden rounded-xl w-1/3"
           >
-            sort by genre
+            genre{' '}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"
+              />
+            </svg>
           </label>
           <div className="hero">
             {nfts.length > 0 ? (
@@ -237,13 +251,24 @@ const RadioPage = () => {
                   <span className="fire-emoji">🔥</span>
                 </div>
                 <div className="card-body">
-                  <motion.span
-                    className="badge card3 rounded"
-                    whileHover={{ scale: 1.2 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {nfts[currentIndex].genre}
-                  </motion.span>
+                  <div className="flex justify-between">
+                    <motion.span
+                      htmlFor="my-modal-69"
+                      className="badge card3 rounded"
+                      whileHover={{ scale: 1.2 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {nfts[currentIndex].genre}
+                    </motion.span>
+                    <motion.label
+                      htmlFor="my-modal-69"
+                      className="badge card3 rounded cursor-pointer"
+                      whileHover={{ scale: 1.2 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      More Info
+                    </motion.label>
+                  </div>
                   <h2 className="card-title text-center justify-center">
                     {nfts.length > 0 && nfts[currentIndex].name}
                   </h2>
@@ -465,6 +490,62 @@ const RadioPage = () => {
           <div className="modal-action">
             <label htmlFor="my-modal-5" className="btn rounded-xl">
               cancel
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <input type="checkbox" id="my-modal-69" className="modal-toggle" />
+      <div className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg">More Information</h3>
+          <p className="py-4">
+            {nfts[currentIndex] && nfts[currentIndex].name}
+          </p>
+          <a
+            className="link link-hover text-xs "
+            rel="noreferrer"
+            target="_blank"
+            // href to etherscan with the seller address
+            href={`https://etherscan.io/address/${
+              nfts[currentIndex] && nfts[currentIndex].seller
+            }`}
+          >
+            Original Author: {nfts[currentIndex] && nfts[currentIndex].seller}
+          </a>
+          <br />
+          <a
+            className="link link-hover text-xs "
+            rel="noreferrer"
+            target="_blank"
+            href={
+              nfts[currentIndex] && nfts[currentIndex].coverImage.toString()
+            }
+          >
+            Cover Image:{' '}
+            {nfts[currentIndex] && nfts[currentIndex].coverImage.toString()}
+          </a>
+          <br />
+          <a
+            className="link link-hover text-xs "
+            rel="noreferrer"
+            target="_blank"
+            href={nfts[currentIndex] && nfts[currentIndex].image.toString()}
+          >
+            Audio Source:{' '}
+            {nfts[currentIndex] && nfts[currentIndex].image.toString()}
+          </a>
+          <br />
+          <a
+            className="link link-hover text-xs "
+            rel="noreferrer"
+            target="_blank"
+          >
+            Heat 🔥: {nfts[currentIndex] && nfts[currentIndex].heatCount}
+          </a>
+          <div className="modal-action">
+            <label htmlFor="my-modal-69" className="btn">
+              Yay!
             </label>
           </div>
         </div>
