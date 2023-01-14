@@ -44,15 +44,32 @@ const Home = () => {
             >
               Get Started
             </motion.a>
-            <p className="flex pt-6 text-2xl text-[#bebebe]">
-              <span className="text-[#bebebe]">Powered by Polygon</span>{' '}
-              <Image
-                src="/polygon.svg"
-                className="ml-2"
-                width={50}
-                height={50}
-              />
+            <p className="flex pt-6 text-xl text-[#bebebe]">
+              <span className="flextext-[#bebebe]">
+                Powered by{' '}
+                <a
+                  href="https://polygon.technology/"
+                  rel="noreferrer noopener"
+                  target="_blank"
+                  className="text-purple-500 link link-hover"
+                >
+                  Polygon
+                </a>{' '}
+                &&nbsp;
+                <a
+                  href="https://ipfs.tech/"
+                  rel="noreferrer noopener"
+                  target="_blank"
+                  className="text-[#429395] link link-hover"
+                >
+                  IPFS
+                </a>
+              </span>
             </p>
+            <div className="flex">
+              <Image src="/polygon.svg" width={50} height={50} />
+              <Image src="/ipfs.png" width={50} height={50} />
+            </div>
           </div>
         </div>
       </div>

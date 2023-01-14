@@ -68,7 +68,7 @@ const Navbar = () => {
       <div className="navbar-end">
         {isOnWrongNetwork ? (
           <button
-            className="btn btn-outline normal-case"
+            className="btn btn-outline normal-case rounded-xl"
             onClick={() => switchNetwork?.(activeChainId)}
           >
             Wrong Network!{' '}
