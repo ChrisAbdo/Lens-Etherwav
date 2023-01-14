@@ -295,9 +295,32 @@ const upload = () => {
             >
               Previous
             </button>
-            <button className="btn rounded-xl" disabled>
-              {currentInputIndex + 1} of {inputs.length}
-            </button>
+
+            <div className="btn-group rounded-xl">
+              <button className="btn rounded-xl" disabled>
+                <AnimatePresence>
+                  <motion.span
+                    key={currentInputIndex}
+                    initial={{
+                      y: direction === 'right' ? -50 : 50,
+                      opacity: 0,
+                    }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: direction === 'right' ? -50 : 50, opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    style={{ position: 'absolute' }}
+                  >
+                    {currentInputIndex + 1}
+                  </motion.span>
+                </AnimatePresence>
+              </button>
+              <button className="btn rounded-xl" disabled>
+                of
+              </button>
+              <button className="btn rounded-xl" disabled>
+                {inputs.length}
+              </button>
+            </div>
             <button
               className="btn rounded-xl"
               onClick={() => {
@@ -310,13 +333,6 @@ const upload = () => {
             </button>
           </div>
           <div className="card-actions w-full mt-4">
-            {/* <button
-              disabled={disabled}
-              onClick={listNFTForSale}
-              className="btn btn-outline w-full rounded-xl"
-            >
-              Upload
-            </button> */}
             {disabled ? (
               <button
                 disabled={disabled}

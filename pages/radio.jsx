@@ -516,7 +516,8 @@ const RadioPage = () => {
         <div className="modal-box">
           <h3 className="font-bold text-lg">More Information</h3>
           <p className="py-4">
-            {nfts[currentIndex] && nfts[currentIndex].name}
+            {nfts[currentIndex] && nfts[currentIndex].name} | Heat 🔥:{' '}
+            {nfts[currentIndex] && nfts[currentIndex].heatCount}
           </p>
           <a
             className="link link-hover text-xs "
@@ -552,13 +553,7 @@ const RadioPage = () => {
             {nfts[currentIndex] && nfts[currentIndex].image.toString()}
           </a>
           <br />
-          <a
-            className="link link-hover text-xs "
-            rel="noreferrer"
-            target="_blank"
-          >
-            Heat 🔥: {nfts[currentIndex] && nfts[currentIndex].heatCount}
-          </a>
+
           <div className="modal-action">
             <label htmlFor="my-modal-69" className="btn rounded-xl">
               close

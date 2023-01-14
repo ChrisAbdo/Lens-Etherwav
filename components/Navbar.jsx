@@ -5,7 +5,8 @@ import {
   ConnectWallet,
   useNetwork,
 } from '@thirdweb-dev/react';
-import { ChainId, ThirdwebProvider } from '@thirdweb-dev/react';
+
+import { ChainId } from '@thirdweb-dev/react';
 const activeChainId = ChainId.Mumbai;
 
 const Navbar = () => {
