@@ -178,7 +178,16 @@ const Home = () => {
           transition={{ duration: 1 }}
         >
           <div className="hero-content flex-col lg:flex-row">
-            <Image src="/music.png" width={500} height={500} />
+            <motion.img
+              className="w-64 h-64 lg:w-96 lg:h-96"
+              id="hero"
+              initial={{ hidden: true }}
+              animate={{ rotateY: 360, x: 0 }}
+              transition={{ duration: 2, ease: 'circInOut', delay: 0.5 }}
+              whileHover={{ rotateY: [0, 360], transition: { duration: 10 } }}
+              src="/music.png"
+              alt="hero"
+            />
             <div>
               <h1 className="text-5xl font-bold">
                 Start <span className="text-green-500">earning</span> today!

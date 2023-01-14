@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import Web3 from 'web3';
 import Radio from '../smart-contracts/build/contracts/Radio.json';
@@ -21,17 +22,80 @@ const client = ipfsClient.create({
 });
 
 const upload = () => {
+  const [formInput, updateFormInput] = useState({
+    name: '',
+    coverImage: '',
+    genre: '',
+  });
   const [account, setAccount] = useState('');
   const [loading, setLoading] = useState(false);
   const [imageLoading, setImageLoading] = useState(false);
   const [disabled, setDisabled] = useState(true);
   const [fileUrl, setFileUrl] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
-  const [formInput, updateFormInput] = useState({
-    name: '',
-    coverImage: '',
-    genre: '',
-  });
+  const [currentInputIndex, setCurrentInputIndex] = useState(0);
+  const [direction, setDirection] = useState('right');
+
+  const inputs = [
+    <div className="form-control w-full max-w-xs">
+      <label className="label">
+        <span className="label-text">Pick a beat</span>
+        <span className="label-text-alt">CURRENTLY MP3 ONLY</span>
+      </label>
+      <input
+        type="file"
+        className="file-input file-input-bordered w-full max-w-xs rounded-xl"
+        accept=".mp3"
+        onChange={onChange}
+      />
+    </div>,
+    <div className="form-control w-full max-w-xs">
+      <label className="label">
+        <span className="label-text">Enter a title for your beat</span>
+      </label>
+      <input
+        type="text"
+        placeholder="Title here"
+        className="input input-bordered w-full max-w-xs rounded-xl"
+        onChange={(e) =>
+          updateFormInput({ ...formInput, name: e.target.value })
+        }
+      />
+    </div>,
+    <div className="form-control w-full max-w-xs">
+      <label className="label">
+        <span className="label-text">cover image</span>
+        <span className="label-text-alt">400x400</span>
+      </label>
+      <input
+        onChange={createCoverImage}
+        type="file"
+        className="file-input file-input-bordered w-full max-w-xs rounded-xl"
+      />
+    </div>,
+
+    <div>
+      <label className="label">
+        <span className="label-text">Select a genre</span>
+      </label>
+      <select
+        onChange={(e) =>
+          updateFormInput({ ...formInput, genre: e.target.value })
+        }
+        className="select select-bordered w-full max-w-xs rounded-xl"
+      >
+        <option disabled selected>
+          Select Genre
+        </option>
+        <option value="lofi">Lofi</option>
+        <option value="hiphop">Hip Hop</option>
+        <option value="vocals">Vocals</option>
+      </select>
+    </div>,
+  ];
+
+  const currentInput = inputs[currentInputIndex];
+
   const router = useRouter();
 
   useEffect(() => {
@@ -81,14 +145,6 @@ const upload = () => {
       console.log('Error uploading file: ', error);
     }
   }
-
-  const removeCoverImage = () => {
-    setCoverImage(null);
-    updateFormInput({
-      ...formInput,
-      coverImage: '',
-    }); // update form input with empty cover image URL
-  };
 
   async function uploadToIPFS() {
     const { name, coverImage, genre } = formInput;
@@ -187,8 +243,17 @@ const upload = () => {
     }
   }
 
+  const handleClick = (next) => {
+    if (next) {
+      setDirection('left');
+    } else {
+      setDirection('right');
+    }
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full p-12">
+    <div className="flex flex-col items-center justify-center w-full h-full px-12 py-4">
+      {/* CARD */}
       <div className="card w-96 shadow-xl border border-[#2a2a2a] rounded-3xl">
         <figure className="px-10 pt-5">
           <h1 className="text-3xl font-bold text-center">Upload a Beat</h1>
@@ -197,95 +262,52 @@ const upload = () => {
           PLEASE NOTE: THE BUTTON WILL BE DISABLED UNTIL ALL ASSETS ARE UPLOADED
           TO IPFS, THIS CAN TAKE A FEW MINUTES
         </p>
-        <div className="card-body items-center text-center">
-          <div className="form-control w-full max-w-xs">
-            <label className="label">
-              <span className="label-text">Pick a beat</span>
-              <span className="label-text-alt">CURRENTLY MP3 ONLY</span>
-            </label>
-            <input
-              type="file"
-              className="file-input file-input-bordered w-full max-w-xs rounded-xl"
-              accept=".mp3"
-              onChange={onChange}
-            />
-            {loading ? (
-              <progress className="progress w-full"></progress>
-            ) : (
-              <div></div>
-            )}
-          </div>
-          <div className="form-control w-full max-w-xs">
-            <label className="label">
-              <span className="label-text">Enter a title for your beat</span>
-            </label>
-            <input
-              type="text"
-              placeholder="Title here"
-              className="input input-bordered w-full max-w-xs rounded-xl"
-              onChange={(e) =>
-                updateFormInput({ ...formInput, name: e.target.value })
-              }
-            />
-          </div>
-
-          {coverImage ? (
-            <div className="form-control w-full max-w-xs">
-              <label className="label">
-                <span className="label-text">Choose cover image</span>
-                <span className="label-text-alt">
-                  Square images recommended
-                </span>
-              </label>
-              <label className="input-group w-full">
-                <input
-                  type="text"
-                  placeholder="."
-                  className="input input-bordered w-full rounded-xl"
-                  value={coverImage}
-                  disabled
-                />
-
-                <span onClick={removeCoverImage} className="btn rounded-xl">
-                  X
-                </span>
-              </label>
-            </div>
-          ) : (
-            <div className="form-control w-full max-w-xs">
-              <label className="label">
-                <span className="label-text">Choose cover image</span>
-                <span className="label-text-alt">
-                  Square images recommended
-                </span>
-              </label>
-              <input
-                onChange={createCoverImage}
-                type="file"
-                className="file-input file-input-bordered w-full max-w-xs rounded-xl"
-              />
-              {imageLoading ? (
-                <progress className="progress w-full"></progress>
-              ) : (
-                <div></div>
+        <div className="card-body ">
+          <AnimatePresence>
+            <div
+              className="input-container"
+              style={{
+                display: 'inline-flex',
+                width: '100%',
+                overflowX: 'hidden',
+              }}
+            >
+              {inputs[currentInputIndex] && (
+                <motion.div
+                  key={currentInputIndex}
+                  initial={{ x: direction === 'right' ? '-100%' : '100%' }}
+                  animate={{ x: 0 }}
+                  exit={{ x: direction === 'right' ? '-100%' : '100%' }}
+                  transition={{ type: 'tween', duration: 0.5 }}
+                >
+                  {inputs[currentInputIndex]}
+                </motion.div>
               )}
             </div>
-          )}
+          </AnimatePresence>
 
-          <select
-            onChange={(e) =>
-              updateFormInput({ ...formInput, genre: e.target.value })
-            }
-            className="select select-bordered w-full max-w-xs rounded-xl mt-4"
-          >
-            <option disabled selected>
-              Select Genre
-            </option>
-            <option value="lofi">Lofi</option>
-            <option value="hiphop">Hip Hop</option>
-            <option value="vocals">Vocals</option>
-          </select>
-
+          <div className="flex justify-between mt-4">
+            <button
+              className="btn"
+              onClick={() => {
+                setCurrentInputIndex(currentInputIndex - 1);
+                handleClick(false);
+              }}
+              disabled={currentInputIndex === 0}
+            >
+              Previous
+            </button>
+            <button
+              className="btn"
+              onClick={() => {
+                setCurrentInputIndex(currentInputIndex + 1);
+                handleClick(true);
+              }}
+              disabled={currentInputIndex === inputs.length - 1}
+            >
+              Next
+            </button>
+          </div>
           <div className="card-actions w-full mt-4">
             <button
               disabled={disabled}
@@ -297,7 +319,6 @@ const upload = () => {
           </div>
         </div>
       </div>
-
       <div className="divider">OR</div>
 
       <div className="card w-96 shadow-xl border border-[#2a2a2a] rounded-3xl">
