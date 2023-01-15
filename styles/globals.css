@@ -74,26 +74,4 @@
     @apply bg-gradient-to-r from-[#1a1a1a] to-[#2a2a2a];
   }
 
-  .gradient-04 {
-    position: absolute;
-    width: 304px;
-    height: 100vh;
-    left: 30%;
-    top: 10%;
   
-    background: rgb(89, 25, 185);
-    z-index: -1;
-    opacity: 0.5;
-    filter: blur(200px);
-    transform: rotate(-53.13deg);
-}
-
-@media (max-width: 600px) {
-    .gradient-04 {
-        width: 65%;
-        height: 40%;
-        left: 0;
-        top: 60%;
-    }
-}
-

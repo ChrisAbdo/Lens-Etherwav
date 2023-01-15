@@ -240,7 +240,7 @@ const Home = () => {
           </AnimatePresence>
         </div>
       </div>
-      <div className="gradient-04" />
+
       <AnimatePresence>
         <motion.div
           className="hero "
