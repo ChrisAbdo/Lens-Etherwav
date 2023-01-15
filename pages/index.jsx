@@ -11,7 +11,6 @@ const Home = () => {
           on the cutting edge.
         </h1>{' '}
       </Marquee>
-
       <div className="hero p-6">
         <div className="hero-content flex-col lg:flex-row-reverse ">
           <motion.img
@@ -73,7 +72,7 @@ const Home = () => {
                   animate={{ scale: 1.05 }}
                   transition={{ duration: 0.2 }}
                   whileHover={{ scale: 1.2 }}
-                  className="alert shadow-lg mt-8 rounded-3xl card2 border border-[#2a2a2a]"
+                  className="alert bg-black shadow-lg mt-8 rounded-3xl card2 border border-[#2a2a2a]"
                 >
                   <div>
                     <span className="flextext-[#bebebe]">
@@ -241,10 +240,10 @@ const Home = () => {
           </AnimatePresence>
         </div>
       </div>
-
+      <div className="gradient-04" />
       <AnimatePresence>
         <motion.div
-          className="hero"
+          className="hero "
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -260,7 +259,7 @@ const Home = () => {
             />
             <div>
               <h1 className="text-5xl font-bold">
-                Start <span className="text-green-500">earning</span> today!
+                Start <span className="text-[#009677]">earning</span> today!
               </h1>
               <p className="py-6 text-2xl">It's as easy as uploading a beat!</p>
               <a href="/radio" className="btn rounded-xl btn-outline">
@@ -271,13 +270,15 @@ const Home = () => {
         </motion.div>
       </AnimatePresence>
 
-      <div className=" flex text-center justify-between items-center">
-        <span className="fire-emoji">🔥</span>
-        <span className="fire-emoji">🔥</span>
-        <span className="fire-emoji">🔥</span>
-        <span className="fire-emoji">🔥</span>
-        <span className="fire-emoji">🔥</span>
-      </div>
+      <Marquee gradient={false} speed={100} className=" bg-[#2a2a2a] p-1">
+        <div className="flex justify-between">
+          <span className="fire-emoji">🔥</span>
+          <span className="fire-emoji">🔥</span>
+          <span className="fire-emoji">🔥</span>
+          <span className="fire-emoji">🔥</span>
+          <span className="fire-emoji">🔥</span>
+        </div>
+      </Marquee>
 
       <footer className="footer items-center p-4 bottom-0 border-[#2a2a2a] border-t">
         <div className="items-center grid-flow-col ">

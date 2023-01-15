@@ -70,4 +70,36 @@
     @apply bg-[#101010];
   }
 
- 
+  .backgroundGradient {
+    @apply bg-gradient-to-r from-[#1a1a1a] to-[#2a2a2a];
+  }
+
+  .gradient-04 {
+    position: absolute;
+    width: 304px;
+    height: 100vh;
+    left: 30%;
+    top: 10%;
+  
+    background: rgb(89, 25, 185);
+    z-index: -1;
+    opacity: 0.5;
+    filter: blur(200px);
+    transform: rotate(-53.13deg);
+    animation: glowing 1500ms ease-in-out infinite;
+}
+
+@media (max-width: 600px) {
+    .gradient-04 {
+        width: 65%;
+        height: 40%;
+        left: 0;
+        top: 60%;
+    }
+}
+
+@keyframes glowing {
+  0% { box-shadow: 0 0 20px rgb(92,22,197); }
+  50% { box-shadow: 0 0 50px rgb(92,22,197); }
+  100% { box-shadow: 0 0 20px rgb(92,22,197); }
+}
