@@ -86,7 +86,6 @@
     opacity: 0.5;
     filter: blur(200px);
     transform: rotate(-53.13deg);
-    animation: glowing 1500ms ease-in-out infinite;
 }
 
 @media (max-width: 600px) {
@@ -98,8 +97,3 @@
     }
 }
 
-@keyframes glowing {
-  0% { box-shadow: 0 0 20px rgb(92,22,197); }
-  50% { box-shadow: 0 0 50px rgb(92,22,197); }
-  100% { box-shadow: 0 0 20px rgb(92,22,197); }
-}
