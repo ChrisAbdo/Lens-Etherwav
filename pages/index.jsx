@@ -28,7 +28,7 @@ const Home = () => {
           <div>
             <h1 className="text-4xl font-bold gradient-shadow sm:text-5xl lg:text-7xl">
               Welcome to{' '}
-              <span className="mt-1 bg-gradient-to-r from-yellow-600 to-red-600 bg-clip-text text-4xl font-extrabold tracking-tighter text-transparent sm:text-5xl lg:text-7xl">
+              <span className="mt-1 bg-gradient-to-r from-yellow-600 via-orange-600 to-red-600 bg-clip-text text-4xl font-extrabold tracking-tighter text-transparent sm:text-5xl lg:text-7xl">
                 radio3
               </span>
             </h1>{' '}
@@ -44,40 +44,95 @@ const Home = () => {
             >
               Get Started
             </motion.a>
-            <p className="flex pt-6 text-xl text-[#bebebe]">
-              <span className="flextext-[#bebebe]">
-                Powered by{' '}
-                <a
-                  href="https://polygon.technology/"
-                  rel="noreferrer noopener"
-                  target="_blank"
-                  className="text-purple-500 link link-hover"
-                >
-                  Polygon
-                </a>{' '}
-                &&nbsp;
-                <a
-                  href="https://ipfs.tech/"
-                  rel="noreferrer noopener"
-                  target="_blank"
-                  className="text-[#429395] link link-hover"
-                >
-                  IPFS
-                </a>
-              </span>
-            </p>
             <div className="flex">
-              <Image src="/polygon.svg" width={50} height={50} />
-              <Image src="/ipfs.png" width={50} height={50} />
+              {/* <p className="flex pt-6 text-xl text-[#bebebe]">
+                <span className="flextext-[#bebebe]">
+                  Powered by{' '}
+                  <a
+                    href="https://polygon.technology/"
+                    rel="noreferrer noopener"
+                    target="_blank"
+                    className="text-purple-500 link link-hover"
+                  >
+                    Polygon
+                  </a>{' '}
+                  &&nbsp;
+                  <a
+                    href="https://ipfs.tech/"
+                    rel="noreferrer noopener"
+                    target="_blank"
+                    className="text-[#429395] link link-hover"
+                  >
+                    IPFS
+                  </a>
+                </span>
+              </p> */}
+              <AnimatePresence>
+                <motion.div
+                  initial={{ scale: 1 }}
+                  animate={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                  whileHover={{ scale: 1.2 }}
+                  className="alert shadow-lg mt-8 rounded-3xl card2 border border-[#2a2a2a]"
+                >
+                  <div>
+                    <span className="flextext-[#bebebe]">
+                      Powered by{' '}
+                      <a
+                        href="https://polygon.technology/"
+                        rel="noreferrer noopener"
+                        target="_blank"
+                        className="text-purple-500 link link-hover"
+                      >
+                        Polygon
+                      </a>{' '}
+                      &&nbsp;
+                      <a
+                        href="https://ipfs.tech/"
+                        rel="noreferrer noopener"
+                        target="_blank"
+                        className="text-[#429395] link link-hover"
+                      >
+                        IPFS
+                      </a>
+                    </span>
+                  </div>
+
+                  <div className="flex-none">
+                    <motion.img
+                      initial={{ scale: 1 }}
+                      animate={{ scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
+                      whileHover={{ scale: 1.2 }}
+                      className="cursor-pointer"
+                      src="/polygon.svg"
+                      onClick={() => window.open('https://polygon.technology/')}
+                      width={50}
+                      height={50}
+                    />
+                    <motion.img
+                      initial={{ scale: 1 }}
+                      animate={{ scale: 1.05 }}
+                      transition={{ duration: 0.2 }}
+                      whileHover={{ scale: 1.2 }}
+                      className="cursor-pointer"
+                      src="/ipfs.png"
+                      onClick={() => window.open('https://ipfs.tech/')}
+                      width={50}
+                      height={25}
+                    />
+                  </div>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
         </div>
       </div>
 
       <div className="hero p-6">
-        <div className="flex flex-col items-center justify-between w-full flex-1 text-center md:flex-row">
+        <div className="flex flex-col items-center justify-between w-full flex-1 text-center md:flex-row px-8">
           <motion.a
-            className="card  bg-base-100 shadow-xl border border-[#2a2a2a] hover:bg-[#1a1a1a] card1"
+            className="card  bg-base-100 rounded-3xl border border-[#2a2a2a] hover:bg-[#1a1a1a] card1"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -109,8 +164,9 @@ const Home = () => {
               <p>Are you a producer? This one's for you!</p>
             </div>
           </motion.a>
+          <br />
           <motion.a
-            className="card bg-base-100 shadow-xl border border-[#2a2a2a] hover:bg-[#1a1a1a] card1"
+            className="card bg-base-100 rounded-3xl border border-[#2a2a2a] hover:bg-[#1a1a1a] card1"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -142,10 +198,10 @@ const Home = () => {
               <p>Who doesn't love some nice smooth beats?</p>
             </div>
           </motion.a>
-
+          <br />
           <AnimatePresence>
             <motion.a
-              className="card  bg-base-100 shadow-xl border border-[#2a2a2a] hover:bg-[#1a1a1a] card1"
+              className="card  bg-base-100 rounded-3xl border border-[#2a2a2a] hover:bg-[#1a1a1a] card1"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}

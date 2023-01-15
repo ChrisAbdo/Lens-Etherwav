@@ -62,4 +62,12 @@
     @apply bg-[#555555];
   }
 
+  .uploadcard {
+    @apply transition-colors duration-500;
+  }
+  
+  .uploadcard:hover {
+    @apply bg-[#101010];
+  }
+
  

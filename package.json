@@ -6,16 +6,15 @@
     "start": "next start"
   },
   "dependencies": {
-    
-    "@emotion/react": "^11",
-    "@emotion/styled": "^11",
+   
+   
     "@next/font": "^13.1.1",
     "@openzeppelin/contracts": "^4.7.3",
     "@thirdweb-dev/react": "^3.6.9",
     "@thirdweb-dev/sdk": "^3.6.9",
     "@truffle/hdwallet-provider": "^2.1.0",
     "@vercel/analytics": "^0.1.6",
-    "axios": "^1.2.2",
+    "axios": "latest",
     "daisyui": "^2.46.1",
     "ethers": "^5.7.2",
     "framer-motion": "^8.1.9",

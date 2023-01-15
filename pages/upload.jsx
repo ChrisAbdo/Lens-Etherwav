@@ -70,6 +70,7 @@ const upload = () => {
       <input
         onChange={createCoverImage}
         type="file"
+        accept="image/*"
         className="file-input file-input-bordered w-full max-w-xs rounded-xl"
       />
     </div>,
@@ -211,7 +212,7 @@ const upload = () => {
             .on('receipt', function () {
               console.log('listed');
 
-              toast.success('NFT listed', {
+              toast.success('Listed to Radio3!', {
                 id: notification,
                 style: {
                   border: '1px solid #fff',
@@ -252,7 +253,7 @@ const upload = () => {
   return (
     <div className="flex flex-col items-center justify-center w-full h-full px-12 py-4">
       {/* CARD */}
-      <div className="card w-96 shadow-xl border border-[#2a2a2a] rounded-3xl">
+      <div className="card w-96 shadow-xl border border-[#2a2a2a] rounded-3xl uploadcard ">
         <figure className="px-10 pt-5">
           <h1 className="text-3xl font-bold text-center">Upload a Beat</h1>
         </figure>
@@ -298,27 +299,7 @@ const upload = () => {
 
             <div className="btn-group rounded-xl">
               <button className="btn rounded-xl" disabled>
-                <AnimatePresence>
-                  <motion.span
-                    key={currentInputIndex}
-                    initial={{
-                      y: direction === 'right' ? -50 : 50,
-                      opacity: 0,
-                    }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: direction === 'right' ? -50 : 50, opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                    style={{ position: 'absolute' }}
-                  >
-                    {currentInputIndex + 1}
-                  </motion.span>
-                </AnimatePresence>
-              </button>
-              <button className="btn rounded-xl" disabled>
-                of
-              </button>
-              <button className="btn rounded-xl" disabled>
-                {inputs.length}
+                {currentInputIndex + 1} of {inputs.length}
               </button>
             </div>
             <button
@@ -369,7 +350,7 @@ const upload = () => {
       </div>
       <div className="divider">OR</div>
 
-      <div className="card w-96 shadow-xl border border-[#2a2a2a] rounded-3xl">
+      <div className="card w-96 shadow-xl border border-[#2a2a2a] rounded-3xl uploadcard">
         <figure className="px-10 pt-5">
           <h1 className="text-3xl font-bold text-center">
             Not sure what to upload?
