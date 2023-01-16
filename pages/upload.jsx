@@ -152,6 +152,12 @@ const upload = () => {
       });
     } catch (error) {
       console.log('Error uploading file: ', error);
+      toast.error('Error uploading file: ', {
+        style: {
+          border: '1px solid #fff',
+          fontWeight: 'bold',
+        },
+      });
     }
   }
 

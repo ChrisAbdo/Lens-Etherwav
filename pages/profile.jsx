@@ -13,7 +13,6 @@ import NFT from '../smart-contracts/build/contracts/NFT.json';
 const RadioPage = () => {
   const [nfts, setNfts] = useState([]);
   const [topThreeNfts, setTopThreeNfts] = useState([]);
-  const [account, setAccount] = useState('');
 
   useEffect(() => {
     loadProfileSongs();
@@ -29,10 +28,9 @@ const RadioPage = () => {
       Radio.abi,
       Radio.networks[networkId].address
     );
-    const accounts = await web3.eth.getAccounts();
     const listings = await radioContract.methods
       .getMyListedNfts()
-      .call({ from: accounts[0] });
+      .call({ from: window.ethereum.selectedAddress });
     // Iterate over the listed NFTs and retrieve their metadata
     const nfts = await Promise.all(
       listings.map(async (i) => {
@@ -107,6 +105,11 @@ const RadioPage = () => {
           fontWeight: 'bold',
         },
       });
+
+      // wait for 2 seconds and reload the page
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     } catch (err) {
       toast.error('Could not delete. Try again in a couple seconds.', {
         id: notification,
@@ -124,58 +127,69 @@ const RadioPage = () => {
       <h1 className="text-4xl font-bold text-center mt-6">
         Your Uploaded Songs
       </h1>
-      {nfts.map((nft) => (
+      {nfts.map((nft, index) => (
         <div className="p-6">
-          <div className="card card3 card-side border border-[#2a2a2a] rounded-3xl shadow-xl">
-            <figure>
-              <Image
-                src={nft.coverImage}
-                alt={nft.name}
-                width={250}
-                height={250}
-                className="h-full bg-black"
-                priority
-              />
-            </figure>
-            <div className="card-body">
-              <div className="space-y-6">
-                <h2 className="card-title text-2xl">
-                  {nft.name} | Heat: {nft.heatCount}🔥
-                </h2>
-                <motion.span
-                  className="badge card1 rounded p-4"
-                  whileHover={{ scale: 1.2 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {nft.genre}
-                </motion.span>
-                <ReactAudioPlayer src={nft.image} controls className="w-full" />
-              </div>
-
-              <div className="card-actions justify-end mt-4">
-                <label
-                  htmlFor={`my-modal-${nft.tokenId}`}
-                  className="btn btn-outline rounded-xl normal-case"
-                >
-                  DELETE{' '}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6"
+          <motion.div
+            key={nft.tokenId}
+            initial={{ y: -200, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: index * 0.1 }}
+          >
+            <div className="card card3 card-side border border-[#2a2a2a] rounded-3xl shadow-xl">
+              <figure>
+                <Image
+                  src={nft.coverImage}
+                  alt={nft.name}
+                  width={250}
+                  height={250}
+                  className="h-full bg-black"
+                  priority
+                />
+              </figure>
+              <div className="card-body">
+                <div className="space-y-6">
+                  <h2 className="card-title text-2xl">
+                    {nft.name} | Heat: {nft.heatCount}🔥
+                  </h2>
+                  <motion.span
+                    className="badge card1 rounded p-4"
+                    whileHover={{ scale: 1.2 }}
+                    transition={{ duration: 0.3 }}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                    />
-                  </svg>
-                </label>
+                    {nft.genre}
+                  </motion.span>
+                  <ReactAudioPlayer
+                    src={nft.image}
+                    controls
+                    className="w-full"
+                  />
+                </div>
+
+                <div className="card-actions justify-end mt-4">
+                  <label
+                    htmlFor={`my-modal-${nft.tokenId}`}
+                    className="btn btn-outline rounded-xl normal-case"
+                  >
+                    DELETE{' '}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth={1.5}
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                      />
+                    </svg>
+                  </label>
+                </div>
               </div>
             </div>
-          </div>
+          </motion.div>
           <input
             type="checkbox"
             id={`my-modal-${nft.tokenId}`}
