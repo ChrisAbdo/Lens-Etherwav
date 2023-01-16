@@ -119,21 +119,6 @@ const RadioPage = () => {
     }
   }
 
-  if (nfts.length === 0) {
-    return (
-      <div className="flex flex-col items-center justify-center h-screen">
-        <h1 className="text-4xl font-bold text-center mt-6">
-          You have not uploaded any songs yet.
-        </h1>
-        <h1 className="text-4xl font-bold text-center mt-6">
-          You should change that.
-        </h1>
-        <button className="btn btn-primary mt-6">
-          <a href="/upload">Upload a song</a>
-        </button>
-      </div>
-    );
-  }
   return (
     <div>
       <h1 className="text-4xl font-bold text-center mt-6">
