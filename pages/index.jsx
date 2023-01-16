@@ -256,6 +256,7 @@ const Home = () => {
               id="hero"
               src="/music.png"
               alt="hero"
+              priority
             />
             <div>
               <h1 className="text-5xl font-bold">

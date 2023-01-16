@@ -47,6 +47,9 @@ const Navbar = () => {
             <li>
               <a href="/upload">Upload</a>
             </li>
+            <li>
+              <a href="/profile">Profile</a>
+            </li>
           </ul>
         </div>
         <a href="/" className="btn btn-ghost normal-case text-xl">
@@ -63,6 +66,9 @@ const Navbar = () => {
           </li>
           <li>
             <a href="/upload">Upload</a>
+          </li>
+          <li>
+            <a href="/profile">Profile</a>
           </li>
         </ul>
       </div>

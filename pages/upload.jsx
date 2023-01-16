@@ -117,7 +117,12 @@ const upload = () => {
       console.log(url);
       setLoading(false);
       setFileUrl(url);
-      toast.success('received audio file');
+      toast.success('received audio file', {
+        style: {
+          border: '1px solid #fff',
+          fontWeight: 'bold',
+        },
+      });
     } catch (error) {
       console.log('Error uploading file: ', error);
     }
@@ -139,7 +144,12 @@ const upload = () => {
         coverImage: url,
       }); // update form input with cover image URL
       setImageLoading(false);
-      toast.success('received cover image');
+      toast.success('received cover image', {
+        style: {
+          border: '1px solid #fff',
+          fontWeight: 'bold',
+        },
+      });
     } catch (error) {
       console.log('Error uploading file: ', error);
     }
@@ -175,18 +185,13 @@ const upload = () => {
       {
         style: {
           border: '1px solid #fff',
-          backgroundColor: '#2a2a2a',
           fontWeight: 'bold',
-          color: '#fff',
         },
       }
     );
 
     try {
       const web3 = new Web3(window.ethereum);
-      const provider = await window.ethereum.request({
-        method: 'eth_requestAccounts',
-      });
       const url = await uploadToIPFS();
       const networkId = await web3.eth.net.getId();
 
@@ -216,9 +221,7 @@ const upload = () => {
                 id: notification,
                 style: {
                   border: '1px solid #fff',
-                  backgroundColor: '#2a2a2a',
                   fontWeight: 'bold',
-                  color: '#fff',
                 },
               });
 
@@ -234,9 +237,7 @@ const upload = () => {
         id: notification,
         style: {
           border: '1px solid #fff',
-          backgroundColor: '#2a2a2a',
           fontWeight: 'bold',
-          color: '#fff',
         },
       });
     }
