@@ -254,7 +254,7 @@ const RadioPage = () => {
                   <div className="flex justify-between">
                     <motion.span
                       htmlFor="my-modal-69"
-                      className="badge card3 rounded cursor-pointer p-4"
+                      className="badge card3 rounded cursor-pointer p-4 min-w-[90px]"
                       whileHover={{ scale: 1.2 }}
                       transition={{ duration: 0.3 }}
                     >
