@@ -62,6 +62,16 @@
     @apply bg-[#555555];
   }
 
+  .card4 {
+    @apply transition-colors duration-500;
+  }
+  
+  .card4:hover {
+    @apply bg-[#555555] rounded-none;
+
+  }
+
+
   .uploadcard {
     @apply transition-colors duration-500;
   }

@@ -206,7 +206,7 @@ const RadioPage = () => {
             htmlFor="my-drawer-2"
             className="btn btn-outline lg:hidden rounded-xl w-1/3 mt-2 mb-2"
           >
-            genre{' '}
+            queue{' '}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -218,7 +218,7 @@ const RadioPage = () => {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"
+                d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"
               />
             </svg>
           </label>
@@ -412,16 +412,30 @@ const RadioPage = () => {
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-[#2a2a2a] text-base-content">
             {/* <!-- Sidebar content here --> */}
-            <label className="text-white font-bold text-xl">Genres</label>
-            <li>
-              <a>Lofi</a>
-            </li>
-            <li>
-              <a>Hiphop</a>
-            </li>
-            <li>
-              <a>Vocals</a>
-            </li>
+            <label className="text-white font-bold text-2xl">Queue</label>
+            {nfts.map((nft, index) => (
+              <li
+                key={index}
+                className="justify-between card3"
+                onClick={() => {
+                  setCurrentIndex(index);
+                }}
+              >
+                <div className="justify-between">
+                  <h1>
+                    <span className="text-lg font-semibold">{nft.name}</span>{' '}
+                    <br /> {nft.seller.slice(0, 6)}...
+                    {nft.seller.slice(-4)}
+                  </h1>
+
+                  <img
+                    src={nft.coverImage}
+                    alt="nft"
+                    className="w-12 h-12 rounded-xl"
+                  />
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
