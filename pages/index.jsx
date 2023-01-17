@@ -7,8 +7,8 @@ const Home = () => {
     <div>
       <Marquee gradient={false} speed={100} className="bg-[#2a2a2a] py-4">
         <h1 className="text-2xl font-bold gradient-shadow">
-          Tune in to the future with radio3 - Algorithmically rewarding, always
-          on the cutting edge.
+          Tune in to the future with Etherwave - Algorithmically rewarding,
+          always on the cutting edge.
         </h1>{' '}
       </Marquee>
       <div className="hero p-6">
@@ -28,7 +28,7 @@ const Home = () => {
             <h1 className="text-4xl font-bold gradient-shadow sm:text-5xl lg:text-7xl">
               Welcome to{' '}
               <span className="mt-1 bg-gradient-to-r from-yellow-600 via-orange-600 to-red-600 bg-clip-text text-4xl font-extrabold tracking-tighter text-transparent sm:text-5xl lg:text-7xl">
-                radio3
+                Etherwave
               </span>
             </h1>{' '}
             <p className="py-6 text-2xl text-[#bebebe]">

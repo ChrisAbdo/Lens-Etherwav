@@ -52,8 +52,8 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <a href="/" className="btn btn-ghost normal-case text-xl">
-          Radio3
+        <a href="/" className="btn btn-ghost normal-case text-xl -ml-4">
+          Etherwave
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">

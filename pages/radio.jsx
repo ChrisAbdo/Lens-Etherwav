@@ -274,21 +274,7 @@ const RadioPage = () => {
                       whileHover={{ scale: 1.2 }}
                       transition={{ duration: 0.3 }}
                     >
-                      More Info &nbsp;
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-6 h-6"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
-                        />
-                      </svg>
+                      More Info
                     </motion.label>
                   </div>
                   <h2 className="card-title text-center justify-center text-2xl">
@@ -363,21 +349,7 @@ const RadioPage = () => {
                       htmlFor="my-modal-6"
                       className="btn btn-outline text-[#555555] normal-case rounded-xl cursor-pointer"
                     >
-                      Report&nbsp;
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="w-6 h-6"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"
-                        />
-                      </svg>
+                      Report
                     </label>
 
                     <label
@@ -400,7 +372,7 @@ const RadioPage = () => {
                   No songs found. This can mean the following:
                 </p>
                 <p className="text-2xl mt-4">
-                  1. There are no songs on Radio3 yet.
+                  1. There are no songs on Etherwave yet.
                 </p>
                 <p className="text-2xl mt-4">
                   2. You are not connected to the correct network (Polygon).
@@ -424,7 +396,7 @@ const RadioPage = () => {
             {nfts.map((nft, index) => (
               <li
                 key={index}
-                className={`justify-between card3 ${
+                className={`justify-between border-b border-[#1f1f1f] card3 ${
                   index === currentIndex ? 'bg-[#555555]' : ''
                 }`}
                 onClick={() => {
@@ -433,9 +405,7 @@ const RadioPage = () => {
               >
                 <div className="justify-between">
                   <h1>
-                    <span className="text-lg font-semibold">
-                      {nft.name} | {nft.heatCount}
-                    </span>{' '}
+                    <span className="text-lg font-semibold">{nft.name}</span>{' '}
                     <br /> {nft.seller.slice(0, 6)}...
                     {nft.seller.slice(-4)}
                   </h1>
