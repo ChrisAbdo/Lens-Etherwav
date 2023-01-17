@@ -142,7 +142,7 @@ const RadioPage = () => {
                   alt={nft.name}
                   width={250}
                   height={250}
-                  className="h-full bg-black"
+                  className="h-full bg-black "
                   priority
                 />
               </figure>
