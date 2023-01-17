@@ -223,7 +223,7 @@ const upload = () => {
             .on('receipt', function () {
               console.log('listed');
 
-              toast.success('Listed to Radio3!', {
+              toast.success('Listed to Etherwave!', {
                 id: notification,
                 style: {
                   border: '1px solid #fff',

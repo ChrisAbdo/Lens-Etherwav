@@ -392,7 +392,12 @@ const RadioPage = () => {
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-[#2a2a2a] text-base-content">
             {/* <!-- Sidebar content here --> */}
-            <label className="text-white font-bold text-2xl">Queue</label>
+            <div
+              className="tooltip tooltip-bottom"
+              data-tip="Want to change the order of the queue? Do so by giving heat and making songs popular!"
+            >
+              <label className="text-xl font-semibold float-left">Queue</label>
+            </div>
             {nfts.map((nft, index) => (
               <li
                 key={index}
