@@ -1,11 +1,18 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import Marquee from 'react-fast-marquee';
 
 const Home = () => {
+  const router = useRouter();
   return (
     <div>
-      <Marquee gradient={false} speed={100} className="bg-[#2a2a2a] py-4">
+      <Marquee
+        pauseOnHover={true}
+        gradient={false}
+        speed={100}
+        className="bg-[#2a2a2a] py-4"
+      >
         <h1 className="text-2xl font-bold gradient-shadow">
           Tune in to the future with Etherwave - Algorithmically rewarding,
           always on the cutting edge.
@@ -37,6 +44,10 @@ const Home = () => {
             </h1>{' '}
             <p className="py-6 text-2xl text-[#bebebe]">
               The algorithmically rewarding Web3 radio 🔥
+              <br />
+              <br />
+              Give heat to your favorite songs and push them to the top of the
+              queue{' '}
             </p>
             <motion.a
               className="btn btn-outline rounded-xl"
@@ -48,28 +59,6 @@ const Home = () => {
               Get Started
             </motion.a>
             <div className="flex">
-              {/* <p className="flex pt-6 text-xl text-[#bebebe]">
-                <span className="flextext-[#bebebe]">
-                  Powered by{' '}
-                  <a
-                    href="https://polygon.technology/"
-                    rel="noreferrer noopener"
-                    target="_blank"
-                    className="text-purple-500 link link-hover"
-                  >
-                    Polygon
-                  </a>{' '}
-                  &&nbsp;
-                  <a
-                    href="https://ipfs.tech/"
-                    rel="noreferrer noopener"
-                    target="_blank"
-                    className="text-[#429395] link link-hover"
-                  >
-                    IPFS
-                  </a>
-                </span>
-              </p> */}
               <AnimatePresence>
                 <motion.div
                   initial={{ scale: 1 }}
@@ -79,7 +68,7 @@ const Home = () => {
                   className="alert bg-black shadow-lg mt-8 rounded-3xl card2 border border-[#2a2a2a]"
                 >
                   <div>
-                    <span className="flextext-[#bebebe]">
+                    <span>
                       Powered by{' '}
                       <a
                         href="https://polygon.technology/"
@@ -238,7 +227,7 @@ const Home = () => {
               </figure>
               <div className="card-body items-center text-center">
                 <h2 className="card-title">Support your favs</h2>
-                <p>Algorthmically rewarding radio by participating.</p>
+                <p>Give heat and push songs to the top!</p>
               </div>
             </motion.a>
           </AnimatePresence>
@@ -264,9 +253,17 @@ const Home = () => {
             />
             <div>
               <h1 className="text-5xl font-bold">
-                Start <span className="text-[#009677]">earning</span> today!
+                Start <span className="text-green-500">earning</span> today!
               </h1>
-              <p className="py-6 text-2xl">It's as easy as uploading a beat!</p>
+              <p className="py-6 text-2xl">
+                It's as easy as{' '}
+                <span
+                  className="text-orange-500 link link-hover"
+                  onClick={() => router.push('/upload')}
+                >
+                  uploading a beat!
+                </span>
+              </p>
               <a href="/radio" className="btn rounded-xl btn-outline">
                 Get Started
               </a>
