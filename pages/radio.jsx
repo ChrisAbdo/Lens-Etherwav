@@ -428,10 +428,13 @@ const RadioPage = () => {
                     {nft.seller.slice(-4)}
                   </h1>
 
-                  <img
+                  <Image
                     src={nft.coverImage}
+                    height={50}
+                    width={50}
                     alt="nft"
                     className="w-12 h-12 rounded-xl"
+                    priority
                   />
                 </div>
               </li>
