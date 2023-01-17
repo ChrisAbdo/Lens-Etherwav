@@ -9,6 +9,7 @@ import Image from 'next/image';
 import Web3 from 'web3';
 import Radio from '../smart-contracts/build/contracts/Radio.json';
 import NFT from '../smart-contracts/build/contracts/NFT.json';
+import Link from 'next/link';
 
 const transition = { duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] };
 
@@ -285,11 +286,16 @@ const RadioPage = () => {
                   <h2 className="card-title text-center justify-center text-2xl">
                     {nfts.length > 0 && nfts[currentIndex].name}
                   </h2>
-                  <p className="text-center link link-hover">
+                  <Link
+                    href="/[slug]"
+                    as={`/${nfts[currentIndex].seller}`}
+                    className="text-center link link-hover"
+                  >
                     {nfts.length > 0 && nfts[currentIndex].seller.slice(0, 6)}
                     ...
                     {nfts.length > 0 && nfts[currentIndex].seller.slice(38, 42)}
-                  </p>
+                  </Link>
+
                   <div className="flex justify-between space-x-4 mt-4">
                     <button
                       onClick={handlePrevious}
