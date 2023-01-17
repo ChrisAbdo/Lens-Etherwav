@@ -433,7 +433,7 @@ const RadioPage = () => {
                     height={50}
                     width={50}
                     alt="nft"
-                    className="w-12 h-12 rounded-xl"
+                    className="w-12 h-12 border border-white"
                     priority
                   />
                 </div>
