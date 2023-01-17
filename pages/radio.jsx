@@ -40,6 +40,14 @@ const RadioPage = () => {
     }
   }, [shouldPlay]);
 
+  const handleDragEnd = (e, index) => {
+    const newNfts = [...nfts];
+    const newIndex = (e.pageY / e.target.offsetHeight) | 0;
+    const targetNft = newNfts.splice(index, 1)[0];
+    newNfts.splice(newIndex, 0, targetNft);
+    setNfts(newNfts);
+  };
+
   async function loadSongs() {
     const web3 = new Web3(window.ethereum);
 
@@ -416,14 +424,18 @@ const RadioPage = () => {
             {nfts.map((nft, index) => (
               <li
                 key={index}
-                className="justify-between card3"
+                className={`justify-between card3 ${
+                  index === currentIndex ? 'bg-[#555555]' : ''
+                }`}
                 onClick={() => {
                   setCurrentIndex(index);
                 }}
               >
                 <div className="justify-between">
                   <h1>
-                    <span className="text-lg font-semibold">{nft.name}</span>{' '}
+                    <span className="text-lg font-semibold">
+                      {nft.name} | {nft.heatCount}
+                    </span>{' '}
                     <br /> {nft.seller.slice(0, 6)}...
                     {nft.seller.slice(-4)}
                   </h1>
