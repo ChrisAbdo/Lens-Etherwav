@@ -27,7 +27,11 @@ const Home = () => {
           <div>
             <h1 className="text-4xl font-bold gradient-shadow sm:text-5xl lg:text-7xl">
               Welcome to{' '}
-              <span className="mt-1 bg-gradient-to-r from-yellow-600 via-orange-600 to-red-600 bg-clip-text text-4xl font-extrabold tracking-tighter text-transparent sm:text-5xl lg:text-7xl">
+              <span
+                className="mt-1 bg-gradient-to-r from-yellow-600 to-red-600
+                      bg-clip-text text-transparent
+                      background-animate sm:text-5xl lg:text-7xl"
+              >
                 Etherwave
               </span>
             </h1>{' '}

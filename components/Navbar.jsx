@@ -36,7 +36,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content shadow bg-[#292929] rounded-box w-32"
+            className="menu menu-compact dropdown-content shadow bg-[#292929] rounded-box w-64"
           >
             <li>
               <a href="/">Home</a>
