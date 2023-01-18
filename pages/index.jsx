@@ -32,7 +32,7 @@ const Home = () => {
           />
 
           <div>
-            <h1 className="text-4xl font-bold gradient-shadow sm:text-5xl lg:text-7xl">
+            {/* <h1 className="text-4xl font-bold gradient-shadow sm:text-5xl lg:text-7xl">
               Welcome to{' '}
               <span
                 className="mt-1 bg-gradient-to-r from-yellow-600 to-red-600
@@ -41,13 +41,50 @@ const Home = () => {
               >
                 Etherwav
               </span>
-            </h1>{' '}
+            </h1>{' '} */}
+
+            <h1 class="flex flex-col gap-2 text-center text-6xl font-black md:flex-row lg:tracking-tight xl:text-9xl">
+              <span
+                class="before:absolute before:-z-10 before:text-white before:content-[attr(data-text)]"
+                data-text="Create."
+              >
+                <span class="animate-gradient-1 bg-gradient-to-r from-yellow-600 to-red-600 bg-clip-text text-transparent">
+                  Create.{' '}
+                </span>{' '}
+              </span>
+
+              <span
+                class="before:absolute before:-z-10 before:text-white before:content-[attr(data-text)]"
+                data-text="Listen."
+              >
+                <span class="animate-gradient-2 bg-gradient-to-l from-fuchsia-500 via-red-600 to-orange-400 bg-clip-text text-transparent">
+                  {' '}
+                  Listen.
+                </span>{' '}
+              </span>
+
+              <span
+                class="before:absolute before:-z-10 before:text-white before:content-[attr(data-text)]"
+                data-text="Earn."
+              >
+                <span class="animate-gradient-3 bg-gradient-to-r from-emerald-500 to-lime-600 bg-clip-text text-transparent">
+                  Earn.
+                </span>{' '}
+              </span>
+            </h1>
             <p className="py-6 text-2xl text-[#bebebe]">
-              The algorithmically rewarding Web3 radio 🔥
+              Welcome to{' '}
+              <span
+                className="bg-gradient-to-r from-yellow-600 to-red-600
+                      bg-clip-text text-transparent
+                      background-animate"
+              >
+                Etherwav
+              </span>
+              , the algorithmically rewarding Web3 radio 🔥
               <br />
               <br />
-              Give heat to your favorite songs and push them to the top of the
-              queue{' '}
+              Give heat to your favorite songs and push them to the top
             </p>
             <motion.a
               className="btn btn-outline rounded-xl"
@@ -258,7 +295,7 @@ const Home = () => {
               <p className="py-6 text-2xl">
                 It's as easy as{' '}
                 <span
-                  className="text-orange-500 link link-hover underline"
+                  className="text-white link link-hover underline"
                   onClick={() => router.push('/upload')}
                 >
                   uploading a beat!
