@@ -1,10 +1,8 @@
 import { useEffect, useState, useLayoutEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 import axios from 'axios';
 import ReactAudioPlayer from 'react-audio-player';
-import Lottie from 'react-lottie-player';
-import playSVG from '../public/play.json';
 import toast from 'react-hot-toast';
 import Image from 'next/image';
 

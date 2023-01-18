@@ -43,31 +43,31 @@ const Home = () => {
               </span>
             </h1>{' '} */}
 
-            <h1 class="flex flex-col gap-2 text-center text-6xl font-black md:flex-row lg:tracking-tight xl:text-9xl">
+            <h1 className="flex flex-col gap-2 text-center text-6xl font-black md:flex-row lg:tracking-tight xl:text-9xl">
               <span
-                class="before:absolute before:-z-10 before:text-white before:content-[attr(data-text)]"
+                className="before:absolute before:-z-10 before:text-white before:content-[attr(data-text)]"
                 data-text="Create."
               >
-                <span class="animate-gradient-1 bg-gradient-to-r from-yellow-600 to-red-600 bg-clip-text text-transparent">
+                <span className="animate-gradient-1 bg-gradient-to-r from-yellow-600 to-red-600 bg-clip-text text-transparent">
                   Create.{' '}
                 </span>{' '}
               </span>
 
               <span
-                class="before:absolute before:-z-10 before:text-white before:content-[attr(data-text)]"
+                className="before:absolute before:-z-10 before:text-white before:content-[attr(data-text)]"
                 data-text="Listen."
               >
-                <span class="animate-gradient-2 bg-gradient-to-l from-fuchsia-500 via-red-600 to-orange-400 bg-clip-text text-transparent">
+                <span className="animate-gradient-2 bg-gradient-to-l from-fuchsia-500 via-red-600 to-orange-400 bg-clip-text text-transparent">
                   {' '}
                   Listen.
                 </span>{' '}
               </span>
 
               <span
-                class="before:absolute before:-z-10 before:text-white before:content-[attr(data-text)]"
+                className="before:absolute before:-z-10 before:text-white before:content-[attr(data-text)]"
                 data-text="Earn."
               >
-                <span class="animate-gradient-3 bg-gradient-to-r from-emerald-500 to-lime-600 bg-clip-text text-transparent">
+                <span className="animate-gradient-3 bg-gradient-to-r from-emerald-500 to-lime-600 bg-clip-text text-transparent">
                   Earn.
                 </span>{' '}
               </span>
@@ -77,7 +77,7 @@ const Home = () => {
               <span
                 className="bg-gradient-to-r from-yellow-600 to-red-600
                       bg-clip-text text-transparent
-                      background-animate"
+                      background-animate text-xl"
               >
                 Etherwav
               </span>
