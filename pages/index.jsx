@@ -6,7 +6,7 @@ import Marquee from 'react-fast-marquee';
 const Home = () => {
   const router = useRouter();
   return (
-    <div>
+    <div className="bg-grid-[#0f0f0f]">
       <Marquee
         pauseOnHover={true}
         gradient={false}

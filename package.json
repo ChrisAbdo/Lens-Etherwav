@@ -19,6 +19,7 @@
     "fs": "^0.0.1-security",
     "ipfs-http-client": "56.0.3",
     "jimp": "^0.16.2",
+    "mini-svg-data-uri": "^1.4.4",
     "next": "latest",
     "react": "18.2.0",
     "react-audio-player": "^0.17.0",
