@@ -35,19 +35,21 @@ const upload = () => {
   const [coverImage, setCoverImage] = useState(null);
   const [currentInputIndex, setCurrentInputIndex] = useState(0);
   const [direction, setDirection] = useState('right');
+  const [isUploading, setIsUploading] = useState(false);
 
   const inputs = [
     <div className="form-control w-full max-w-xs">
       <label className="label">
         <span className="label-text">Pick a beat</span>
-        <span className="label-text-alt">CURRENTLY MP3 ONLY</span>
+        <span className="label-text-alt">MP3 / WAV ONLY</span>
       </label>
       <input
         type="file"
         className="file-input file-input-bordered w-full max-w-xs rounded-xl"
-        accept=".mp3"
+        accept=".mp3, .wav"
         onChange={onChange}
       />
+      {loading ? 'Uploading...' : ''}
     </div>,
     <div className="form-control w-full max-w-xs">
       <label className="label">
@@ -205,6 +207,9 @@ const upload = () => {
       const NFTContractAddress = NFT.networks[networkId].address;
       const NFTContract = new web3.eth.Contract(NFT.abi, NFTContractAddress);
       const accounts = await web3.eth.getAccounts();
+
+      setIsUploading(true);
+
       const radioContract = new web3.eth.Contract(
         Radio.abi,
         Radio.networks[networkId].address
@@ -223,13 +228,15 @@ const upload = () => {
             .on('receipt', function () {
               console.log('listed');
 
-              toast.success('Listed to Etherwave!', {
+              toast.success('Listed to Etherwav!', {
                 id: notification,
                 style: {
                   border: '1px solid #fff',
                   fontWeight: 'bold',
                 },
               });
+
+              setIsUploading(false);
 
               // wait 2 seconds, then reload the page
               setTimeout(() => {
@@ -328,6 +335,10 @@ const upload = () => {
                 className="btn btn-outline w-full rounded-xl"
               >
                 Upload
+              </button>
+            ) : isUploading ? (
+              <button className="btn btn-outline w-full rounded-xl loading">
+                loading
               </button>
             ) : (
               <button

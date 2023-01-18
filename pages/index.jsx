@@ -14,7 +14,7 @@ const Home = () => {
         className="bg-[#2a2a2a] py-4"
       >
         <h1 className="text-2xl font-bold gradient-shadow">
-          Tune in to the future with Etherwave - Algorithmically rewarding,
+          Tune in to the future with Etherwav - Algorithmically rewarding,
           always on the cutting edge.
         </h1>{' '}
       </Marquee>
@@ -39,7 +39,7 @@ const Home = () => {
                       bg-clip-text text-transparent
                       background-animate sm:text-5xl lg:text-7xl"
               >
-                Etherwave
+                Etherwav
               </span>
             </h1>{' '}
             <p className="py-6 text-2xl text-[#bebebe]">
@@ -64,7 +64,7 @@ const Home = () => {
                   initial={{ scale: 1 }}
                   animate={{ scale: 1.05 }}
                   transition={{ duration: 0.2 }}
-                  whileHover={{ scale: 1.2 }}
+                  whileHover={{ scale: 1.07 }}
                   className="alert bg-black shadow-lg mt-8 rounded-3xl card2 border border-[#2a2a2a]"
                 >
                   <div>
@@ -121,7 +121,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="hero p-6">
+      <div className="hero">
         <div className="flex flex-col items-center justify-between w-full flex-1 text-center md:flex-row px-8">
           <motion.a
             className="card  bg-base-100 rounded-3xl border border-[#2a2a2a] hover:bg-[#1a1a1a] card1"
@@ -258,7 +258,7 @@ const Home = () => {
               <p className="py-6 text-2xl">
                 It's as easy as{' '}
                 <span
-                  className="text-orange-500 link link-hover"
+                  className="text-orange-500 link link-hover underline"
                   onClick={() => router.push('/upload')}
                 >
                   uploading a beat!

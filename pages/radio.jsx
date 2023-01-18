@@ -372,7 +372,7 @@ const RadioPage = () => {
                   No songs found. This can mean the following:
                 </p>
                 <p className="text-2xl mt-4">
-                  1. There are no songs on Etherwave yet.
+                  1. There are no songs on Etherwav yet.
                 </p>
                 <p className="text-2xl mt-4">
                   2. You are not connected to the correct network (Polygon).
