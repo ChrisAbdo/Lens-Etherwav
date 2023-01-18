@@ -166,7 +166,7 @@ const RadioPage = () => {
 
   return (
     <div>
-      <div className="collapse collapse-arrow">
+      <div className="collapse collapse-arrow ">
         <input type="checkbox" onClick={() => setIsOpen(!isOpen)} />
         <div className="collapse-title text-xl font-medium text-center bg-[#555555] hover:bg-[#2a2a2a] ">
           Heat Leaderboard 🔥
@@ -202,7 +202,7 @@ const RadioPage = () => {
 
       <div className="drawer drawer-mobile">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col ">
+        <div className="drawer-content flex flex-col h-full ">
           {/* <!-- Page content here --> */}
           <label
             htmlFor="my-drawer-2"
@@ -228,7 +228,7 @@ const RadioPage = () => {
             {nfts.length > 0 ? (
               <div
                 key={currentIndex}
-                className="card border-b border-[#2a2a2a] rounded-xl w-full"
+                className="card border-b border-[#2a2a2a] rounded-xl w-full h-full "
               >
                 <figure>
                   <motion.div
@@ -382,7 +382,7 @@ const RadioPage = () => {
             )}
           </div>
         </div>
-        <div className="drawer-side">
+        <div className="drawer-side overflow-y-hidden">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-[#2a2a2a] text-base-content">
             {/* <!-- Sidebar content here --> */}

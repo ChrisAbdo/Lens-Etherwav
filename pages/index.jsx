@@ -95,7 +95,7 @@ const Home = () => {
             >
               Get Started
             </motion.a>
-            <div className="flex">
+            <div className="flex w-1/2">
               <AnimatePresence>
                 <motion.div
                   initial={{ scale: 1 }}
@@ -158,7 +158,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="hero">
+      <div className="hero mt-6">
         <div className="flex flex-col items-center justify-between w-full flex-1 text-center md:flex-row px-8">
           <motion.a
             className="card  bg-base-100 rounded-3xl border border-[#2a2a2a] hover:bg-[#1a1a1a] card1"
