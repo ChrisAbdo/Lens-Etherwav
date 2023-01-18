@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import axios from 'axios';
 import ReactAudioPlayer from 'react-audio-player';
+import Lottie from 'react-lottie-player';
+import playSVG from '../public/play.json';
 import toast from 'react-hot-toast';
 import Image from 'next/image';
 
@@ -39,14 +41,6 @@ const RadioPage = () => {
       setShouldPlay(false);
     }
   }, [shouldPlay]);
-
-  const handleDragEnd = (e, index) => {
-    const newNfts = [...nfts];
-    const newIndex = (e.pageY / e.target.offsetHeight) | 0;
-    const targetNft = newNfts.splice(index, 1)[0];
-    newNfts.splice(newIndex, 0, targetNft);
-    setNfts(newNfts);
-  };
 
   async function loadSongs() {
     const web3 = new Web3(window.ethereum);
@@ -178,7 +172,7 @@ const RadioPage = () => {
           Heat Leaderboard 🔥
         </div>
         <motion.div
-          className="collapse-content"
+          className="collapse-content border-b border-[#2a2a2a]"
           initial={false}
           animate={{ height: isOpen ? 'auto' : 0 }}
           transition={{ duration: 0.3 }}
@@ -192,7 +186,7 @@ const RadioPage = () => {
                   <div className="stat-figure text-primary text-7xl animate-pulse">
                     {index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉'}
                   </div>
-                  <div className="stat-title text-2xl">{nft.name}</div>
+                  <div className=" text-white text-2xl">{nft.name}</div>
                   <div className="stat-value ">{nft.heatCount} Heats🔥</div>
                   <div className="stat-desc">
                     <h1 className="text-xl font-medium text-center">

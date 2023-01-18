@@ -49,7 +49,14 @@ const upload = () => {
         accept=".mp3, .wav"
         onChange={onChange}
       />
-      {loading ? 'Uploading...' : ''}
+      {loading ? (
+        <>
+          Uploading file...
+          <progress className="progress w-full"></progress>
+        </>
+      ) : (
+        ''
+      )}
     </div>,
     <div className="form-control w-full max-w-xs">
       <label className="label">
