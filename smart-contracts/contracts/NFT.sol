@@ -11,7 +11,7 @@ contract NFT is ERC721URIStorage {
     address marketplaceContract;
     event NFTMinted(uint256);
 
-    constructor(address _marketplaceContract) ERC721("Desamplr", "DSMPL") {
+    constructor(address _marketplaceContract) ERC721("Etherwave", "ETHRWVE") {
         marketplaceContract = _marketplaceContract;
     }
 

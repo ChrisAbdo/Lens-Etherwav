@@ -54,7 +54,8 @@ contract Radio is ReentrancyGuard {
         require(nft.listed, "NFT is not listed");
 
         // Send the heatCount amount of ETH to the seller's address
-        nft.seller.transfer(_heatCount);
+        // address.transfer(nft.seller, _heatCount);
+        payable(address(nft.seller)).transfer(_heatCount);
 
         // Increment the heatCount of the NFT by the given amount
         nft.heatCount += _heatCount;
