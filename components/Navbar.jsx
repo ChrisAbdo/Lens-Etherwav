@@ -116,13 +116,14 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <span
+        <a
+          href="/"
           className="bg-gradient-to-r from-yellow-600 to-red-600
                       bg-clip-text text-transparent
                       background-animate text-xl"
         >
           Etherwav
-        </span>
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
