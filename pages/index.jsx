@@ -15,7 +15,7 @@ const Home = () => {
       >
         <h1 className="text-2xl font-bold gradient-shadow">
           Tune in to the future with Etherwav - Algorithmically rewarding,
-          always on the cutting edge.
+          community driven.&nbsp;
         </h1>{' '}
       </Marquee>
       <div className="hero p-6">
@@ -63,13 +63,7 @@ const Home = () => {
             </h1>
             <p className="py-6 text-2xl text-[#bebebe]">
               Welcome to{' '}
-              <span
-                className="bg-gradient-to-r from-yellow-600 to-red-600
-                      bg-clip-text text-transparent
-                      background-animate text-xl"
-              >
-                Etherwav
-              </span>
+              <span className="text-2xl font-semibold">Etherwav</span>
               , the algorithmically rewarding Web3 radio 🔥
               <br />
               <br />

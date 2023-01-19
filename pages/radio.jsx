@@ -303,7 +303,7 @@ const RadioPage = () => {
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col h-full ">
           {/* <!-- Page content here --> */}
-          <div className="flex justify-between">
+          <div className="flex justify-between mr-1">
             <label
               htmlFor="my-drawer-2"
               className="btn btn-outline text-[#2a2a2a] lg:hidden rounded-xl mt-2 mb-2"
@@ -325,8 +325,8 @@ const RadioPage = () => {
             </label>
             <select
               className="mt-2 ml-2 rounded-xl select select-bordered w-full max-w-xs float-right"
-              onChange={(e) => {
-                loadSongsByGenre(e.target.value);
+              onChange={async (e) => {
+                await loadSongsByGenre(e.target.value);
                 toast.success(`Loaded ${e.target.value} songs!`);
               }}
             >
@@ -370,12 +370,11 @@ const RadioPage = () => {
                 <div className="card-body">
                   <div className="flex justify-between">
                     <motion.span
-                      htmlFor="my-modal-69"
                       className="badge card3 rounded cursor-pointer p-4 min-w-[90px]"
                       whileHover={{ scale: 1.2 }}
                       transition={{ duration: 0.3 }}
-                      onClick={() => {
-                        loadSongsByGenre(nfts[currentIndex].genre);
+                      onClick={async () => {
+                        await loadSongsByGenre(nfts[currentIndex].genre);
                         toast.success(`Sorted by ${nfts[currentIndex].genre}`);
                       }}
                     >
@@ -506,6 +505,7 @@ const RadioPage = () => {
             )}
           </div>
         </div>
+
         <div className="drawer-side overflow-y-hidden">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80 bg-[#2a2a2a] text-base-content">
