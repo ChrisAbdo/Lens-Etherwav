@@ -32,17 +32,6 @@ const Home = () => {
           />
 
           <div>
-            {/* <h1 className="text-4xl font-bold gradient-shadow sm:text-5xl lg:text-7xl">
-              Welcome to{' '}
-              <span
-                className="mt-1 bg-gradient-to-r from-yellow-600 to-red-600
-                      bg-clip-text text-transparent
-                      background-animate sm:text-5xl lg:text-7xl"
-              >
-                Etherwav
-              </span>
-            </h1>{' '} */}
-
             <h1 className="flex flex-col gap-2 text-center text-6xl font-black md:flex-row lg:tracking-tight xl:text-9xl">
               <span
                 className="before:absolute before:-z-10 before:text-white before:content-[attr(data-text)]"
@@ -224,7 +213,7 @@ const Home = () => {
             </figure>
             <div className="card-body items-center text-center">
               <h2 className="card-title">Listen to beats!</h2>
-              <p>Who doesn't love some nice smooth beats?</p>
+              <p>Who doesn&apos;t love some nice smooth beats?</p>
             </div>
           </motion.a>
           <br />
@@ -293,15 +282,15 @@ const Home = () => {
                 Start <span className="text-green-500">earning</span> today!
               </h1>
               <p className="py-6 text-2xl">
-                It's as easy as{' '}
-                <span
+                It&apos;s as easy as{' '}
+                <a
                   className="text-white link link-hover underline"
-                  onClick={() => router.push('/upload')}
+                  href="/upload"
                 >
                   uploading a beat!
-                </span>
+                </a>
               </p>
-              <a href="/radio" className="btn rounded-xl btn-outline">
+              <a href="/upload" className="btn rounded-xl btn-outline">
                 Get Started
               </a>
             </div>

@@ -306,7 +306,7 @@ const RadioPage = () => {
           <div className="flex justify-between">
             <label
               htmlFor="my-drawer-2"
-              className="btn btn-outline lg:hidden rounded-xl mt-2 mb-2"
+              className="btn btn-outline text-[#2a2a2a] lg:hidden rounded-xl mt-2 mb-2"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -325,7 +325,10 @@ const RadioPage = () => {
             </label>
             <select
               className="mt-2 ml-2 rounded-xl select select-bordered w-full max-w-xs float-right"
-              onChange={(e) => loadSongsByGenre(e.target.value)}
+              onChange={(e) => {
+                loadSongsByGenre(e.target.value);
+                toast.success(`Loaded ${e.target.value} songs!`);
+              }}
             >
               <option disabled selected>
                 Sort by genre
@@ -355,7 +358,7 @@ const RadioPage = () => {
                       width={400}
                       height={400}
                       alt="cover"
-                      className="border-b border-[#2a2a2a] rounded-none min-w-[380px] min-h-[380px] max-w-[380px] max-h-[380px]"
+                      className="mt-2 border-b border-[#2a2a2a] rounded-none min-w-[380px] min-h-[380px] max-w-[380px] max-h-[380px]"
                       priority
                     />
                   </motion.div>
@@ -371,7 +374,10 @@ const RadioPage = () => {
                       className="badge card3 rounded cursor-pointer p-4 min-w-[90px]"
                       whileHover={{ scale: 1.2 }}
                       transition={{ duration: 0.3 }}
-                      onClick={() => loadSongsByGenre(nfts[currentIndex].genre)}
+                      onClick={() => {
+                        loadSongsByGenre(nfts[currentIndex].genre);
+                        toast.success(`Sorted by ${nfts[currentIndex].genre}`);
+                      }}
                     >
                       {nfts[currentIndex].genre}
                     </motion.span>
@@ -385,8 +391,9 @@ const RadioPage = () => {
                       More Info
                     </motion.label>
                   </div>
-                  <h2 className="card-title text-center justify-center text-2xl">
-                    {nfts.length > 0 && nfts[currentIndex].name}
+                  <h2 className="card-title text-center justify-center text-2xl truncate">
+                    {nfts.length > 0 &&
+                      nfts[currentIndex].name.substring(0, 24)}
                   </h2>
                   <Link
                     href="/[slug]"
@@ -509,34 +516,39 @@ const RadioPage = () => {
             >
               <label className="text-xl font-semibold float-left">Queue</label>
             </div>
-            {nfts.map((nft, index) => (
-              <li
-                key={index}
-                className={`justify-between border-b border-[#1f1f1f] card3 ${
-                  index === currentIndex ? 'bg-[#555555]' : ''
-                }`}
-                onClick={() => {
-                  setCurrentIndex(index);
-                }}
-              >
-                <div className="justify-between">
-                  <h1>
-                    <span className="text-lg font-semibold">{nft.name}</span>{' '}
-                    <br /> {nft.seller.slice(0, 6)}...
-                    {nft.seller.slice(-4)}
-                  </h1>
 
-                  <Image
-                    src={nft.coverImage}
-                    height={50}
-                    width={50}
-                    alt="nft"
-                    className="w-12 h-12 border border-white rounded"
-                    priority
-                  />
-                </div>
-              </li>
-            ))}
+            {nfts.length ? (
+              nfts.map((nft, index) => (
+                <li
+                  key={index}
+                  className={`justify-between border-b border-[#1f1f1f] card3 ${
+                    index === currentIndex ? 'bg-[#555555]' : ''
+                  }`}
+                  onClick={() => {
+                    setCurrentIndex(index);
+                  }}
+                >
+                  <div className="justify-between">
+                    <h1>
+                      <span className="text-lg font-semibold">{nft.name}</span>{' '}
+                      <br /> {nft.seller.slice(0, 6)}...
+                      {nft.seller.slice(-4)}
+                    </h1>
+
+                    <Image
+                      src={nft.coverImage}
+                      height={50}
+                      width={50}
+                      alt="nft"
+                      className="w-12 h-12 border border-white rounded"
+                      priority
+                    />
+                  </div>
+                </li>
+              ))
+            ) : (
+              <h1>It looks like there are no songs!</h1>
+            )}
           </ul>
         </div>
       </div>

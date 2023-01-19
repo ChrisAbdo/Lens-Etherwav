@@ -272,9 +272,9 @@ const upload = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-full px-12 py-4">
+    <div className="bg-grid-[#0f0f0f] flex flex-col items-center justify-center w-full h-screen px-12 py-4">
       {/* CARD */}
-      <div className="card w-96 shadow-xl border border-[#2a2a2a] rounded-3xl uploadcard ">
+      <div className="card w-96 bg-black shadow-xl border border-[#2a2a2a] rounded-3xl uploadcard ">
         <figure className="px-10 pt-5">
           <h1 className="text-3xl font-bold text-center">Upload a Beat</h1>
         </figure>
@@ -375,7 +375,7 @@ const upload = () => {
       </div>
       <div className="divider">OR</div>
 
-      <div className="card w-96 shadow-xl border border-[#2a2a2a] rounded-3xl uploadcard">
+      <div className="card w-96 shadow-xl bg-black border border-[#2a2a2a] rounded-3xl uploadcard">
         <figure className="px-10 pt-5">
           <h1 className="text-3xl font-bold text-center">
             Not sure what to upload?
