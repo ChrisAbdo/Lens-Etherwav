@@ -358,7 +358,7 @@ const RadioPage = () => {
                       width={400}
                       height={400}
                       alt="cover"
-                      className="mt-2 border-b border-[#2a2a2a] rounded-none min-w-[380px] min-h-[380px] max-w-[380px] max-h-[380px]"
+                      className="mt-2 border-b border-[#2a2a2a] rounded-none min-w-[390px] min-h-[390px] max-w-[390px] max-h-[390px]"
                       priority
                     />
                   </motion.div>
