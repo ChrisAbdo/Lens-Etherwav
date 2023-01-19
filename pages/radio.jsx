@@ -90,6 +90,107 @@ const RadioPage = () => {
     setNfts(sortedNfts);
   }
 
+  async function loadSongsByGenre(genre) {
+    if (genre === '' || genre === 'All') {
+      const web3 = new Web3(window.ethereum);
+      const networkId = await web3.eth.net.getId();
+      const radioContract = new web3.eth.Contract(
+        Radio.abi,
+        Radio.networks[networkId].address
+      );
+      const listings = await radioContract.methods.getListedNfts().call();
+      // Iterate over the listed NFTs and retrieve their metadata
+      const nfts = await Promise.all(
+        listings.map(async (i) => {
+          try {
+            const NFTContract = new web3.eth.Contract(
+              NFT.abi,
+              NFT.networks[networkId].address
+            );
+            const tokenURI = await NFTContract.methods
+              .tokenURI(i.tokenId)
+              .call();
+            const meta = await axios.get(tokenURI);
+            const nft = {
+              tokenId: i.tokenId,
+              seller: i.seller,
+              owner: i.buyer,
+              image: meta.data.image,
+              name: meta.data.name,
+              coverImage: meta.data.coverImage,
+              heatCount: i.heatCount,
+              genre: meta.data.genre,
+            };
+            return nft;
+          } catch (err) {
+            console.log(err);
+            return null;
+          }
+        })
+      );
+      const sortedNfts = nfts
+        .filter((nft) => nft !== null)
+        .sort((a, b) => b.heatCount - a.heatCount);
+      const topThreeNfts = sortedNfts.slice(0, 3);
+      setTopThreeNfts(topThreeNfts);
+      setNfts(sortedNfts);
+    } else {
+      const web3 = new Web3(window.ethereum);
+
+      const networkId = await web3.eth.net.getId();
+
+      // Get all listed NFTs
+      const radioContract = new web3.eth.Contract(
+        Radio.abi,
+        Radio.networks[networkId].address
+      );
+      const listings = await radioContract.methods.getListedNfts().call();
+      // Iterate over the listed NFTs and retrieve their metadata
+      const nfts = await Promise.all(
+        listings.map(async (i) => {
+          try {
+            const NFTContract = new web3.eth.Contract(
+              NFT.abi,
+              NFT.networks[networkId].address
+            );
+            const tokenURI = await NFTContract.methods
+              .tokenURI(i.tokenId)
+              .call();
+            const meta = await axios.get(tokenURI);
+            if (meta.data.genre === genre) {
+              const nft = {
+                tokenId: i.tokenId,
+                seller: i.seller,
+                owner: i.buyer,
+                image: meta.data.image,
+                name: meta.data.name,
+                coverImage: meta.data.coverImage,
+                heatCount: i.heatCount,
+                genre: meta.data.genre,
+              };
+              return nft;
+            } else {
+              return null;
+            }
+          } catch (err) {
+            console.log(err);
+            return null;
+          }
+        })
+      );
+      // setNfts(nfts.filter((nft) => nft !== null));
+
+      // set nfts in order of heatCount
+      const sortedNfts = nfts
+        .filter((nft) => nft !== null)
+        .sort((a, b) => b.heatCount - a.heatCount);
+      const topThreeNfts = sortedNfts.slice(0, 3);
+
+      setTopThreeNfts(topThreeNfts);
+      setNfts(sortedNfts);
+    }
+  }
+
   async function handleGiveHeat() {
     const notification = toast.loading(
       'Confirm the transaction to give heat! 🔥🔥🔥',
@@ -202,26 +303,39 @@ const RadioPage = () => {
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col h-full ">
           {/* <!-- Page content here --> */}
-          <label
-            htmlFor="my-drawer-2"
-            className="btn btn-outline lg:hidden rounded-xl w-1/3 mt-2 mb-2"
-          >
-            queue{' '}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
+          <div className="flex justify-between">
+            <label
+              htmlFor="my-drawer-2"
+              className="btn btn-outline lg:hidden rounded-xl mt-2 mb-2"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"
-              />
-            </svg>
-          </label>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"
+                />
+              </svg>
+            </label>
+            <select
+              className="mt-2 ml-2 rounded-xl select select-bordered w-full max-w-xs float-right"
+              onChange={(e) => loadSongsByGenre(e.target.value)}
+            >
+              <option disabled selected>
+                Sort by genre
+              </option>
+              <option value="">All</option>
+              <option value="lofi">Lofi</option>
+              <option value="hiphop">Hip Hop</option>
+              <option value="vocals">Vocals</option>
+            </select>
+          </div>
           <div className="hero">
             {nfts.length > 0 ? (
               <div
@@ -257,9 +371,11 @@ const RadioPage = () => {
                       className="badge card3 rounded cursor-pointer p-4 min-w-[90px]"
                       whileHover={{ scale: 1.2 }}
                       transition={{ duration: 0.3 }}
+                      onClick={() => loadSongsByGenre(nfts[currentIndex].genre)}
                     >
                       {nfts[currentIndex].genre}
                     </motion.span>
+
                     <motion.label
                       htmlFor="my-modal-69"
                       className="badge card3 rounded cursor-pointer p-4"
@@ -371,6 +487,9 @@ const RadioPage = () => {
                 </p>
                 <p className="text-2xl mt-4">
                   3. Your wallet is not connected.
+                </p>
+                <p className="text-2xl mt-4">
+                  4. There are no songs uploaded for this genre
                 </p>
                 <p className="text-2xl mt-4 bg-[#2a2a2a]">
                   Please try again in a couple seconds. If the issue persists,
