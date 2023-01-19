@@ -134,7 +134,7 @@ const Home = () => {
                       transition={{ duration: 0.2 }}
                       whileHover={{ scale: 1.2 }}
                       className="cursor-pointer"
-                      src="/polygon.svg"
+                      src="/polygon.webp"
                       onClick={() => window.open('https://polygon.technology/')}
                       width={50}
                       height={50}

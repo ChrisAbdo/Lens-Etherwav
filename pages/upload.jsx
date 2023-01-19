@@ -329,7 +329,7 @@ const upload = () => {
                 setCurrentInputIndex(currentInputIndex + 1);
                 handleClick(true);
               }}
-              disabled={currentInputIndex === inputs.length - 1}
+              disabled={loading || currentInputIndex === inputs.length - 1}
             >
               Next
             </button>
