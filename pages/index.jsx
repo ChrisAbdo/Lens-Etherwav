@@ -62,9 +62,12 @@ const Home = () => {
               </span>
             </h1>
             <p className="py-6 text-2xl text-[#bebebe]">
-              Welcome to{' '}
-              <span className="text-2xl font-semibold">Etherwav</span>
-              , the algorithmically rewarding Web3 radio 🔥
+              Welcome to <span className="text-2xl font-bold">Etherwav</span>-
+              the{' '}
+              <span className="font-semibold">
+                algorithmically rewarding, community driven
+              </span>{' '}
+              Web3 radio 🔥
               <br />
               <br />
               Give heat to your favorite songs and push them to the top

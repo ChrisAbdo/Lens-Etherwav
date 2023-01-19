@@ -41,12 +41,12 @@ const upload = () => {
     <div className="form-control w-full max-w-xs">
       <label className="label">
         <span className="label-text">Pick a beat</span>
-        <span className="label-text-alt">MP3 / WAV ONLY</span>
+        <span className="label-text-alt">MP3 ONLY</span>
       </label>
       <input
         type="file"
         className="file-input file-input-bordered w-full max-w-xs rounded-xl"
-        accept=".mp3, .wav"
+        accept=".mp3"
         onChange={onChange}
       />
       {loading ? (
