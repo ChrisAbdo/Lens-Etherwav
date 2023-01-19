@@ -354,7 +354,7 @@ const RadioPage = () => {
                     transition={transition}
                   >
                     <Image
-                      src={nfts[currentIndex].coverImage}
+                      src={nfts.length > 0 && nfts[currentIndex].coverImage}
                       width={400}
                       height={400}
                       alt="cover"

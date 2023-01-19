@@ -147,16 +147,21 @@ const RadioPage = () => {
                 />
               </figure>
               <div className="card-body">
-                <div className="space-y-6">
-                  <h2 className="card-title text-2xl">
-                    {nft.name} | Heat: {nft.heatCount}🔥
-                  </h2>
+                <div className="space-y-6 space-x-4">
+                  <h2 className="card-title text-2xl">{nft.name}</h2>
                   <motion.span
                     className="badge card1 rounded p-4"
                     whileHover={{ scale: 1.2 }}
                     transition={{ duration: 0.3 }}
                   >
                     {nft.genre}
+                  </motion.span>
+                  <motion.span
+                    className="badge card1 rounded p-4  min-w-[90px]"
+                    whileHover={{ scale: 1.2 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    Heat: {nft.heatCount}🔥
                   </motion.span>
                   <ReactAudioPlayer
                     src={nft.image}
@@ -197,26 +202,24 @@ const RadioPage = () => {
           />
           <div className="modal modal-bottom sm:modal-middle">
             <div className="modal-box">
-              <h3 className="font-bold text-lg">
-                Are you sure you want to delete: {nft.name} ?
+              <h3 className="font-bold text-lg flex">
+                Are you sure you want to delete: {nft.name} ?{' '}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="red"
+                  className="w-24 h-24 animate-pulse flex"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+                  />
+                </svg>
               </h3>
               <p className="py-4 flex justify-between">
-                {Array.from({ length: 5 }, (_, i) => (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="red"
-                    className="w-6 h-6 animate-pulse "
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
-                    />
-                  </svg>
-                ))}
                 <br />
                 This is not reversible. If you delete this song, it will be gone
                 forever and you will not be able to earn any more heat from it.
