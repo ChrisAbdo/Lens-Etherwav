@@ -577,8 +577,15 @@ const RadioPage = () => {
                 Queue | {ascending ? 'Ascending' : 'Descending'}
               </label>
               {/* SWAP */}
-              <label className="swap swap-rotate mb-3 rounded-xl border border-[#555555] p-2">
-                <input type="checkbox" onClick={handleSwap} />
+              <label className="swap swap-rotate mb-3 rounded-xl card3 border border-[#555555] p-2">
+                <input
+                  type="checkbox"
+                  onClick={() => {
+                    handleSwap();
+                    // set index to 1
+                    setCurrentIndex(0);
+                  }}
+                />
 
                 {/* <!-- sun icon --> */}
                 <svg
@@ -627,7 +634,9 @@ const RadioPage = () => {
                 >
                   <div className="justify-between">
                     <h1>
-                      <span className="text-lg font-semibold">{nft.name}</span>{' '}
+                      <span className="text-lg font-semibold">
+                        {nft.name} | {nft.heatCount}
+                      </span>{' '}
                       <br /> {nft.seller.slice(0, 6)}...
                       {nft.seller.slice(-4)}
                     </h1>
