@@ -136,7 +136,7 @@ const RadioPage = () => {
       .sort((a, b) => a.heatCount - b.heatCount);
     const topThreeNfts = sortedNfts.slice(0, 3);
 
-    setTopThreeNfts(topThreeNfts);
+    // setTopThreeNfts(topThreeNfts);
     setNfts(sortedNfts);
   }
 
@@ -424,7 +424,7 @@ const RadioPage = () => {
                     />
                   </motion.div>
                 </figure>
-                <div className="text-orange-500 bg-[#2a2a2a] border-none text-center cursor-default h-6">
+                <div className="text-orange-500 text-xl p-2 font-bold bg-[#2a2a2a] border-none text-center cursor-default">
                   <span>🔥</span> Heat Count: {nfts[currentIndex].heatCount}{' '}
                   <span>🔥</span>
                 </div>
@@ -572,12 +572,12 @@ const RadioPage = () => {
           <ul className="menu p-4 w-80 bg-[#2a2a2a] text-base-content">
             {/* <!-- Sidebar content here --> */}
 
-            <div className="flex justify-between">
+            <div className="flex justify-between border-b border-[#555555]">
               <label className="text-xl font-semibold float-left">
                 Queue | {ascending ? 'Ascending' : 'Descending'}
               </label>
               {/* SWAP */}
-              <label className="swap swap-rotate mb-3 border border-[#555555] p-2">
+              <label className="swap swap-rotate mb-3 rounded-xl border border-[#555555] p-2">
                 <input type="checkbox" onClick={handleSwap} />
 
                 {/* <!-- sun icon --> */}

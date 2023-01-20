@@ -147,9 +147,9 @@ const Home = () => {
       <div className="hero mt-6">
         <div className="bg-black h-64 flex items-center justify-center px-16">
           <div className="relative w-60 max-w-lg z-40">
-            <div className="absolute top-0  w-36 h-36 bg-orange-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-            <div className="absolute top-0 w-36 h-36 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-            <div className="absolute -bottom-8 w-36 h-36 bg-red-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+            <div className="absolute top-0  w-36 h-60 bg-orange-500 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-blob"></div>
+            <div className="absolute top-0 w-36 h-60 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-blob animation-delay-2000"></div>
+            <div className="absolute -bottom-8 w-36 h-60 bg-red-500 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-blob animation-delay-4000"></div>
           </div>
         </div>
         <div className="flex flex-col items-center justify-between w-full flex-1 text-center md:flex-row px-8">
