@@ -573,9 +573,11 @@ const RadioPage = () => {
             {/* <!-- Sidebar content here --> */}
 
             <div className="flex justify-between">
-              <label className="text-xl font-semibold float-left">Queue</label>
+              <label className="text-xl font-semibold float-left">
+                Queue | {ascending ? 'Ascending' : 'Descending'}
+              </label>
               {/* SWAP */}
-              <label className="swap swap-rotate mb-3">
+              <label className="swap swap-rotate mb-3 border border-[#555555] p-2">
                 <input type="checkbox" onClick={handleSwap} />
 
                 {/* <!-- sun icon --> */}
