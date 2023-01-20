@@ -154,7 +154,7 @@ const Home = () => {
         </div>
         <div className="flex flex-col items-center justify-between w-full flex-1 text-center md:flex-row px-8">
           <motion.a
-            className="z-50 card  bg-base-100 rounded-3xl border border-[#2a2a2a] hover:bg-[#1a1a1a] card1"
+            className="z-40 card  bg-base-100 rounded-3xl border border-[#2a2a2a] hover:bg-[#1a1a1a] card1"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -223,7 +223,7 @@ const Home = () => {
           <br />
           <AnimatePresence>
             <motion.a
-              className="z-50 card  bg-base-100 rounded-3xl border border-[#2a2a2a] hover:bg-[#1a1a1a] card1"
+              className="z-40 card  bg-base-100 rounded-3xl border border-[#2a2a2a] hover:bg-[#1a1a1a] card1"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
