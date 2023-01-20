@@ -145,9 +145,16 @@ const Home = () => {
       </div>
 
       <div className="hero mt-6">
+        <div className="bg-black h-64 flex items-center justify-center px-16">
+          <div className="relative w-60 max-w-lg z-50">
+            <div className="absolute top-0  w-36 h-36 bg-orange-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+            <div className="absolute top-0 w-36 h-36 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+            <div className="absolute -bottom-8 w-36 h-36 bg-red-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+          </div>
+        </div>
         <div className="flex flex-col items-center justify-between w-full flex-1 text-center md:flex-row px-8">
           <motion.a
-            className="card  bg-base-100 rounded-3xl border border-[#2a2a2a] hover:bg-[#1a1a1a] card1"
+            className="z-50 card  bg-base-100 rounded-3xl border border-[#2a2a2a] hover:bg-[#1a1a1a] card1"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -181,7 +188,7 @@ const Home = () => {
           </motion.a>
           <br />
           <motion.a
-            className="card bg-base-100 rounded-3xl border border-[#2a2a2a] hover:bg-[#1a1a1a] card1"
+            className="z-50 card bg-base-100 rounded-3xl border border-[#2a2a2a] hover:bg-[#1a1a1a] card1"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -216,7 +223,7 @@ const Home = () => {
           <br />
           <AnimatePresence>
             <motion.a
-              className="card  bg-base-100 rounded-3xl border border-[#2a2a2a] hover:bg-[#1a1a1a] card1"
+              className="z-50 card  bg-base-100 rounded-3xl border border-[#2a2a2a] hover:bg-[#1a1a1a] card1"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}

@@ -18,6 +18,7 @@ module.exports = {
         'gradient-2': 'animate-gradient-2 8s infinite',
         'gradient-3': 'animate-gradient-3 8s infinite',
         'gradient-4': 'animate-gradient-4 8s infinite',
+        blob: 'blob 7s infinite',
       },
       keyframes: {
         'animate-gradient-1': {
@@ -31,6 +32,20 @@ module.exports = {
         'animate-gradient-3': {
           '0%, 50%,  100%': { opacity: '0' },
           '66.667%, 83.333%': { opacity: '1' },
+        },
+        blob: {
+          '0%': {
+            transform: 'translate(0px, 0px) scale(1)',
+          },
+          '33%': {
+            transform: 'translate(30px, -50px) scale(1.1)',
+          },
+          '66%': {
+            transform: 'translate(-20px, 20px) scale(0.9)',
+          },
+          '100%': {
+            transform: 'tranlate(0px, 0px) scale(1)',
+          },
         },
       },
     },
