@@ -79,7 +79,7 @@ const Home = () => {
               transition={{ delay: 0.4 }}
               href="/radio"
             >
-              Get Started
+              Start Listening Now!
             </motion.a>
             <div className="flex w-1/2">
               <AnimatePresence>
@@ -295,7 +295,7 @@ const Home = () => {
                 </a>
               </p>
               <a href="/upload" className="btn rounded-xl btn-outline">
-                Get Started
+                Upload a beat now!
               </a>
             </div>
           </div>
