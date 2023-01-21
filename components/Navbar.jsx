@@ -36,7 +36,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu w-32 dropdown-content shadow bg-[#292929] rounded-box "
+            className="menu w-32 dropdown-content shadow bg-[#292929] rounded-box z-50"
           >
             <li className="flex justify-between">
               <a href="/" className="justify-between">

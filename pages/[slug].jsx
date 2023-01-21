@@ -232,7 +232,7 @@ export default function ProjectShowcase() {
 
   return (
     <div>
-      <div className="navbar bg-black sticky top-16 z-50 border-b border-[#2a2a2a]">
+      <div className="navbar bg-black sticky top-16 z-40 border-b border-[#2a2a2a]">
         <div className="flex-1">
           <a className="btn btn-ghost normal-case text-xl">Filter</a>
         </div>
