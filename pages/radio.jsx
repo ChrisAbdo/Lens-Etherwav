@@ -328,12 +328,12 @@ const RadioPage = () => {
     <div>
       <div className="drawer drawer-mobile">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col h-full ">
+        <div className="drawer-content flex flex-col">
           {/* <!-- Page content here --> */}
-          <div className="flex justify-between">
+          <div className="flex justify-between ">
             <label
               htmlFor="my-drawer-2"
-              className="btn btn-outline text-white lg:hidden h-full"
+              className="btn btn-ghost  text-white lg:hidden h-full"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -350,7 +350,7 @@ const RadioPage = () => {
                 />
               </svg>
             </label>
-            <div className="collapse collapse-arrow">
+            <div className="collapse collapse-arrow ">
               <input type="checkbox" onClick={() => setIsOpen(!isOpen)} />
               <div className="collapse-title text-xl font-medium text-center bg-[#555555] hover:bg-[#2a2a2a] ">
                 Heat Leaderboard 🔥
@@ -386,11 +386,11 @@ const RadioPage = () => {
               </motion.div>
             </div>
           </div>
-          <div className="hero">
+          <div className="hero ">
             {nfts.length > 0 ? (
               <div
                 key={currentIndex}
-                className="card border-b border-[#2a2a2a] rounded-xl w-full h-full "
+                className="card border-b border-[#2a2a2a] w-full "
               >
                 <figure>
                   <motion.div
@@ -405,7 +405,7 @@ const RadioPage = () => {
                       width={400}
                       height={400}
                       alt="cover"
-                      className="mt-2 border-b border-[#2a2a2a] rounded-none min-w-[390px] min-h-[390px] max-w-[390px] max-h-[390px]"
+                      className="border-b border-[#2a2a2a] rounded-none min-w-[390px] min-h-[390px] max-w-[390px] max-h-[390px]"
                       priority
                     />
                   </motion.div>
@@ -553,12 +553,12 @@ const RadioPage = () => {
           </div>
         </div>
 
-        <div className="drawer-side overflow-y-hidden">
+        <div className="drawer-side h-[95%] overflow-y-hidden">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 bg-black text-base-content border-r border-[#2a2a2a]">
+          <ul className="menu p-4 w-80 bg-black text-base-content border-r border-[#2a2a2a] ">
             {/* <!-- Sidebar content here --> */}
 
-            <div className="flex justify-between border-b border-[#555555]">
+            <div className="flex justify-between border-b border-[#555555] sticky top-0 bg-black z-50">
               {' '}
               <select
                 className=" mb-3 rounded-xl select select-bordered"

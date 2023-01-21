@@ -46,7 +46,7 @@ const upload = () => {
       <input
         type="file"
         className="file-input file-input-bordered w-full max-w-xs rounded-xl"
-        accept=".mp3"
+        accept=".mp3, .wav"
         onChange={onChange}
       />
       {loading ? (
@@ -272,123 +272,125 @@ const upload = () => {
   };
 
   return (
-    <div className="bg-grid-[#0f0f0f] flex flex-col items-center justify-center w-full h-screen px-12 py-4">
-      {/* CARD */}
-      <div className="card w-96 bg-black shadow-xl border border-[#2a2a2a] rounded-3xl uploadcard ">
-        <figure className="px-10 pt-5">
-          <h1 className="text-3xl font-bold text-center">Upload a Beat</h1>
-        </figure>
-        <p className="mt-2 text-sm text-center text-gray-400">
-          PLEASE NOTE: THE BUTTON WILL BE DISABLED UNTIL ALL ASSETS ARE UPLOADED
-          TO IPFS, THIS CAN TAKE A COUPLE SECONDS
-        </p>
-        <div className="card-body ">
-          <AnimatePresence>
-            <div
-              className="input-container"
-              style={{
-                display: 'inline-flex',
-                width: '100%',
-                overflowX: 'hidden',
-              }}
-            >
-              {inputs[currentInputIndex] && (
-                <motion.div
-                  key={currentInputIndex}
-                  initial={{ x: direction === 'right' ? '-100%' : '100%' }}
-                  animate={{ x: 0 }}
-                  exit={{ x: direction === 'right' ? '-100%' : '100%' }}
-                  transition={{ type: 'tween', duration: 0.5 }}
+    <div>
+      <div className="bg-grid-[#0f0f0f] flex flex-col items-center justify-center w-full px-12 py-4">
+        {/* CARD */}
+        <div className="card w-96 bg-black shadow-xl border border-[#2a2a2a] rounded-3xl uploadcard ">
+          <figure className="px-10 pt-5">
+            <h1 className="text-3xl font-bold text-center">Upload a Beat</h1>
+          </figure>
+          <p className="mt-2 text-sm text-center text-gray-400">
+            PLEASE NOTE: THE BUTTON WILL BE DISABLED UNTIL ALL ASSETS ARE
+            UPLOADED TO IPFS, THIS CAN TAKE A COUPLE SECONDS
+          </p>
+          <div className="card-body ">
+            <AnimatePresence>
+              <div
+                className="input-container"
+                style={{
+                  display: 'inline-flex',
+                  width: '100%',
+                  overflowX: 'hidden',
+                }}
+              >
+                {inputs[currentInputIndex] && (
+                  <motion.div
+                    key={currentInputIndex}
+                    initial={{ x: direction === 'right' ? '-100%' : '100%' }}
+                    animate={{ x: 0 }}
+                    exit={{ x: direction === 'right' ? '-100%' : '100%' }}
+                    transition={{ type: 'tween', duration: 0.5 }}
+                  >
+                    {inputs[currentInputIndex]}
+                  </motion.div>
+                )}
+              </div>
+            </AnimatePresence>
+
+            <div className="flex justify-between mt-4">
+              <button
+                className="btn rounded-xl"
+                onClick={() => {
+                  setCurrentInputIndex(currentInputIndex - 1);
+                  handleClick(false);
+                }}
+                disabled={currentInputIndex === 0}
+              >
+                Previous
+              </button>
+
+              <div className="btn-group rounded-xl">
+                <button className="btn rounded-xl" disabled>
+                  {currentInputIndex + 1} of {inputs.length}
+                </button>
+              </div>
+              <button
+                className="btn rounded-xl"
+                onClick={() => {
+                  setCurrentInputIndex(currentInputIndex + 1);
+                  handleClick(true);
+                }}
+                disabled={loading || currentInputIndex === inputs.length - 1}
+              >
+                Next
+              </button>
+            </div>
+            <div className="card-actions w-full mt-4">
+              {disabled ? (
+                <button
+                  disabled={disabled}
+                  onClick={listNFTForSale}
+                  className="btn btn-outline w-full rounded-xl"
                 >
-                  {inputs[currentInputIndex]}
-                </motion.div>
+                  Upload
+                </button>
+              ) : isUploading ? (
+                <button className="btn btn-outline w-full rounded-xl loading">
+                  loading
+                </button>
+              ) : (
+                <button
+                  disabled={disabled}
+                  onClick={listNFTForSale}
+                  className="btn btn-outline w-full rounded-xl"
+                >
+                  Upload{' '}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </button>
               )}
             </div>
-          </AnimatePresence>
-
-          <div className="flex justify-between mt-4">
-            <button
-              className="btn rounded-xl"
-              onClick={() => {
-                setCurrentInputIndex(currentInputIndex - 1);
-                handleClick(false);
-              }}
-              disabled={currentInputIndex === 0}
-            >
-              Previous
-            </button>
-
-            <div className="btn-group rounded-xl">
-              <button className="btn rounded-xl" disabled>
-                {currentInputIndex + 1} of {inputs.length}
-              </button>
-            </div>
-            <button
-              className="btn rounded-xl"
-              onClick={() => {
-                setCurrentInputIndex(currentInputIndex + 1);
-                handleClick(true);
-              }}
-              disabled={loading || currentInputIndex === inputs.length - 1}
-            >
-              Next
-            </button>
-          </div>
-          <div className="card-actions w-full mt-4">
-            {disabled ? (
-              <button
-                disabled={disabled}
-                onClick={listNFTForSale}
-                className="btn btn-outline w-full rounded-xl"
-              >
-                Upload
-              </button>
-            ) : isUploading ? (
-              <button className="btn btn-outline w-full rounded-xl loading">
-                loading
-              </button>
-            ) : (
-              <button
-                disabled={disabled}
-                onClick={listNFTForSale}
-                className="btn btn-outline w-full rounded-xl"
-              >
-                Upload{' '}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </button>
-            )}
           </div>
         </div>
-      </div>
-      <div className="divider">OR</div>
+        <div className="divider">OR</div>
 
-      <div className="card w-96 shadow-xl bg-black border border-[#2a2a2a] rounded-3xl uploadcard">
-        <figure className="px-10 pt-5">
-          <h1 className="text-3xl font-bold text-center">
-            Not sure what to upload?
-          </h1>
-        </figure>
-        <div className="card-body items-center text-center">
-          <h1 className="text-xl font-bold text-center">
-            Browse the radio for some inspiration!
-          </h1>
-          <div className="card-actions w-full mt-4">
-            <a href="/radio" className="btn btn-outline w-full rounded-xl">
-              Listen to radio
-            </a>
+        <div className="card w-96 shadow-xl bg-black border border-[#2a2a2a] rounded-3xl uploadcard">
+          <figure className="px-10 pt-5">
+            <h1 className="text-3xl font-bold text-center">
+              Not sure what to upload?
+            </h1>
+          </figure>
+          <div className="card-body items-center text-center">
+            <h1 className="text-xl font-bold text-center">
+              Browse the radio for some inspiration!
+            </h1>
+            <div className="card-actions w-full mt-4">
+              <a href="/radio" className="btn btn-outline w-full rounded-xl">
+                Listen to radio
+              </a>
+            </div>
           </div>
         </div>
       </div>
