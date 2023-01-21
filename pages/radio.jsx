@@ -326,48 +326,14 @@ const RadioPage = () => {
 
   return (
     <div>
-      <div className="collapse collapse-arrow ">
-        <input type="checkbox" onClick={() => setIsOpen(!isOpen)} />
-        <div className="collapse-title text-xl font-medium text-center bg-[#555555] hover:bg-[#2a2a2a] ">
-          Heat Leaderboard 🔥
-        </div>
-        <motion.div
-          className="collapse-content border-b border-[#2a2a2a]"
-          initial={false}
-          animate={{ height: isOpen ? 'auto' : 0 }}
-          transition={{ duration: 0.3 }}
-          exit={{ opacity: 0, height: 0, transition: { duration: 0.3 } }}
-          style={{ overflow: 'hidden' }}
-        >
-          <div className=" flex items-center justify-center text-center">
-            <div className="stats shadow w-full border border-[#2a2a2a]">
-              {topThreeNfts.map((nft, index) => (
-                <div className="stat w-full card2">
-                  <div className="stat-figure text-primary text-7xl animate-pulse">
-                    {index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉'}
-                  </div>
-                  <div className=" text-white text-2xl">{nft.name}</div>
-                  <div className="stat-value ">{nft.heatCount} Heats🔥</div>
-                  <div className="stat-desc">
-                    <h1 className="text-xl font-medium text-center">
-                      {nft.seller.slice(0, 6)}...{nft.seller.slice(-4)}
-                    </h1>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      </div>
-
       <div className="drawer drawer-mobile">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col h-full ">
           {/* <!-- Page content here --> */}
-          <div className="flex justify-between mr-1">
+          <div className="flex justify-between">
             <label
               htmlFor="my-drawer-2"
-              className="btn btn-outline text-[#2a2a2a] lg:hidden rounded-xl mt-2 mb-2"
+              className="btn btn-outline text-white lg:hidden h-full"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -384,21 +350,41 @@ const RadioPage = () => {
                 />
               </svg>
             </label>
-            <select
-              className="mt-2 ml-2 rounded-xl select select-bordered w-full max-w-xs float-right"
-              onChange={async (e) => {
-                await loadSongsByGenre(e.target.value);
-                toast.success(`Loaded ${e.target.value} songs!`);
-              }}
-            >
-              <option disabled selected>
-                Sort by genre
-              </option>
-              <option value="">All</option>
-              <option value="lofi">Lofi</option>
-              <option value="hiphop">Hip Hop</option>
-              <option value="vocals">Vocals</option>
-            </select>
+            <div className="collapse collapse-arrow">
+              <input type="checkbox" onClick={() => setIsOpen(!isOpen)} />
+              <div className="collapse-title text-xl font-medium text-center bg-[#555555] hover:bg-[#2a2a2a] ">
+                Heat Leaderboard 🔥
+              </div>
+              <motion.div
+                className="collapse-content border-b border-[#2a2a2a]"
+                initial={false}
+                animate={{ height: isOpen ? 'auto' : 0 }}
+                transition={{ duration: 0.3 }}
+                exit={{ opacity: 0, height: 0, transition: { duration: 0.3 } }}
+                style={{ overflow: 'hidden' }}
+              >
+                <div className=" flex items-center justify-center text-center">
+                  <div className="stats shadow w-full border border-[#2a2a2a]">
+                    {topThreeNfts.map((nft, index) => (
+                      <div className="stat w-full card2">
+                        <div className="stat-figure text-primary text-7xl animate-pulse">
+                          {index === 0 ? '🥇' : index === 1 ? '🥈' : '🥉'}
+                        </div>
+                        <div className=" text-white text-2xl">{nft.name}</div>
+                        <div className="stat-value ">
+                          {nft.heatCount} Heats🔥
+                        </div>
+                        <div className="stat-desc">
+                          <h1 className="text-xl font-medium text-center">
+                            {nft.seller.slice(0, 6)}...{nft.seller.slice(-4)}
+                          </h1>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </div>
           <div className="hero">
             {nfts.length > 0 ? (
@@ -569,13 +555,26 @@ const RadioPage = () => {
 
         <div className="drawer-side overflow-y-hidden">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 bg-[#2a2a2a] text-base-content">
+          <ul className="menu p-4 w-80 bg-black text-base-content border-r border-[#2a2a2a]">
             {/* <!-- Sidebar content here --> */}
 
             <div className="flex justify-between border-b border-[#555555]">
-              <label className="text-xl font-semibold float-left">
-                Queue | {ascending ? 'Ascending' : 'Descending'}
-              </label>
+              {' '}
+              <select
+                className=" mb-3 rounded-xl select select-bordered"
+                onChange={async (e) => {
+                  await loadSongsByGenre(e.target.value);
+                  toast.success(`Loaded ${e.target.value} songs!`);
+                }}
+              >
+                <option disabled selected>
+                  Sort by genre
+                </option>
+                <option value="">All</option>
+                <option value="lofi">Lofi</option>
+                <option value="hiphop">Hip Hop</option>
+                <option value="vocals">Vocals</option>
+              </select>
               {/* SWAP */}
               <label className="swap swap-rotate mb-3 rounded-xl card3 border border-[#555555] p-2">
                 <input

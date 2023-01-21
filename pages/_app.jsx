@@ -18,6 +18,7 @@ function MyApp({ Component, pageProps }) {
     <main className={poppins.className}>
       <ThirdwebProvider desiredChainId={activeChainId}>
         <Navbar />
+
         <Component {...pageProps} />
         <Toaster />
         <Analytics />
