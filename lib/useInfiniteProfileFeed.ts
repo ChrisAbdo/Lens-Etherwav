@@ -2,7 +2,7 @@ import {
   useInfiniteQuery,
   UseInfiniteQueryOptions,
 } from "@tanstack/react-query";
-import { fetchData } from "../../auth-fetcher";
+import { fetchData } from "../auth-fetcher";
 import {
   ProfileFeedDocument,
   ProfileFeedQuery,

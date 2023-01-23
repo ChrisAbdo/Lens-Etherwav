@@ -4,10 +4,6 @@ import React from 'react';
 import { PublicationsQuery } from '../../graphql/generated';
 import { getFormattedDate } from '../../lib/helper/dates';
 import { formatNum, getPreviewText } from '../../lib/helper/format';
-// import ShoppingBagIcon from "@mui/icons-material/ShoppingBag"; // Collect
-// import ChatBubbleIcon from "@mui/icons-material/ChatBubble"; // Comment
-// import RepeatIcon from "@mui/icons-material/Repeat"; // Mirror
-import styles from '../feed/feed.module.css';
 
 type Props = {
   post: PublicationsQuery['publications']['items'][0];
