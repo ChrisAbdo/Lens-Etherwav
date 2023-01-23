@@ -10,6 +10,7 @@ import useLogin from '../lib/auth/useLogin';
 import { MediaRenderer } from '@thirdweb-dev/react';
 import { useLensUserContext } from '../context/LensUserContext';
 import Link from 'next/link';
+import SignInButton from './SignInButton';
 
 const Navbar = () => {
   const address = useAddress();
@@ -28,39 +29,39 @@ const Navbar = () => {
     await login();
   }
 
-  // If no wallet is connected,
-  if (!address) {
-    return <ConnectWallet />;
-  }
+  // // If no wallet is connected,
+  // if (!address) {
+  //   return <ConnectWallet />;
+  // }
 
-  // If is on wrong network,
-  if (isOnWrongNetwork) {
-    return (
-      <button className="btn" onClick={() => switchNetwork?.(CHAIN_ID)}>
-        Switch Network
-      </button>
-    );
-  }
+  // // If is on wrong network,
+  // if (isOnWrongNetwork) {
+  //   return (
+  //     <button className="btn" onClick={() => switchNetwork?.(CHAIN_ID)}>
+  //       Switch Network
+  //     </button>
+  //   );
+  // }
 
-  if (!isSignedIn) {
-    return (
-      <button className="btn" onClick={handleLogin}>
-        Sign In 🌿
-      </button>
-    );
-  }
+  // if (!isSignedIn) {
+  //   return (
+  //     <button className="btn" onClick={handleLogin}>
+  //       Sign In 🌿
+  //     </button>
+  //   );
+  // }
 
-  if (loadingLensUser) {
-    return <h1>Loading...</h1>;
-  }
+  // if (loadingLensUser) {
+  //   return <h1>Loading...</h1>;
+  // }
 
-  if (error) {
-    return <h1>Error!</h1>;
-  }
+  // if (error) {
+  //   return <h1>Error!</h1>;
+  // }
 
-  if (lensUser?.defaultProfile === null) {
-    return <h1>No Lens Profile</h1>;
-  }
+  // if (lensUser?.defaultProfile === null) {
+  //   return <h1>No Lens Profile</h1>;
+  // }
 
   return (
     <div className="navbar bg-black border-b border-[#2a2a2a] sticky top-0 z-50">
@@ -190,42 +191,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        {isOnWrongNetwork ? (
-          <button
-            className="btn btn-outline normal-case rounded-xl"
-            onClick={() => switchNetwork?.(activeChainId)}
-          >
-            Wrong Network!{' '}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"
-              />
-            </svg>
-          </button>
-        ) : (
-          <ConnectWallet />
-        )}
-
-        <Link
-          href={`/profile/${lensUser?.defaultProfile?.handle}`}
-          className="ml-2"
-        >
-          <MediaRenderer
-            // @ts-ignore: Type does exist.
-            src={lensUser?.defaultProfile?.picture?.original?.url || ''}
-            alt={lensUser?.defaultProfile?.name || 'Loading...'}
-            className="rounded-full w-10 h-10"
-          />
-        </Link>
+        <SignInButton />
       </div>
     </div>
   );
