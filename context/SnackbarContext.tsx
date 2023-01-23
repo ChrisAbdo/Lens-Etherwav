@@ -1,9 +1,8 @@
-import { AlertColor } from "@mui/material";
-import { createContext, useContext } from "react";
+import { createContext, useContext } from 'react';
 
 export type SnackbarState = {
   open: boolean;
-  severity?: AlertColor;
+  severity?: 'success' | 'info' | 'warning' | 'error';
   message?: string;
 };
 
