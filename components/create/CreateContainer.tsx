@@ -1,8 +1,6 @@
 import React, { useRef, useState } from 'react';
-import guideText from '../../const/guideText';
 import CoverImage from './CoverImage';
 import CreateHeader from './CreateHeader';
-import EditorToolbar from './EditorToolbar';
 import MarkdownEditor from './MarkdownEditor';
 
 type Props = {};
@@ -10,27 +8,19 @@ type Props = {};
 export type EditorTab = 'write' | 'preview' | 'guide';
 
 export default function CreateContainer({}: Props) {
-  // State to keep track of which tab is active
-  const [activeTab, setActiveTab] = useState<EditorTab>('write');
-
-  // Reference to the editor input element
   const mdInputRef = useRef<HTMLTextAreaElement>(null);
 
-  // Store the contents of the editor as the user types
   const [mdInput, setMdInput] = useState<string>('');
 
-  // State to keep track of the cover image
   const [coverImage, setCoverImage] = useState<File | null>(null);
 
-  // State to keep track of the title
   const [title, setTitle] = useState<string>('');
 
-  // Configurable metadata state
   const [metadata, setMetadata] = useState<Record<string, any>>({});
 
   return (
     <>
-      <CreateHeader
+      {/* <CreateHeader
         postMetadata={{
           ...metadata,
           title,
@@ -41,36 +31,70 @@ export default function CreateContainer({}: Props) {
       />
       <CoverImage coverImage={coverImage} setCoverImage={setCoverImage} />
 
-      <EditorToolbar
-        mdInputRef={mdInputRef}
-        setMdValue={setMdInput}
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-      />
+      <>
+        <input
+          placeholder="Enter a title..."
+          // InputProps={{
+          //   className: styles.titleInput,
+          // }}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+        />
+        <MarkdownEditor
+          mdInputRef={mdInputRef}
+          mdValue={mdInput}
+          setMdValue={setMdInput}
+        />
+      </> */}
 
-      {/* Preview Tab */}
+      <div className="drawer drawer-mobile">
+        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content flex flex-col">
+          {/* <!-- Page content here --> */}
+          <label
+            htmlFor="my-drawer-2"
+            className="btn btn-primary drawer-button lg:hidden"
+          >
+            Post Preview
+          </label>
 
-      {/* Guide tab */}
+          <CoverImage coverImage={coverImage} setCoverImage={setCoverImage} />
 
-      {/* Write tab */}
-      {activeTab === 'write' && (
-        <>
-          <input
-            placeholder="Enter a title..."
-            // InputProps={{
-            //   className: styles.titleInput,
-            // }}
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-          <MarkdownEditor
-            mdInputRef={mdInputRef}
-            mdValue={mdInput}
-            setMdValue={setMdInput}
-          />
-        </>
-      )}
+          <>
+            <input
+              placeholder="Enter a title..."
+              // InputProps={{
+              //   className: styles.titleInput,
+              // }}
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />
+            <MarkdownEditor
+              mdInputRef={mdInputRef}
+              mdValue={mdInput}
+              setMdValue={setMdInput}
+            />
+          </>
+        </div>
+        <div className="drawer-side border-r border-[#2a2a2a]">
+          <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
+          <ul className="menu p-4 w-80 bg-base-100 text-base-content">
+            {/* <!-- Sidebar content here --> */}
+            <h1 className="text-2xl font-bold underline mb-2">Post Preview</h1>
+            <CreateHeader
+              postMetadata={{
+                ...metadata,
+                title,
+                coverImage,
+                content: mdInput,
+              }}
+              setPostMetadata={setMetadata}
+            />
+          </ul>
+        </div>
+      </div>
     </>
   );
 }

@@ -5,6 +5,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Web3 from 'web3';
 import Radio from '../smart-contracts/build/contracts/Radio.json';
 import NFT from '../smart-contracts/build/contracts/NFT.json';
+
+import { LENS_CONTRACT_ADDRESS } from '../const/blockchain';
+import { LENS_ABI } from '../const/abis';
+import { useCreatePost } from '../lib/lens/createPost';
+
 import toast from 'react-hot-toast';
 
 const ipfsClient = require('ipfs-http-client');

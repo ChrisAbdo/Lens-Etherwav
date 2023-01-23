@@ -1,7 +1,5 @@
 import * as React from 'react';
-import createStyles from './create.module.css';
 import styles from './create.module.css';
-import TagSelector from './TagSelector';
 import { Web3Button } from '@thirdweb-dev/react';
 import { LENS_CONTRACT_ADDRESS } from '../../const/blockchain';
 import { LENS_ABI } from '../../const/abis';
@@ -37,33 +35,26 @@ export default function TemporaryDrawer({
 
   const list = () => (
     <div>
-      <h1>Publish Post</h1>
-
-      <h1>Configure your settings before publishing to the blockchain.</h1>
-
       {postMetadata.coverImage ? (
         <>
           <h1>Cover Image</h1>
-          <h1>Note: editable in the main post editor.</h1>
           <img
             src={URL.createObjectURL(postMetadata.coverImage)}
             className={styles.sidebarImagePreview}
           />
         </>
       ) : (
-        <h1>No cover image.</h1>
+        <h1>No cover image selected.</h1>
       )}
 
-      <h1>Title</h1>
-      <h1>Note: editable in the main post editor.</h1>
-      <input disabled value={postMetadata.title || ''} />
-
-      <h1>Description</h1>
-
-      <h1>Tags</h1>
+      <input
+        disabled
+        value={postMetadata.title || ''}
+        placeholder="Your title will go here..."
+      />
 
       <Web3Button
-        className={styles.publishButton}
+        className="btn mt-2"
         contractAddress={LENS_CONTRACT_ADDRESS}
         contractAbi={LENS_ABI}
         action={async () => await createPost({ ...postMetadata })}

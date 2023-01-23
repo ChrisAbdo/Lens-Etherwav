@@ -1,68 +1,7 @@
 import React from 'react';
-import {
-  useNetworkMismatch,
-  useAddress,
-  ConnectWallet,
-  useNetwork,
-} from '@thirdweb-dev/react';
-import { CHAIN_ID } from '../const/blockchain';
-import useLogin from '../lib/auth/useLogin';
-import { MediaRenderer } from '@thirdweb-dev/react';
-import { useLensUserContext } from '../context/LensUserContext';
-import Link from 'next/link';
 import SignInButton from './SignInButton';
 
 const Navbar = () => {
-  const address = useAddress();
-  const isOnWrongNetwork = useNetworkMismatch();
-  const [, switchNetwork] = useNetwork();
-
-  const {
-    data: lensUser,
-    isSignedIn,
-    isLoading: loadingLensUser,
-    error,
-  } = useLensUserContext();
-  const { mutateAsync: login } = useLogin();
-
-  async function handleLogin() {
-    await login();
-  }
-
-  // // If no wallet is connected,
-  // if (!address) {
-  //   return <ConnectWallet />;
-  // }
-
-  // // If is on wrong network,
-  // if (isOnWrongNetwork) {
-  //   return (
-  //     <button className="btn" onClick={() => switchNetwork?.(CHAIN_ID)}>
-  //       Switch Network
-  //     </button>
-  //   );
-  // }
-
-  // if (!isSignedIn) {
-  //   return (
-  //     <button className="btn" onClick={handleLogin}>
-  //       Sign In 🌿
-  //     </button>
-  //   );
-  // }
-
-  // if (loadingLensUser) {
-  //   return <h1>Loading...</h1>;
-  // }
-
-  // if (error) {
-  //   return <h1>Error!</h1>;
-  // }
-
-  // if (lensUser?.defaultProfile === null) {
-  //   return <h1>No Lens Profile</h1>;
-  // }
-
   return (
     <div className="navbar bg-black border-b border-[#2a2a2a] sticky top-0 z-50">
       <div className="navbar-start">
@@ -184,6 +123,9 @@ const Navbar = () => {
           </li>
           <li>
             <a href="/upload">Upload</a>
+          </li>
+          <li>
+            <a href="/lens-upload">Lens Upload🌿</a>
           </li>
           <li>
             <a href="/profile">Profile</a>

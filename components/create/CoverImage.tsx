@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React, { useEffect, useState, useRef } from 'react';
 import styles from './create.module.css';
 
@@ -24,7 +25,7 @@ export default function CoverImage({ coverImage, setCoverImage }: Props) {
   if (!coverImage) {
     return (
       <>
-        <div
+        {/* <div
           className={styles.dragAndDropZone}
           onDragOver={(e) => e.preventDefault()}
           onDrop={(e) => {
@@ -41,10 +42,23 @@ export default function CoverImage({ coverImage, setCoverImage }: Props) {
           }}
         >
           <h1>Drag and drop your cover image here</h1>
-        </div>
+        </div> */}
+
+        <input
+          type="file"
+          className="file-input file-input-bordered w-full max-w-xs"
+          accept="image/*"
+          ref={fileInputRef}
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (file) {
+              setCoverImage(file);
+            }
+          }}
+        />
 
         {/* Hidden input field */}
-        <input
+        {/* <input
           type="file"
           accept="image/*"
           ref={fileInputRef}
@@ -55,7 +69,7 @@ export default function CoverImage({ coverImage, setCoverImage }: Props) {
             }
           }}
           style={{ display: 'none' }}
-        />
+        /> */}
       </>
     );
   }
@@ -64,7 +78,12 @@ export default function CoverImage({ coverImage, setCoverImage }: Props) {
   return (
     <div>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={coverImageUrl || ''} alt="Cover image" />
+      <Image
+        src={coverImageUrl || ''}
+        alt="Cover image"
+        width={200}
+        height={200}
+      />
       <button onClick={() => setCoverImage(null)}></button>
     </div>
   );

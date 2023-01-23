@@ -1,6 +1,4 @@
-import Link from 'next/link';
 import React, { useState } from 'react';
-import createStyles from './create.module.css';
 import SignInButton from '../SignInButton';
 import { useLensUserContext } from '../../context/LensUserContext';
 import SettingsSidebar from './SettingsSidebar';
@@ -18,25 +16,8 @@ export default function CreateHeader({ postMetadata, setPostMetadata }: Props) {
   return (
     <>
       <div>
-        <div>
-          <Link href="/feed">
-            {/*  eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/logo.png" alt="logo" height={56} />
-          </Link>
-        </div>
-
         {/* Before accesing post settings, need sign in and lens profile */}
-        {!isSignedIn || !lensProfile ? (
-          <SignInButton />
-        ) : (
-          <>
-            <button
-              onClick={() => setOpenSettingsSidebar(!openSettingsSidebar)}
-            >
-              settings
-            </button>
-          </>
-        )}
+        {!isSignedIn || (!lensProfile && <SignInButton />)}
       </div>
 
       <SettingsSidebar

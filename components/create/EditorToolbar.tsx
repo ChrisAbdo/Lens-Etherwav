@@ -104,41 +104,5 @@ export default function EditorToolbar({
   activeTab,
   setActiveTab,
 }: Props) {
-  return (
-    <>
-      {/* Left side of editor (Tabs) */}
-      {/* Map over editor tabs */}
-      {tabs.map((tab, i) => (
-        <div key={i}>
-          <button
-            color={activeTab === tab.name ? 'primary' : 'inherit'}
-            onClick={() => setActiveTab(tab.name as EditorTab)}
-          >
-            {capitalize(tab.name)}
-          </button>
-        </div>
-      ))}
-
-      {/* Right side of editor (Editor options) */}
-      {editorOptions.map((option, i) => (
-        <div key={i}>
-          <button
-            onClick={() => {
-              if (!mdInputRef?.current) return;
-              option.onClick?.(mdInputRef?.current, setMdValue);
-            }}
-          >
-            option
-          </button>
-        </div>
-      ))}
-
-      <div>
-        <h1>
-          Currently, there is no draft-saving feature.{' '}
-          <b>Your work will be lost if you leave this page</b>.
-        </h1>
-      </div>
-    </>
-  );
+  return <></>;
 }

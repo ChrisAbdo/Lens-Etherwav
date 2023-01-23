@@ -73,7 +73,7 @@ export default function SignInButton() {
           // @ts-ignore: Type does exist.
           src={lensUser?.defaultProfile?.picture?.original?.url || ''}
           alt={lensUser?.defaultProfile?.name || 'Loading...'}
-          className="h-12 w-12"
+          className="h-12 w-12 rounded-xl border border-[#2a2a2a]"
         />
       </Link>
     </div>

@@ -350,7 +350,7 @@ const RadioPage = () => {
                 />
               </svg>
             </label>
-            <div className="collapse collapse-arrow ">
+            <div className="collapse collapse-arrow w-full overflow-y-hidden">
               <input type="checkbox" onClick={() => setIsOpen(!isOpen)} />
               <div className="collapse-title text-xl font-medium text-center bg-[#555555] hover:bg-[#2a2a2a] ">
                 Heat Leaderboard 🔥
