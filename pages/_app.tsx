@@ -37,8 +37,6 @@ interface MyAppProps extends AppProps {
 
 export default function MyApp(props: MyAppProps) {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
-  const router = useRouter();
-  const [modalState, setModalState] = useState<ModalState | null>(null);
 
   return (
     <main className={poppins.className}>
