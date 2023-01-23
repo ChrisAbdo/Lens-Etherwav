@@ -7,7 +7,7 @@ import {
   PublicationMainFocus,
 } from "../../graphql/generated";
 import uploadToIpfs from "../uploadToIpfs";
-import { fetchData } from "../../../auth-fetcher";
+import { fetchData } from "../../auth-fetcher";
 import {
   signTypedDataWithOmittedTypenames,
   splitSignature,
@@ -15,8 +15,8 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import { useLensUserContext } from "../../context/LensUserContext";
 import { useContract, useSDK } from "@thirdweb-dev/react";
-import { LENS_CONTRACT_ADDRESS } from "../../../const/blockchain";
-import { LENS_ABI } from "../../../const/abis";
+import { LENS_CONTRACT_ADDRESS } from "../../const/blockchain";
+import { LENS_ABI } from "../../const/abis";
 import { useMutation } from "@tanstack/react-query";
 import { useGlobalInformationModalContext } from "../../context/GlobalInformationModalContext";
 import { useRouter } from "next/router";

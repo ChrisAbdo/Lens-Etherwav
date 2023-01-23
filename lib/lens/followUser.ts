@@ -1,9 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
 import { useAddress, useContract, useSDK } from "@thirdweb-dev/react";
 import { SmartContract, ThirdwebSDK } from "@thirdweb-dev/sdk";
-import { fetchData } from "../../../auth-fetcher";
-import { LENS_ABI } from "../../../const/abis";
-import { LENS_CONTRACT_ADDRESS } from "../../../const/blockchain";
+import { fetchData } from "../../auth-fetcher";
+import { LENS_ABI } from "../../const/abis";
+import { LENS_CONTRACT_ADDRESS } from "../../const/blockchain";
 import { useGlobalInformationModalContext } from "../../context/GlobalInformationModalContext";
 import {
   CreateFollowTypedDataDocument,
