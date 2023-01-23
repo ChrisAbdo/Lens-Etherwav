@@ -574,6 +574,7 @@ const RadioPage = () => {
                 <option value="lofi">Lofi</option>
                 <option value="hiphop">Hip Hop</option>
                 <option value="vocals">Vocals</option>
+                <option value="edm">EDM</option>
               </select>
               {/* SWAP */}
               <label className="swap swap-rotate mb-3 rounded-xl card3 border border-[#555555] p-2">
