@@ -4,6 +4,7 @@ import { Web3Button } from '@thirdweb-dev/react';
 import { LENS_CONTRACT_ADDRESS } from '../../const/blockchain';
 import { LENS_ABI } from '../../const/abis';
 import { useCreatePost } from '../../lib/lens/createPost';
+import Image from 'next/image';
 
 type Props = {
   postMetadata: Record<string, any>;
@@ -37,10 +38,11 @@ export default function TemporaryDrawer({
     <div>
       {postMetadata.coverImage ? (
         <>
-          <h1>Cover Image</h1>
-          <img
+          <Image
             src={URL.createObjectURL(postMetadata.coverImage)}
-            className={styles.sidebarImagePreview}
+            alt="Cover Image"
+            width={500}
+            height={500}
           />
         </>
       ) : (

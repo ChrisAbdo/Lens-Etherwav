@@ -20,62 +20,45 @@ export default function CreateContainer({}: Props) {
 
   return (
     <>
-      {/* <CreateHeader
-        postMetadata={{
-          ...metadata,
-          title,
-          coverImage,
-          content: mdInput,
-        }}
-        setPostMetadata={setMetadata}
-      />
-      <CoverImage coverImage={coverImage} setCoverImage={setCoverImage} />
-
-      <>
-        <input
-          placeholder="Enter a title..."
-          // InputProps={{
-          //   className: styles.titleInput,
-          // }}
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
-        <MarkdownEditor
-          mdInputRef={mdInputRef}
-          mdValue={mdInput}
-          setMdValue={setMdInput}
-        />
-      </> */}
-
       <div className="drawer drawer-mobile">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           {/* <!-- Page content here --> */}
-          <label
-            htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button lg:hidden"
-          >
-            Post Preview
-          </label>
-
-          <CoverImage coverImage={coverImage} setCoverImage={setCoverImage} />
 
           <>
-            <input
-              placeholder="Enter a title..."
-              // InputProps={{
-              //   className: styles.titleInput,
-              // }}
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required
-            />
-            <MarkdownEditor
-              mdInputRef={mdInputRef}
-              mdValue={mdInput}
-              setMdValue={setMdInput}
-            />
+            <div className="p-6">
+              <div className="card w-full bg-base-100 shadow-xl border border-[#2a2a2a] rounded-3xl">
+                <figure>
+                  <h1 className="text-2xl font-bold underline mt-4">
+                    Upload to Lens🌿
+                  </h1>
+                </figure>
+                <div className="card-body">
+                  <CoverImage
+                    coverImage={coverImage}
+                    setCoverImage={setCoverImage}
+                  />
+                  <input
+                    placeholder="Song Title..."
+                    className="input input-bordered w-full rounded-xl"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    required
+                  />
+                  <MarkdownEditor
+                    mdInputRef={mdInputRef}
+                    mdValue={mdInput}
+                    setMdValue={setMdInput}
+                  />
+                  <label
+                    htmlFor="my-drawer-2"
+                    className="btn btn-primary drawer-button lg:hidden rounded-xl"
+                  >
+                    Upload to Lens🌿
+                  </label>
+                </div>
+              </div>
+            </div>
           </>
         </div>
         <div className="drawer-side border-r border-[#2a2a2a]">

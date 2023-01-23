@@ -20,8 +20,11 @@ export default function MarkdownEditor({
 }: Props) {
   return (
     <input
+      className="input input-bordered w-full rounded-xl"
       placeholder="Write your story..."
       value={mdValue}
+      type="file"
+      accept="audio/*,video/*,image/*"
       onChange={(e) => setMdValue(e.target.value)}
       onKeyDown={(e) => {
         // Bold
