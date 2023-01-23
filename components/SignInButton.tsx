@@ -58,7 +58,11 @@ export default function SignInButton() {
   }
 
   if (lensUser?.defaultProfile === null) {
-    return <h1>No Lens Profile</h1>;
+    return (
+      <button disabled className="btn ">
+        No Lens Profile
+      </button>
+    );
   }
 
   return (

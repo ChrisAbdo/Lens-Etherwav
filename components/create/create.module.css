@@ -1,0 +1,211 @@
+.navbarContainer {
+  border: 1px solid rgba(234, 234, 234, 0.3);
+  background-color: #141414;
+  border-radius: 16px;
+  min-height: 64px;
+  height: auto;
+  margin-bottom: 32px;
+  margin-top: 32px;
+  /* Stick to top when scrolled */
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  margin-left: -16px;
+  width: calc(100% + 32px);
+}
+
+.navbarTabs {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navbarTab {
+  margin-left: 16px;
+  border-radius: 8px;
+}
+
+.navbarOptions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navbarOptionButton {
+  height: 32px;
+  width: 32px;
+  padding: 4px;
+  margin-right: 8px;
+  border-radius: 8px;
+}
+
+.editor {
+  margin-bottom: 5rem;
+}
+
+/* On mobile devices */
+@media only screen and (max-width: 720px) {
+  .navbarContainer {
+    padding-top: 8px;
+    width: 100%;
+    margin-left: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .navbarOptions {
+    border-top: 1px solid rgba(234, 234, 234, 0.3);
+
+    /* spacing beneath border */
+    padding-top: 10px;
+    padding-bottom: 8px;
+
+    display: flex;
+    margin-top: 8px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-left: 8px;
+    padding-right: 8px;
+    flex-wrap: wrap;
+  }
+
+  /* Hide the last button inside ,navbarOptions */
+  .navbarOptions > *:last-child {
+    display: none;
+  }
+}
+
+.dragAndDropZone {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed rgba(234, 234, 234, 0.3);
+  border-radius: 8px;
+  height: 256px;
+  width: 100%;
+  margin-bottom: 32px;
+  margin-top: 32px;
+}
+
+.coverImagePreviewContainer {
+  position: relative;
+}
+.coverImagePreview {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 32px;
+  margin-top: 32px;
+  max-height: 256px;
+  object-fit: cover;
+}
+
+.coverImagePreviewContainer .removeCoverButton {
+  position: absolute;
+  top: 48px;
+  right: 12px;
+  min-width: 24px;
+}
+
+.settingsButton {
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.settingsSidebar {
+  width: 480px;
+  padding-left: 24px;
+  padding-top: 32px;
+  padding-right: 16px;
+}
+
+.titleInput {
+  font-size: 2.125rem;
+  color: #fff;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 32px;
+}
+
+.draftWarningContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.divider {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  background: rgba(234, 234, 234, 0.3);
+}
+
+.label {
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.tinyLabel {
+  margin-top: -8px;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.textFieldContainer {
+  margin-bottom: 32px;
+}
+
+.sidebarImagePreview {
+  max-height: 128px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.tagChipContainer {
+  margin-top: 12px;
+}
+
+.tagChip {
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  border-image: linear-gradient(
+    to bottom right,
+    #9e61ff 0%,
+    #619bff 25%,
+    #e73c7e 75%,
+    #23a6d5 100%
+  );
+  border-image-slice: 1;
+}
+
+.publishButton {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  color: #0d0a1e;
+  border: 1px solid #0d0a1e;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  text-decoration: none;
+  height: 48px;
+  background: linear-gradient(90deg, #9e61ff 0%, #619bff 100%) right !important;
+  background-size: 200% 100%;
+  color: #fff;
+  transition: all 0.5s ease;
+}
+
+.publishButton:hover {
+  background-position: left;
+  transition: all 0.5s ease;
+}
